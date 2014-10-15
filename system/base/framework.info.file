@@ -1,0 +1,64 @@
+<?php
+	/**
+	 * @license			see /docs/license.txt
+	 * @package			PHPRum
+	 * @author			darnell.shinbine
+	 * @copyright		Copyright (c) 2013
+     * @version         6.6.0-beta-1.08
+	 */
+	namespace System\Base;
+
+    /**
+     * build name
+     * @var string
+     */
+	const FRAMEWORK_BUILD_NAME = 'Rum';
+
+    /**
+     * framework version number
+     * @var string
+     */
+	const FRAMEWORK_BUILD_VERSION = '6.6';
+
+    /**
+     * framework revision number
+     * @var string
+     */
+	const FRAMEWORK_BUILD_REVISION = '0-beta-1.08';
+
+    /**
+     * build number
+     * @var string
+     */
+	const FRAMEWORK_BUILD_NUMBER = '201410091520';
+
+    /**
+     * build date
+     * @var string
+     */
+	const FRAMEWORK_BUILD_TIME = '09 Oct 14';
+
+    /**
+     * build time
+     * @var string
+     */
+	const FRAMEWORK_BUILD_DATE = '15:20:04 MDT';
+
+    /**
+     * framework authors
+     * @var string
+     */
+	const FRAMEWORK_AUTHORS = 'darnell.shinbine';
+
+    /**
+     * framework version string
+     * @var string
+     */
+	const FRAMEWORK_VERSION_STRING = '6.6.0-beta-1.08 (Build 201410091520)';
+
+    /**
+     * framework date string
+     * @var string
+     */
+	const FRAMEWORK_DATE_STRING = 'last build on 09 Oct 14 at 15:20:04 MDT';
+?>

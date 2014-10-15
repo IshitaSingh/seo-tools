@@ -1,0 +1,149 @@
+<!--/*--><![CDATA[/*><!--*/
+
+html {
+	padding-bottom: 15px;
+}
+
+#debug_toolbar {
+  width:100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 35px;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: arial, "lucida console", sans-serif;
+  border-top: 2px solid #AAAAAA;
+  font-size: 12px;
+  line-height: 12px;
+  text-align: left;
+  color: #ffffff;
+  line-height: 35px;
+}
+
+#debug_toolbar a,
+#debug_toolbar span {
+	padding-left: 6px;
+	padding-right: 6px;
+	line-height: 35px;
+	color: #ffffff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#debug_toolbar a span {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#debug_toolbar a:hover {
+	text-decoration: underline;
+}
+
+#debug_toolbar input {
+	position: absolute;
+	bottom: 400px;
+	left: 0px;
+	width: 120px;
+	height: 35px;
+	z-index: 99px;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+#debug_toolbar iframe {
+	border-top: 2px solid #5792CE;
+	position: absolute;
+	bottom: 35px;
+	left: 0px;
+	width: 100%;
+	height: 400px;
+	background-color: #ffffff;
+}
+
+.debug_panel {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  min-width: 300px;
+  background-color: #FFFFFF;
+  padding: 10px;
+  border: 2px solid #5792CE;
+  color: #666666;
+  font-family: arial, "lucida console", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  margin-bottom: 35px;
+}
+
+.debug_panel pre {
+  background-color: #F7F7F7;
+  padding: 6px;
+  border: 1px solid #CCCCCC;
+  color: #666666;
+  white-space: pre-wrap;
+  margin: 0px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  -moz-border-radius:1em;
+  -khtml-border-radius:1em;
+}
+
+.debug_panel h1 {
+  font-size: 24px;
+  color: #5792CE;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 0px;
+  padding-bottom: 8px;
+}
+
+.debug_panel h2 {
+	margin: 0px;
+	font-size: 16px;
+	font-style: italic;
+	color: #999999;
+	font-weight: bold;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.debug_panel p {
+	color: #666666;
+	font-size: 12px;
+	margin: 0px;
+}
+
+.debug_panel a {
+	color: #0066CC;
+	text-decoration: none;
+}
+
+.debug_panel a:hover, .debug_panel a:hover {
+  background-color: #0066cc;
+  color: #ffffff;
+  -moz-border-radius:5px;
+  -khtml-border-radius:5px;
+}
+
+.debug_panel div {
+	margin-left: 20px;
+}
+
+.debug_close {
+  float:right;
+  color: #0066cc;
+  -moz-border-radius:5px;
+  -khtml-border-radius:5px;
+  padding: 2px;
+}
+
+.debug_open {
+  color: #0066cc;
+  padding: 2px;
+}
+
+/*]]>*/-->

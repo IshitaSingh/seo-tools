@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Models</h1>
+<p>The model represents a logical structure of data (usually a database table or resultset).  The model can be interacted with and manipulated by the controller and/or view.</p>
+
+<p>In this example the model (in this case a specific type of model called an active record) represents a table in the database called <em>entries</em>.  The model is responsible for retrieving and manipulating data in that database table.</p>
+
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">namespace&nbsp;</span><span style="color: #0000BB">MyBlog</span><span style="color: #007700">\</span><span style="color: #0000BB">Models</span><span style="color: #007700">;
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;</span><span style="color: #0000BB">Entries&nbsp;</span><span style="color: #007700">extends&nbsp;\</span><span style="color: #0000BB">System</span><span style="color: #007700">\</span><span style="color: #0000BB">ActiveRecord</span><span style="color: #007700">\</span><span style="color: #0000BB">ActiveRecordBase
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;</span><span style="color: #0000BB">$table&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'entries'</span><span style="color: #007700">;
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;</span><span style="color: #0000BB">$pkey&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'entry_id'</span><span style="color: #007700">;
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;</span><span style="color: #0000BB">$fields&nbsp;</span><span style="color: #007700">=&nbsp;array(
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'title'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'string'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'body'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'blob'
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">);
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;</span><span style="color: #0000BB">$rules&nbsp;</span><span style="color: #007700">=&nbsp;array(
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'title'</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'required'
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">);
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;</span><span style="color: #0000BB">$relationships&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;array(
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'relationship'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'has_many'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'type'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'MyBlog\Models\Comments'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'table'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'comments'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'columnRef'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'entry_id'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'columnKey'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'entry_id'</span><span style="color: #007700">,
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'notNull'&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'1'
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">));
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code>
+
+<p>Model classes are located in /app/models</p>
+
+</body>
+</html>

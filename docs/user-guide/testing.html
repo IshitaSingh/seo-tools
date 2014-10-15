@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Testing</h1>
+
+<h3>Basic Unit Test</h3>
+<p>This example shows a basic unit test for a blog model
+</p>
+<pre>
+	class BlogTestCase extends UnitTestCase {
+
+		function __construct() {
+			// use this method to build your test environment
+		}
+
+		function __destruct() {
+			// use this method to clean up your test environment
+		}
+
+		protected function setUp() {
+			// use this method to setup your test environment before each test
+		}
+
+		protected function tearDown() {
+			// use this method to clean your test environment after each test
+		}
+
+		protected function testShouldCreateRecord() {
+			$blog = new Blog();
+			$this-&gt;assertTrue( $blog instanceof Blog, 'could not create Blog object' );
+		}
+
+</pre>
+<h3>Helpers</h3>
+<p>The following example is how to implement helpers in your unit tests
+Helper methods should be kept in separate files
+</p>
+<pre>
+	class BlogTestCase extends ModelTestCase {
+
+		protected function assertDifference( $count1, $count2, $difference ) {
+			$this-&gt;assertTrue( $count1 + $difference == $count2 );
+		}
+
+		protected function testShouldCreateRecord() {
+			$old_count = Blog::FindAll()-&gt;count;
+
+			$blog = new Blog( 'BlogTitle' ); // create a new blog and save...
+			$blog-&gt;save();
+
+			$this-&gt;assertDifference( $old_count, Blog::FindAll()-&gt;count, +1 );
+		}
+</pre>
+
+<h3>Fixtures</h3>
+<p>The following example is how to implement fixtures in your unit tests
+setup.xml
+</p>
+<pre>
+&lt;fixture&gt;
+  &lt;blog&gt;
+    &lt;blog_id&gt;1&lt;/blog_id&gt;
+
+    &lt;blog_title&gt;My Title&lt;/blog_title&gt;
+    &lt;blog_description&gt;My Description&lt;/blog_description&gt;
+    &lt;blog_datetime&gt;12/05/05&lt;/blog_datetime&gt;
+  &lt;/blog&gt;
+
+  &lt;blog&gt;
+    &lt;blog_id&gt;2&lt;/blog_id&gt;
+    &lt;blog_title&gt;My Title 2&lt;/blog_title&gt;
+    &lt;blog_description&gt;My Description 2&lt;/blog_description&gt;
+
+    &lt;blog_datetime&gt;last monday&lt;/blog_datetime&gt;
+  &lt;/blog&gt;
+&lt;/fixture&gt;
+</pre>
+<pre>
+	class BlogTestCase extends ModelTestCase {
+
+		protected $fixtures = 'setup';
+
+		protected function testUsingFixtureData() {
+		}
+	}
+</pre>
+<h3>Output Testing</h3>
+
+<p>The following example is how to test the rendered output
+</p>
+<pre>
+	class BlogTestCase extends ModelTestCase {
+
+		protected function testShouldRenderTable() {
+			// get an xml node of the entire page
+			$xmlNode = HttpAppServlet::getInstance()-&gt;requestHandler-&gt;view-&gt;getXML();
+
+			// get the table xml node
+			$tableNode = $xmlNode-&gt;body-&gt;getElementById( 'content' )-&gt;getElementByName( 'table' );
+
+			// test if the table class equils datagrid
+			$this-&gt;assertTrue( $tableNode-&gt;getAttribute( 'class' ) == 'datagrid' );
+		}
+</pre>
+<h3>Mock</h3>
+
+<p>The following example is how to implement mock objects in your unit tests
+</p>
+<pre>
+	class TestMessage extends Message {
+
+		// we will overload the send method so it does not send anything
+		public function send() {
+			$this-&gt;assertTrue( $this-&gt;to = 'someone@nowhere.com' );
+			// alternatively we could do more here like examine output headers or cc lists...
+		}
+	}
+
+	class BlogTestCase extends ModelTestCase {
+
+		protected function testShouldSendEmail() {
+			$message = new TestMessage();
+			$message-&gt;to = 'someone@nowhere.com';
+			$message-&gt;subject = 'Test Subject';
+			$message-&gt;body = 'Test Body';
+
+			$this-&gt;assertTrue( $message-&gt;send() ); // normally this would send an email, but we're not
+		}
+</pre>
+<h2>Functional Testing in PHP</h2>
+
+<p>The following are examples of functional testing in PHP.
+</p>
+<h3>GUI Test</h3>
+<p>To simulate a GUI environment, the functional test will simulate a fake http request and execute the module being tested.
+This is the equivalent of a user hitting the "Create" button after filling out the form fields.
+</p>
+<pre>
+	class BlogControllerTestCase extends ControllerTestCase {
+
+		protected function testShouldCreateRecord() {
+			$old_count = Blog::FindAll()-&gt;count;
+
+			// lets create a mock request object
+			$this-&gt;submitForm( array(
+				'blog_title' =&gt; 'MyTitle',
+				'blog_description' =&gt; 'MyDesc',
+				'insert' =&gt; 'Submit'
+				)
+			);
+
+			// lets check if a blog was created
+			$this-&gt;assertDifference( $old_count, Blog::FindAll()-&gt;count, +1 );
+
+			// lets check if the redirect worked
+			$this-&gt;assertTrue( $controller-&gt;app-&gt;forwardModule = 'list_blogs' );
+		}
+
+</pre>
+
+</body>
+</html>

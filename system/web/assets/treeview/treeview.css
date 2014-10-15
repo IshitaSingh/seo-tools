@@ -1,0 +1,98 @@
+
+ul.treeview, .treeview ul {
+  margin: 0px;
+  padding: 0px;
+  /* offset
+  padding-left: 10px;
+  */
+}
+
+.treeview li {
+  margin: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 19px; /* must be 19px */
+  padding-right: 0px;
+  list-style-type: none;
+}
+
+.treeview li span img {
+  margin-right: 6px;
+  border: none;
+}
+
+.treeview li.expandable {
+  background-image: url(core?asset=treeview/vertical.gif&type=image/gif);
+  background-position: 19px;
+  background-repeat: repeat-y;
+}
+
+.treeview a.expanded {
+  font-size: 18px;
+  padding-right: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/collapse.gif&type=image/gif);
+  background-position: top left;
+  cursor: pointer;
+}
+
+.treeview a.collapsed {
+  font-size: 18px; /* must be 18px */
+  padding-left: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/expand.gif&type=image/gif);
+  background-position: top left;
+  cursor: pointer;
+}
+
+.treeview a.node {
+  font-size: 18px;
+  padding-left: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/node.gif&type=image/gif);
+  background-position: top left;
+}
+
+.treeview a.fexpanded {
+  font-size: 18px;
+  padding-left: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/fcollapse.gif&type=image/gif);
+  background-position: top left;
+  cursor: pointer;
+}
+
+.treeview a.fcollapsed {
+  font-size: 18px;
+  padding-left: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/fexpand.gif&type=image/gif);
+  background-position: top left;
+  cursor: pointer;
+}
+
+.treeview a.fnode {
+  font-size: 18px;
+  padding-left: 12px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: url(core?asset=treeview/fnode.gif&type=image/gif);
+  background-position: top left;
+}
+
+.treeview .folder_expanded {
+  background-image: url(core?asset=treeview/folder_opened.gif&type=image/gif);
+  width: 16px;
+  height: 15px;
+}
+
+.treeview .folder_collapsed {
+  background-image: url(core?asset=treeview/folder_closed.gif&type=image/gif);
+  width: 16px;
+  height: 15px;
+}

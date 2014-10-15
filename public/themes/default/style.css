@@ -1,0 +1,324 @@
+<!--/*--><![CDATA[/*><!--*/
+
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background-color: #FFFFFF;      
+	color: #000000;
+}
+
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;       
+	font-size: 12px;
+	color: #000000;
+	margin: 0;
+}
+
+
+.page {
+	margin-top: 400px;
+}
+
+.page .leftbox {
+	float: left;
+	width: 50%;
+	border: 1px solid #ffffff;
+}
+
+.page .rightbox {
+	margin-left: 50%;
+	border: 1px solid #ffffff;
+}
+
+h1 {
+	padding: 5px;
+	text-align: left;
+	font-size: 16pt;
+	border-bottom: 1px solid #7F9DB9;
+	color: #7F9DB9;
+	margin-bottom: 6px;
+}
+
+h2, lh {
+	padding-bottom: 5px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 20px;
+	color: #999999;
+	margin-top: 6px;
+	padding-bottom: 0px;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+p {
+	margin: 6px;
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+
+a {
+	text-decoration: none;
+}
+
+iframe {
+	width: 100%;
+	height: 320px;
+	border: 1px solid #fff;
+	padding: 2px;
+	margin-top: 6px;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+	padding-left: 20px;
+	/*margin-top: 10px;*/
+	margin-bottom: 10px;
+	border: 1px solid #FFFFFF;
+}
+
+ul li {
+	margin: 0px;
+	padding: 0px;
+	margin-left: 20px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	line-height: normal;
+	list-style: none;
+	list-style-image: url('images/icons/bullet_yellow.png');
+}
+
+ul.messages li.pass {
+	color: #006600;
+	list-style-image: url("images/icons/accept.png");
+}
+
+ul.messages li.notice {
+	color: #F25D23;
+	list-style-image: url("images/icons/bullet_error.png");
+}
+
+ul.messages li.fail {
+	color: #FF0000;
+ 	list-style-image: url("images/icons/exclamation.png");
+}
+input {
+       
+	width: 393px;
+	height: 42px;
+	color: #7F9DB9;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 2px;
+	font-weight: bold;
+	font-size: 14px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 18px;
+}
+.header {
+ 
+    background: #fff;
+    width: auto;
+    height: 45px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*border-bottom: 4px solid #4C9CF1;*/
+    z-index: 100;
+     
+}
+.header_content{
+    max-width: auto;
+    background: #fff;
+    
+    height: 45px;
+    
+    top: 0;
+    left: 0;
+    /*border-bottom: 4px solid #4C9CF1;*/
+    z-index: 100;
+    
+}
+#logo{
+ 
+    margin-left: 20px;
+    float: left;
+    width: 200px;
+    height: 75px;
+    margin-top: 20px;
+    font-size: 36px;
+    display: block;
+ 
+}
+nav {
+ 
+    float: right;
+    padding: 20px;    
+ 
+}
+ 
+#menu-icon {
+ 
+    display: hidden;
+    width: 40px;
+    height: 40px;
+    background: #4C8FEC url(images/icon.png) center;
+ 
+}
+ 
+a:hover#menu-icon {
+ 
+    background-color: #444;
+    border-radius: 4px 4px 0 0;
+ 
+}
+ 
+ul {
+ 
+    list-style: none;
+ 
+}
+ 
+li {
+ 
+    display: inline-block;
+    float: left;
+    padding: 10px
+ 
+}
+ 
+.current {
+ 
+    color: #2262AD;
+ 
+}
+ 
+section {
+ 
+    margin: 80px auto 40px;
+    max-width: 980px;
+    position: relative;
+    padding: 20px
+ 
+}
+#footer {
+    margin: 0 auto;
+    /*width: 1150px;*/
+    height: 21em;
+    
+}
+
+#header {
+    margin: 0 auto;
+   /* width: 1150px;*/
+}
+.copyright{
+    
+    margin-top: 30px
+        
+
+    
+}
+.website{
+    float: right;
+   
+}
+
+
+/*MEDIA QUERY*/
+@media only screen and (max-width : 640px) { /*If device width is higher than 640px use this css and if less than 640px use above */
+ 
+    header {
+ 
+        position: absolute;
+ 
+    }
+ 
+    #menu-icon {
+ 
+        display:inline-block;
+ 
+    }
+ 
+    nav ul, nav:active ul { 
+ 
+        display: none;
+        position: absolute;
+        padding: 20px;
+        background: #fff;
+        /*border: 5px solid #444;*/
+        right: 20px;
+        top: 60px;
+        width: 50%;
+        border-radius: 4px 0 4px 4px;
+ 
+    }
+ 
+    nav li {
+ 
+        text-align: center;
+        width: 100%;
+        padding: 10px 0;
+        margin: 0;
+ 
+    }
+ 
+    nav:hover ul {
+ 
+        display: block;
+ 
+    }
+   input{
+       
+	width: 250px;
+	height: 42px;
+	color: #7F9DB9;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 2px;
+	font-weight: bold;
+	font-size: 14px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 18px;
+}
+#footer {
+    margin: 0 auto;
+    width: 1150px;
+    height: 10em;
+    
+}
+.website{
+    float: left;
+   
+}
+fieldset {
+	padding: 20px;
+	padding-top: 105px;;
+	padding-bottom: 10px;
+	border: 1px solid #FFFFFF;
+}
+    
+}
+@media only screen 
+and (min-width : 1224px) {
+    
+    #header {
+    margin: 0 auto;
+    width: 1150px;
+}
+#footer {
+    margin: 0 auto;
+    width: 1150px;
+    height: 21em;
+    
+}
+/* Styles */
+}
+
+/*]]>*/-->

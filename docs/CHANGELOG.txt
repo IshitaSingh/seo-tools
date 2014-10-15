@@ -1,0 +1,2600 @@
+Change log
+============
+
+1. Version History
+
+May 15, 2013 - retiring changelog, will use Git to log changes.
+
+version 6.5.0-beta-1.04 - 05.13.13
+	- fixed bug in ApplicationBase where clearing empty buffer on exception
+	- fixed bug in LoginForm where email address lookup was case sensitive
+	- fixed bug in DBCache where not caching
+	- fixed bug in FileTranslator where not caching
+	- fixed bug in FileTranslator where not comparing the correct language
+
+version 6.5.0-beta-1.03 - 04.12.13
+	- fixed bug in rum.js Rum.flash() where flashing duplicate messages
+	- fixed bug in rum.js Rum.flash() where dismiss link not working
+	- fixed bug in GridView Controls where not referencing Rum.evalAsync()
+	- replaced all unset($request[param]) back in UI controls (removed in 6.5.0-beta-1.00)
+	- updated copyright notice
+	- fixed bug in WebApplicationBase where converting Array to string on line 1247
+	- changed Rum:messages() no longer contains dismiss event
+
+version 6.5.0-beta-1.02 - 04.11.13
+	- changed rum.js
+		- added sendAsyncWithCallback(htto_request, url, params, method, callback)
+		- changed sendAsync(url, params, method) no longer accepts http request object
+	- changed ActiveRecordBase::all() and more() now support table.field syntax
+	- fixed bug in FileBrowser where uploaded files that contain an error are ignored as filesize is 0
+	- fixed bug in FileSizeValidator where files that are 0 bytes do not result in error
+	- patched source code in FileSizeValidator so code completion has appropriate description
+	- changed FileSizeValidator constructor now accepts minSize in KB
+	- removed WebControlBase::ajaxHTTPRequest
+	- changed TextBox, InputBase and ListBox combined ajaxPostBack and ajaxValidation events
+	- removed &__validation=1 from all controls
+	- fixed bug in Selectors: DateSelector, TimeSelector, and DateTimeSelector
+		- fixed bug in Selectors where setting onchange javascript event for null element when allowNull is false
+		- fixed bug in Selectors where ajax validation not sending entire value
+		- fixed bug in Selectors where ajax validation postback not being sent
+	- added DateRangeValidator (Steph)
+	- fixed bug in FileSizeValidator where always failing
+	- changed FileBrowser removed auto filesize validator
+	- fixed bug in WebApplicationBase where not logging ajax exceptions to the console
+
+version 6.5.0-beta-1.01 - 03.28.13
+	- added default class attribute to WebControlBase
+	- fixed bug in WebApplicationBase where not rendering async exceptions - now uses javascript popup
+	- async flash messages now render dismiss element
+	- fixed bug in TestCaseBase where setting dataAdapter when no dsn connection specified
+	- fixed bug in PageController when OS can't determine whether glob returned no results, or an error occurred
+	- fixed bug in GridView where setting filter values when value == ''
+	- removed Button::submitText
+	- fixed bug in ListControlBase where overwriting state if nothing submitted
+	- fixed bug in WeControlBase::setEnableViewState() where not cascading
+
+version 6.5.0-beta-1.00 - 03.11.13
+	- major change to js scripts (lighten output)
+		- shortened function names in js scripts
+		- removed button.js
+		- removed textbox.js
+		- combines page.js and form.js into rum.js
+		- removed Rum.fadeIn(), Rum.fadeOut(), Rum.setOpacity()
+		- removed js animations and message events (use JQuery instead)
+		- added js functions Rum.id(), added Rum.assert(), Rum.clear(), Rum.reset() Rum.flash(), Rum.forward()
+		- added Rum.sendAsync
+		- moved all js into single rum.js
+		- compress js scripts
+		- changed Rum.sendAsync now handles callback implementation
+		- Rum.assert() and Rum.clear() now set and remove invalid class
+		- remove auto dismiss on syncronous flash message
+	- removed all traces of __post from UI controls (lighten output)
+	- removed all unset($request[param]) from UI controls
+	- renamed Form::hiddenField to Form::honeyPot
+	- removed Button::$disableOnSubmit (use JQuery instead)
+	- removed Button::$submitText (use JQuery instead)
+	- removed TextBox::watermark (use JQuery instead)
+	- removed TextBox::multiline, use TextArea instead
+	- separated TextBox and TextArea
+	- added View::contentExpires
+	- added TextBox::placeholder
+	- added cache headers to assets
+
+version 6.4.18-rc2 - 03.01.13
+	- patched security hole in credentials where session could remain active after user authorization is revoked
+	- fixed bug in TableCredential where not using ActiveRecords to update source
+	- fixed bug in TableCredential where source contained multiple tables
+	- fixed bug in HTMLTestReporter where not loading resources
+	- added log levels to Authentication
+
+version 6.4.18-rc1 - 02.28.13
+	- changed .htaccess file to contain default page routings for web services
+	- changed WebService now handles format requests
+	- changed default content type for web services from text/html to application/xml
+	- changed default charset for web services from ISO to UTF-8
+
+version 6.4.17-rc2 - 02.28.13
+	- removed redundant JSONServiceBase
+	- changed RESTWebServiceBase now supports multiple content types
+	- changed RESTWebServiceBase now handles encoding completely
+	- changed URI rewriter no longer handles session id's
+	- fixed bug in WebApplicationBase where not referencing the post config request param
+
+version 6.4.17-rc1 - 02.25.13
+	- changed WebControlBase output to remove whitespace from HTML
+	- moved assets from the public folder, now served directly by the WebApplication
+	- changed asset install issue, no longer writes (installs) during runtime
+	- fixed bug in AppConfiguration where not reading the restrict property
+
+version 6.4.16-rc1 - 02.21.13
+	- fixed security exploit in FormsAuthentication where sending cookies without encrypting
+	- fixed security exploit in FormsAuthentication where not unsetting the session secret during signout
+	- fixed security exploit in FormsAuthentication where not using a timestamp to seed the secret
+	- fixed security exploit where session not timing out
+	- changed WebServiceAuthentication is now stateless, (use FormsAuthentication for SOAP web services)
+	- fixed bug in TableCredential when updating source where table source contains more than one table
+	- fixed bug in DBCache when creating cache table
+	- changed DBLogger and DBTranslator now set default table in constructor as default parameter
+	- fixed bug where missing plugins folder caused errors
+	- changed FileLogger, FileCache, and Build objects no longer create directories if not found
+	- fixed bug where absolute path to __ROOT__ was not being detected in console applications
+	- fixed bug in Get where not escaping paths
+	- fixed bug in Get where not update task not working
+
+version 6.4.15-beta - 02.19.13
+	- added command line package manager "get" (beta)
+	- fixed bug in model make script when not reporting correct error message if table doesn't exist
+	- changed make script no longer needs /app/config/make/config.php
+	- added /app/config/dev.xml
+	- added event LoginFormSubmitEvent
+	- added RESTWebService
+	- changed WebServiceAuthentication
+	- fixed bug in WebApplication where replacing PHP session id even when cookieless session is false
+	- fixed bug in SOAPWebService::handle() where returning the handle
+	- fixed bug in model make script no longer determines many to many relationships
+	- fixed bug in migrate when migrating down from first version
+	- fixed bug in TestCastBase when building a new schema
+	- fixed bug in Model make script where not throwing Exception for missing argument
+	- fixed bug in Deploy script when deploying via SCP on linux
+
+version 6.4.14-beta - 01.21.13
+	- fixed bug in GridView::filters when setting filter values
+	- fixed bug in SSHClient where not specifying port correctly
+	- fixed bug in migrations where migrate was failing if no migrations were defined
+	- changed GridView::filters to support associative arrays
+	- added support for js scripts in themes
+	- fixed bug in ColumnCompare where string sort wasn't trimming
+	- fixed bug in ColumnCompare where array contains nulls
+	- fixed bug in GridView where dropdown filters weren't filtering correctly
+	- fixed bug where debug panel opening on load without cookie set
+	- changed plugin assets now live with plugin class files
+
+version 6.4.13-beta - 11.16.12
+	- fixed bug in GridView::findColumn() where replacing the native indexOf() behavior
+	- changed WebControlBase::getHTMLControlIdString() to WebControlBase::getHTMLControlId
+	- removed default login message from LoginForm
+	- renamed WebControlBase::attachDataSource() to WebControlBase::bind()
+
+version 6.4.12-beta - 11.12.12
+	- changed Form::autoFocus default is now false
+	- fixed bug in ColumnSchema::__get() when getting object vars instead of class vars
+	- added GridView::findColumn()
+	- fixed bug in debug.inc where outputting args as string
+
+version 6.4.11-beta - 10.29.12
+	- fixed bug Runtime Error: Uncaught exception  'System\Base\BadMemberCallException' with message 'call to undefined  property isAjaxPostBack in Gasonic\Controllers\SaveHandler
+	- fixed bug in WebApplicationBase when launching exception window
+	- added Rum::clearMessages() removes any displayed messages
+	- fixed bug in Tester Strict Standards: Only variables should be passed by reference in C:\xampp\htdocs\DAD\system\test\tester.class.php on line 61
+	- fixed bug in RequiredValidator where now allowing '0'
+
+version 6.4.10-beta - 09.21.12
+	- added EnumValidator
+	- fixed bug in CheckBox where posting incorrect data on ajaxPostBack
+	- fixed bug in GridViewDropDownMenu where not escaping
+	- fixed bug in ActiveRecordBase::all() when no pkey defined
+	- performance optimized MysqliDataAdapter::query() and MysqliDataAdapter::fill()
+
+version 6.4.9-beta - 08.16.12
+	- changed GridView to support embedding WebControls in the footer template (not 100% backwards compatible)
+	- fixed bug in GridView controls where form post backs were raising the wrong events
+	- added new make script gridviewcontroller
+	- added GridView::setFilterValues() to allow filter values
+	- added GridViewTextBox::size
+	- added support for ajax exception handling
+	- added events for ReportView
+
+version 6.4.8-beta - 08.09.12
+	- performance enhancement added flag DEBUG_BACKTRACE_IGNORE_ARGS to error trapping to save memory
+	- performance enhancement in DataAdapter when keeping stats no longer creates new Timer object
+	- fixed bug where tooltip attribute was ignored in some controls
+	- fixed bug in GridView where not rendering column events
+	- fixed bug in TableCredentials where no failed count fields defined
+	- fixed bug in DBLogger where not building table correctly
+	- fixed bug in MemCache where not loading memcache object
+	- fixed bug in DBTranslator where string_id length too small
+	- fixed bug in DBLogger where no db exists, not logging first event
+	- removed abstract ControllerBase::requestProcessor() (not backwards compatible)
+	- patched security exploit in Form where honeypot could be exploited, hiddenField now defaults to false
+
+version 6.4.7-beta - 07.26.12
+	- deprecated MySQLDataAdapter, use MySQLiDataAdapter instead
+	- added security and mail logging
+	- added MySQLiDataAdapter
+	- added MemCache object to extend CacheBase
+	- added integer and enum types to FormModelBase
+	- added array TestCaseBase::getFixtureVariables() to return array of vars, allows loading of dynamic variables
+	- removed CacheBase::exists($id, $expires = 0), use  is now CacheBase::get($id) instead
+	- changed CacheBase::put($id, $value) is now CacheBase::put($id, $value, $expires = 0), now allows optional expiration parameter (compatible with memcache)
+	- changed Build and Cache objects now perform internal serialization
+	- performance enhancement DataAdapter::openDataSet() when caching enabled, no longer checks if object exists
+	- patched security exploit in Authentication where invalid login attempts were stored in the session
+	- patched security exploit in LoginForm when sending password reset email, allowed multiple password resets
+	- fixed security bug where authentication requireSSL not working
+	- fixed bug in DataAdapter::openDataSet() when caching enabled, where not using the appropriate cache expires value
+	- fixed bug in GridViewPostAjaxEvent where triggering event handlers for GridViewPostEvent
+	- fixed bug in GridViewColumn where triggering ajax post backs for non ajax requests
+	- fixed bug in FormModelBase where numeric and real data types were assigned to TextArea
+	- fixed bug TextBox where not setting value if value evaluated to false: "0", 0
+	- fixed bug in MySQLDataAdapter when no primary key defined on insert update and delete methods
+	- fixed bug where Javascript Rum.fadeOut() onclick event could fire multiple times
+	- fixed bug in TestCaseBase where FileLoadException not found
+
+version 6.4.6-beta - 07.23.12
+	- fixed bug where GridViewDropMenu using key instead of value
+	- fixed bug in Build::clean() when no files are matched
+	- fixed bug in Migrations where not setting column type to real
+	- fixed bug in MySQL DataAdapter where not setting length on doubles
+	- fixed bug in MySQL DataAdapter where not setting proper type on BOOLEAN
+	- fixed bug in GridView where Column events were overwriting Row events
+	- changed version decimal support for Migrations
+	- added GridViewColumnColelction::addBefore(GridViewColumn, dataField)
+	- fixed bug in ActiveRecordBase::form() when mappings are incorrect
+	- changed ActiveRecordBase::form() no longer caches form
+	- performance enhancement DataAdapter::getSchema() is now cached
+	- performance enhancement in ActiveRecordBase::form() when looping mappings for all columns instead of ref columns
+
+version 6.4.5-beta - 07.13.12
+	- fixed bug in Roles where not returning roles for user when membership role explicitly defined per user
+	- fixed bug in Authentication class where not handling account suspended flag properly
+	- fixed bug when forwarding params using the request method
+	- fixed bug in GridView where not building ajax request parameters properly when an array exists in the request
+	- fixed bug in WebApplicationBase when outputting exceptions with htmlentities
+	- added error handling for GridView eval() statements
+	- added properties GridViewColumn::onmouseover, GridViewColumn::onmouseout, GridViewColumn::onclick, GridViewColumn::ondblclick
+
+version 6.4.4-beta - 07.05.12
+	- re-factored all \htmlentities into \Rum::escape()
+	- added bool WebControlBase::escapeOutput
+	- added bool GridViewControlBase::escapeOutput
+	- fixed bug in HTTPResponse::flush()
+	- fixed bug in ActiveRecordBase::form() when key and foreign key don't match
+	- fixed bug in ListControlBase where allowing non DataSet items to be attached as a DataSource
+
+version 6.4.3-beta - 06.22.12
+	- changed make Model script so many to many relationships can be mapped with more than 2 columns
+	- fixed bug where Form not preserving array elements in request
+	- added warning count to debug toolbar
+	- added 4 events PageControllerPageCreateEvent, WebApplicationLoadStateEvent, WebApplicationSaveStateEvent, WebApplicationHandleRequestEvent
+	- fixed bug in WebServiceBase where not sending correct headers
+	- fixed major performance bug in MySQLDataAdapter::buildTableSchema() where not selecting 0 rows
+	- fixed bug in UniqueValidator where triggering warning
+
+version 6.4.2-beta - 05.25.12
+	- added exception when refreshing WebControl if no data source
+	- fixed bug in make model script where not setting filename case correctly
+	- fixed bug ApplicationBase when setting db Cache or Logger object
+	- fixed bug where exception thrown during config loading with no logger
+	- fixed bug where default flags for htmlentities was not ENT_COMPAT
+	- modified make model script to auto include relationships and fields|rules
+	- renamed array ActiveRecordBase::associations to array ActiveRecordBase::relationships (not backwards compatible)
+	- fixed bug where debug dump triggering invalid multibyte sequence in argument
+
+version 6.4.1-beta - 05.04.12
+	- changed TextBox::onAjaxPostBack now sends postback on event onkeyup using the time delay
+	- changed WebApplicationBase::getPageURI() can now handle array parameters
+	- added listcontroller and formcontroller scripts to make
+	- optimized GridView when displaying filters
+	- added Role based management
+	- added AppConfiguration::authenticationMemberships
+	- added <memberships> element to configuration schema
+	- added active property to user credential
+	- added WebServiceBase to handle SOAP server instances and WDSL generation
+	- changed Make, Deploy, Migrate build scripts now perform a clean build after completion
+	- changed AppConfiguration::authenticationDeny and AppConfiguration::authenticationAllow are now arrays
+	- moved MakeBase outside of the make.class.php file
+	- fixed major security bug in UserCredentials where not authenticating username
+	- fixed bug in TableCredentials where not comparing password salts properly
+	- fixed bug in TableCredentials where not setting the disabled flag
+	- fixed bug in BasicAuthentication where not signing out properly
+	- fixed bug in DataSet where sort and filter using table meta data rather that dataSet meta data
+	- fixed security exploit when masked input fields returned request state variables in the response
+	- fixed bug in Make where inserting the incorrect namespace
+	- fixed bug in WebControlCollection::remove() where not supplying the correct parameter
+	- fixed bug in ActiveRecordBase::removeRecord() when deleting many to many relationships using DataSet
+	- fixed bug in ActiveRecordBase::form() where not refreshing the ListControl values of ref columns
+	- added bool DataAdapter::opened()
+	- added DataSet::requery() will require data source with provided source string
+	- added WebControlBase::refrechDataSource() will requery and rebind the data source
+	- changed FileCache to use Win friendly collision resistant hashes for naming
+	- fixed bug in Run::link where translator not referenced correctly
+	- added class parameter to Rum::link()
+	- changed GridViewButton now includes class attribute
+	- fixed bug where GridViewTextBox, GridViewCheckBox, and GridViewDropDownMenu not rendering class name
+	- added UniqueValidator
+	- fixed bug in Roles where performing case sensitive compare on identity
+	- fixed bug in Tester when throwing FileNotFound exception
+	- fixed bug in Make\PageControllerBase where outputting incorrect namespace
+	- added fade effect to Messages
+	- fixed bug in GridViewImage when adding dynamic alt tags
+	- fixed bug in PageControllerBase when multi-line validation error message rendered as ajax output
+	- changed ActiveRecordBase when mapping many to many relationships in tables with more than 2 columns - no longer auto mapped
+	- changed Fieldset and Form now render fieldset legend with span element
+
+version 6.4.0-beta-1.03 - 04.11.12
+	- added AppConfiguraiton::charset
+	- added ApplicationBase::charset
+	- added option /dev/build now rebuilds all build files needed by the application
+	- added ApplicationBase::mailClient returns the global mail client
+	- added PluginHooks, scripts named /plugin/loader.php will be automatically parsed on application load
+	- added active-field to table credentials
+	- changed default button id 'save' to 'submit' for FormModelBase and ActiveRecordBase
+	- changed authentication now supports different encryption methods per credential
+	- changed authentication now allows 2 part salt strings per user
+	- changed PageView no longer renders opening/closing html/head/body tags
+	- changed default button id 'save' to 'submit' for FormModelBase and ActiveRecordBase
+	- changed all htmlentities() calls to include character set
+	- changed build script now handles build cleanings before executing the application
+	- changed PageController only replaces messages when new messages are present
+	- changed PageControllerBase now allows public access to page and theme property
+	- removed PageView::lang, PageView::xmls and PageView::title
+	- changed LoginForm now uses ApplicationBase::mailClient to send mail
+
+version 6.4.0-beta-1.02a - 04.05.12
+	- added debug toolbar
+	- added controls Label and HyperLink
+	- added confirmation message parameter to GridViewButton class
+	- added new AppMessageType: Info, renamed Notice to Warning
+	- added property bool WebControlBase::ajaxValidation and bool Form::ajaxValidation
+	- changed GridView rendering to accommodate more complex stylesheets
+	- changed form validation no longer renders element unless validation error is present
+	- changed forgot password form to include HyperLink instead of Button for forgot password link
+	- fixed security hole in FormsAuthentication when using permanent cookies, now uses secret to track user sessions
+	- fixed bug in GridViewColumn where forward parameters not escaped properly
+	- fixed bug in GridViewButton where forward parameters not escaped properly
+	- fixed bug in InputBase where not saving viewstate when enableViewState is true
+	- fixed bug in InputBase where setting control value when datasource field is null
+	- fixed bug in TextArea where ajax validation not working
+	- fixed bug in GridViewButton where not rendering class properly
+	- fixed bug in RadioList where using onchange instead of onclick event
+	- fixed bug in FileCache where filectime not returning last modified time, use filemtime instead
+	- fixed bug in MySQLDataAdapter where not setting charset correctly
+	- fixed bug where forward parameters not escaped properly
+	- fixed bug in FormsAuthentication where not sending expiration for _secret
+	- fixed bug in GridView when sending line breaks to the browser
+
+version 6.4.0-beta-1.02 - 03.01.12
+	- changed core build files now handled separately from cache files
+	- added class Build to handle core build files
+	- changed quick commands now prefixed with /dev e.g. /dev/clean
+	- fixed bug in Form where could not set legend
+	- fixed bug in Tester where not throwing exceptions properly
+	- fixed bug in MasterView when generating content_id
+	- fixed bug in ActiveRecordBase where generating form id's it was possible for 2 forms to use the same cached object
+	- fixed syntax bug in DateTimeSelector
+	- fixed bug in XSD where emailaddress-field was wrong type
+	- fixed bug in GridViewButton when adding unneeded slashes when sending post requests
+	- ported version to PHP5.2.17
+
+version 6.4.0-beta-1.01 - 01.10.12
+	- changed XMLParser::parse() now removes XML declaration
+	- renamed ActiveRecordBase::beforeAdd() to ActiveRecordBase::beforeCreate()
+	- renamed ActiveRecordBase::afterAdd() to ActiveRecordBase::afterCreate()
+	- fixed bug in model.tpl where not using correct namespace
+	- fixed bug in Rum::sendHttpStatus() where referencing WebApplicationBase not found
+	- fixed bug in Rum where referencing ForwardMethodType not found
+	- fixed bug in Form where not escaping postback parameters
+	- fixed bug in DBTranslator where using static get method
+	- changed ApplicationBase now created Logger and Translator after configuration has been processed
+	- fixed bug in DBTranslator where not trapping errors too late
+	- fixed bug in ActiveRecordBase and FormModelBase where not translating labels
+	- fixed bug in FormModelBase where not populating the internal row collection
+	- fixed bug in Form and Fieldset::validate() where possibility for reusing the same pointer in the controls collection
+	- fixed bug in classloader that may cause duplicate classes to be loaded if a model and controller have the same class name
+	- fixed bug in DBTranslator where exception thrown when string id is null
+	- fixed bug in WebApplicationBase where using old style logger
+	- fixed bug in ModelBase::get() where not compatable with DataSet::get()
+	- changed ajax validation in InputBase no longer sends validation request on keyup unless field in invalid state
+	- fixed a bug in Tester where could not tuncate INNODB tables
+	- fixed bug in Tester where not using Models namespace when referencing model test cases
+	- fixed bug in ControllerTestCase where referencing the wrong namespace
+	- added __MODEL_NAMESPACE__ and __CONTROLLER_NAMESPACE__ constants
+	- fixed Authentication to ensure salt is appied in the correct order
+	- fixed bug where referencing wrong namespace for FileNotFoundException
+
+version 6.4.0-beta-1 - 10.11.11
+	- major upgrade - rename and reset version to Rum 1.0-beta
+	- major change to ActiveRecordBase mapping
+		- added method Form ActiveRecordBase::form()
+		- changed how associations are stored
+		- changed how late static binding works, no longer need intermediate method
+		- added class FormModelBase that ActiveRecordBase extends
+		- added property array FormModelBase::fields to define fields and field type
+		- added property array FormModelBase::rules to attach validators to fields
+		- added static FormModelBase::registerField() to register a new field mapping
+		- added static FormModelBase::registerRule() to register a new rule mapping
+		- optimized only a single db transaction is performed per method call
+	- major change to Form class
+		- changed Form::validate() now sets focus to a single control
+		- changed InputBase::validate($errMsg, &$controlToFocus) now allows reference to first invalid control to set focus on
+		- removed InputBase::focus, use InputBase::focus() instead
+		- removed Form::legend, use Fieldset instead
+	- major change to Data abstraction layer
+		- added classes TableSchema and ColumnSchema
+		- added class Schema extended by all database drivers
+		- added class TransactionBase to handle database transactions
+		- changed QueryBuilder now handles its own SQL translation
+	- added support for database caching
+		- added the following properties to dsn string cache_enabled, cache_expires, charset, collation
+	- added support for multi-language
+		- modified all validators to use multi-language translator
+		- added lang attribute to application configuration
+	- added control Fieldset
+	- added constants for db_schema_version and langs table name
+	- added support for binding ActiveRecords with WebControls
+		- removed ActiveRecordBase::dataSet no longer needed
+		- removed Relationship and RelationshipCollection
+		- added ActiveRecordBase::form()
+	- added class DateTimeSelector
+	- changed configuration parser now uses XSD schema instead of DTD
+	- changed all deprecated notices now use error code E_USER_DEPRECATED and only show when __SHOW_DEPRECATED_NOTICES__ == true
+	- changed default enableViewState property for InputBase
+	- changed WebControlBase::enableViewState now cascades
+	- changed Form::ajaxPostBack now cascades
+	- removed WebControlBase::dataBind(), no longer needed
+	- fixed bug in Migrations if no migration scripts exist
+	- fixed bug in SimpleTest where not handling E_USER_DEPRECATED
+
+version 6.3.5 - 08.27.11
+	- added charset support for MySQLDataAdapter, default utf8
+	- added utf-8 support for XMLEntity::getXMLString()
+	- added public static array accessors to HTTPRequest object
+	- changed HTTPRequest object to behave statically
+	- changed HTTPResponse object to behave statically
+	- added bool GridView::ajaxPostBack to specify whether postbacks should be sent asyncronously
+	- added built in ajax postback handlers to the GridView
+	- added watermark support TextBox control
+	- fixed bug in HTTPAppServlet::handleException() where not dumping debug information
+	- changed instances where HTTPRquest and HTTPResponse were instantiated non-statically
+	- fixed instances of HTTPResponse::send() called non-statically
+	- added backwards compatibility mode support to the Make script
+	- added support for linux ssh deployment
+	- added ValidatorBase::attach()
+	- renamed Form::updateDataSource() to Form::save() (backwards compatible)
+	- fixed spelling in MethodNotImplementedException
+	- fixed performance bug where adding debug buffer in production mode
+
+version 6.3.4 - 07.19.11
+	- added global const __ERROR_LIMIT__, framework now only dumps the first x errors/warnings
+	- added transaction support for migration scripts, migrations are now atomic
+	- fixed bug in Migrations preventing the 'to' task from working
+	- removed WebControlBase::dataSourceString no longer needed
+	- removed WebControlBase::getXMLString() no longer needed
+	- added 'Find' button to GridView text filters
+	- added css class to paganation elements in GridView
+
+version 6.3.3 - 07.11.11
+	- fixed bug in MySQLDataAdapter where interpreting data type Timestamp as a numeric value
+	- added can now upload multi-part content asynchronously using an iframe postback
+	- changed ActiveRecordBase::getDataSetByType() no longer returns joined records on one to many
+	- changed InputBase now sends ajax postback for an onblur event
+	- changed Button class now supports ajax call back method
+	- changed PHPRum.submitForm() now uses hidden iframe to support multi-part content
+	- fixed bug in form.js where including all buttons in post back
+	- fixed bug in GridViewButton where not adding class
+	- fixed bug in DeploymentBase class where not generating the release_path date correctly
+	- fixed bug in TextBox where using deprecated jscript call to empty validation results
+	- fixed major bug in GridViewControl where output was generated before all requests were processed
+	- fixed bug in DataSet::getCSVString() where field contains a line break
+	- fixed bug in TextBox control when doing realtime validation, timer is now reset on focus
+	- fixed bug in page.js where not splitting params array properly
+	- fixed bug in GridViewButton where not raising post events
+	- fixed bug in HTTPRequest where not setting the static $post, $get and $request arrays when offsetSet is called
+
+version 6.3.2 - 05.27.11
+	- removed (deprecated) RenderMode
+	- overhauled AJAX engine
+		- integrated default listeners for all JavaScript HTTP Request objects
+		- by default all listeners will attempt to evaluate the HTTP response via JavaScript Eval()
+		- integrated ajax binding using WebControlBase::updateAjax();
+	- added method WebControlBase::updateAjax()
+	- added Ajax validation
+	- added ajax buffer to send output such as JavaScript to the browser directly during AJAX requests
+	- added bool InputBase::ajaxPostBack will specify whether to send an async request back to the server containing control data
+	- added bool Form::ajaxPostBack will specify whether to send an async request back to the server containing all form data
+	- added GridViewControlBase to support GridView ajax controls
+	- added bool GridViewColumn::canFilter to specify whether a column can be filtered
+	- changed all input controls now have built in ajax events on[controlId]AjaxChange() and on[controlId]AjaxPost()
+	- changed form control now has built in ajax event on[controlId]AjaxPost()
+	- changed form.js now sends async request to server for every control
+	- changed ListControlBase::DataBind() now empties item list when called (not 100% backwards compatible)
+	- changed ActiveRecordBase::findRecordsByType() only returns columns from the mapped table
+	- changed make controller and model scripts no longer create default fixtures
+	- fixed bug in DataSet where returning variable by reference in __get
+	- fixed bug in FormsAuthentication::signout()
+	- fixed bug in ActiveRecordBase where referencing HTTPAppServlet instead of AppServlet
+	- fixed minor HTML5 compliancy issue when declaring character set
+	- fixed bug in DataSet::move() where failing if cursor is not an int
+	- fixed bug in ControllerTestCaseBase::get() and ControllerTestCaseBase::post() where not setting the page parameter
+	- fixed bug in WebControlBase where escaping content with urlencode() before necessary
+
+version 6.3.1 - 04.21.11
+	- fixed bug in FormsAuthentication when setting permanent cookie incorrectly
+	- fixed bug in HTTPAppServlet::execute() where session not starting when running test cases
+	- fixed bug in AppServer::_getFunctionalTestCase() where not including the test case class explicitly
+	- fixed bug in HTTPRequest::offsetSet() object when setting request var
+	- fixed bug in DataSet::getSum(), DataSet::getAvg(), DataSet::getMin(), DataSet::getMax() where column value was equivalent to 0 caused exception
+	- fixed bug in ActiveRecordBase::lastByType() where not passing $args to parent
+	- changes to MailMessage
+		- changed MailMessage::attach() now accepts raw content
+		- changed MailMessage::attach() now supports disposition:inline
+		- changed MailMessage::attach() now supports content-type: multipart/alternative
+
+version 6.3.0 - 04.01.11
+	- major performance enhancements in ListBox on render
+	- core now compatible with PHP5.3.3
+	- added full backwards support for old events
+	- added optional cookie based view state
+	- added integrated "forgot password" feature to LoginForm
+	- added field `emailaddress-field` to tables authentication in application.dtd
+	- added IMailClient interface
+	- added EventArgs
+	- added MasterView::onInit() and MasterView::onLoad() events
+	- added Page::onCreate() event
+	- added WebControl::onAjaxCallback() event
+	- added Ajax support for ListBox
+	- added GridViewSortEvent
+	- added GridViewFilterEvent
+	- added filters to GridView, use GridView::showFilters = true;
+	- added Template::messages()
+	- added Template::breadcrumb()
+	- added GridViewButton, GridViewLink, and GridViewImage
+	- added SLQDataAdapter::executeBatch() allows ; seperated queries
+	- added validation error elements that clear on event onchange
+	- added debug dump window now can be hidden and remembers last state
+	- moved DateSelector and TimeSelector into framework instead of plugin
+	- moved make/config.php script into /app folder
+	- changed init.js only loaded when needed
+	- changed Form::dataBind() pre-populates with a blank if field is null
+	- changed Treenode::addChild() no longer takes reference
+	- changed Cache now suppresses open for output errors
+	- changed GridView::addActionColumn() no longer accepts an event parameter
+	- changed HTTPAppServlet now unsets requestHandler after rendering
+	- changed FileBrowser::value to tmp_name instead of name
+	- changed HTTPRequest::offsetGet() now returns null instead of an throwing an exception
+	- changed Button now uses label for button text if no text parameter is present
+	- changed View::setMaster() no lnoger passes by reference
+	- changed UnitTextCaseBase and ControllerTestCaseBase no longer use final methods
+	- changed default page event to use page id in the event name
+	- changed viewstate handling for MasterViews, no longer page specific state
+	- changed GridView::addColumn() now requires instance of GridViewColumn
+	- changed SSHClientBase plink now only executes once, interactive logins are now done by plink
+	- changed APpServlet::getFunctionalTest() now returns more meaningful error message if namespace is incorrect
+	- removed GridView::addActionColumn()
+	- removed AppMessages control, use Template::messages() instead
+		e.g. PageController::onLoad() is now PageController::onPageLoad()
+	- fixed bug in DeploymentBase where release path name did not contain hours with leading zeros
+	- fixed bug in Authentication where source was case sensitive
+	- fixed bug in Form where legend not rendering
+	- fixed bug where onPreRender event was not triggering
+	- fixed bug in GridView where not checking if GridViewColumn event exists
+	- fixed bug in ControllerTestCase::assertRedirectedTo() not checking params properly
+	- fixed bug in AppServlet where not properly determining namespace for nested functional tests
+	- fixed bug where ListItemCollection::containsItem() not returning true if wrong type
+	- fixed bug in WebControlBase where default ajaxRequestHandler not set properly
+	- fixed bug in MasterView where nested MasterView::onInit() and onLoad() events were not firing
+	- fixed bug in HTTPAppServlet when rendering null stack traces
+	- fixed bug in Page where not calling parent Post and Request event handlers
+	- fixed bug in HTMLReporter where flushing output buffer without creating one
+	- fixed bug in ControllerBaseTestCase where getting the View everytime $this->response() was called
+	- fixed bug in DataSet where count(DataSet) not implemented
+	- fixed bug where ControllerTestCase::assertMessage() required a message string
+	- fixed AppMessageType::__toString() not implemented
+	- fixed Form::getDomObject() where required class was not being assigned to the label
+	- fixed ListBox when comparing '2' === 2 resulted in no match
+
+version 6.2.0 - 02.15.11
+	- major performance enhancements in DataSet and DataAdapter objects
+		- not 100% backwards compatible, see notes
+		- ActiveRecordBase::dataSet() now longer automatically returns joined table data
+		- added ActiveRecordBase::dataSetExtended() will return joined table data
+		- If two or more columns of the result have the same field names, the last column will take precedence
+		- Removed DataRecordState
+	- major performance enhancements in WebControl objects
+		- no longer render child elements as DomObjects, only root elements are DomObjects
+	- added static properties to HTTPResponse and HTTPRequest objects
+	- added event handling classes to handle events instead of callback strings
+		- not 100% backwards compatible, see notes
+		- removed events onGet(), onAsync()
+		- PageController no longer contains abstract base event methods
+		- default event callbacks now have sender and args as parameters
+			e.g.	onFormPost(WebForm $form, array $args)
+	- added command line based make tool
+	- optimized Collection constructors now set array without parsing
+	- changed error handling on Fatal errors now caught by shutdown function (due to change in PHP5.2)
+	- changed WebControlBase::onPost(HTTPRequest) to WebControlBase::onPost()
+	- changed InputBase no longer sends HTTP error when invalid/unexpected data is posted, ignores instead
+	- changed ListBox no longer sends HTTP error when invalid/unexpected data is posted, sets null instead
+	- changed deploy command order
+	- added optional command line switches to Deploy.rum for authentication
+	- fixed bug in HTTPAppServlet where not setting HTTPAppServlet::requestHandler when running tests
+	- renamed WebForm to Form
+	- renamed HTMLView to Page
+	- renamed PageView to View
+	- removed XMLEntityAttributeCollection
+
+version 6.1.1 - 02.02.11
+	- added backwards compatability InputBase::errorMessage support
+	- changed validators now throw exception when no control to validate
+	- changed SSHClientBase now supports optional password
+	- renamed /system/includes/dtd/app-config.dtd to application.dtd
+	- fixed bug in ValidatorBase where the controlToValidate was null, now the ValidationCollection maintains a mandatory reference to the control
+	- fixed bug in some validators where referencing invalid property
+	- fixed bug in LengthValidator where failing if no value was present
+	- fixed bug in FileSizeValidator and FileTypeValidator where not checking if $_FILES is set
+	- fixed bug in AppServlet where command line args had to be a recognized internal command or the process would fail
+
+version 6.1.0 - 01.17.11
+	- update to be compliant with HTML5 (backwards compatible)
+	- optimized for HTML5
+	- added command line based SSH deployment scripts
+	- added validators to replace web control validation
+	- added support for deprecated validation features
+	- added GridViewColumn and changed array GridView::columns to GridViewColumnCollection GridView::columns
+	- added support for multiple environments using cascading configuration files
+	- changed HTMLView so that onload events are no longer parsed in the "onload" attribute of the body element, now uses a <script> element within the <head> element
+	- changed FileSystem::copy() now copies to existing folders
+	- changed private static FileSystem::_rmdir() to public static FileSystem::removeDirectory()
+	- fixed bug in FileSystem when deleting /.
+	- changed loader to use relative paths for command line interface
+	- changed class_loader to support using command line interface
+	- fixed bug in GridView when setting selected items
+	- fixed bug in ActiveRecordBase when mapping many to many tables with additional fields
+	- changed InputBase now sends HTTP error when invalid/unexpected data is posted
+	- changed ListBox now sends HTTP error when invalid/unexpected data is posted
+	- changed TestCaseBase now only sets dataAdapter if dsn contains a value
+
+version 6.0.1 - 12.21.10
+	- fixed bug in button.js where multiple dummy buttons were being created
+	- fixed bug in SocketStream where not trapping fsockopen errors
+	- changed CheckBox::validate() will now return false if CheckBox::required is true and checkbox is not submitted
+	- fixed bug in RadioButtonList where not properly setting the defaultHTMLControlId
+
+version 6.0.0 - 11.15.10
+	- only supports php5.3
+	- renamed ComboBox to DropDownList
+	- removed assets for textbox and combobox
+	- changed Button class no longer outputs container element
+	- changed button.js now properly disabled buttons
+	- added namespaces to all javascripts
+	- changed LoginForm.password.enableViewState now defaults to false
+	- fixed bug in WebForm:start() when not rendering line returns
+
+version 5.6.5 - 08.26.10
+	- added ControllerBase::ssl to specify whether connection must be ssl encrypted
+	- added Session::sessionName will return session name
+	- changed GridView output footer class
+	- fixed bug in ControllerTestCaseBase::submit where not allowing request parameters
+	- fixed bug in InputBase when setting tooltip
+	- fixed bug in TextBox when setting tooltip
+	- fixed bug in ScaffoldingControllerBase where not setting required for fields that are not null
+
+version 5.6.4 - 08.04.10
+	- moved /system/_cache to /.cache
+	- moved /system/_tmp to /.tmp
+	- changed ActiveScaffoldingController now includes properties to access the GridView and WebForm
+	- changed ActiveScaffoldingController now includes dbl click support
+	- changed default ActiveScaffoldingController::assocMapping to false
+	- fixed bug in WebControlBase::replaceControl() not working
+
+version 5.6.3 - 07.23.10
+	- fixed bug where service mode not working
+	- fixed bug in ControllerTestCaseBase where not pre-loading webform.class.php
+	- fixed bug in .htaccess file to capture all incoming requests
+	- changed default request handling to use /controller instead of /controller.html
+	- fixed bug in RadioListControl where not setting attribute events on the correct element
+
+version 5.6.2 - 06.22.10
+	- added select all feature to GridView when showList and multiple properties are true
+	- fixed bug in DataSet where not sorting by date when field.data or field.time was set
+	- fixed bug in ColumnCompare when date is null
+	- fixed bug in DataSet where ignoring Field::time and Field::date for sorting and filtering
+	- fixed bug in GridView where not returning caption or pageSize
+	- optimized session state by removing unnecessary information from the viewstate
+	- removed app version from session
+
+version 5.6.1 - 05.21.10
+	- fixed bug in class_loader() where reporting warning when class does not exist
+	- fixed bug in FileBrowser where not referencing the correct namespace when throwing a FileLoadException
+	- fixed bug in TestCaseBase where not referencing the correct namespace when throwing a FileLoadException
+	- fixed bug where remember me did not work when using unqualified host name
+	- added WebControlBase::replace() to swap a control with another one in the WebControlCollection
+	- added WebControlBase::remove() to remove a control from the WebControlCollection
+	- fixed bug where ListBox and TextBox had deprecated javascript causing jscript errors
+	- changed DataSet::rows no longer returns array keys in result
+	- added DataSet::getRows() accepts parameter to specify whether to return assoc array or index array
+	- fixed bug in HTTPAppServlet where not handling recoverable errors
+	- changed GridView::addColumn() now accepts a class name instead of a style (not backwards compatable)
+	- changed GridView::addActionColumn() now accepts a class name instead of a style (not backwards compatable)
+	- changed GridView::dataBind() sets autoGenerateColumns when columns array is empty
+	- fixed bug when dumping callstack with arg __PHP_Incomplete_Class caused recursive Exception handling
+	- changed SMTPClient, now uses real smtp connection
+	- added class SendMailClient
+	- added class PHPMailClient
+	- changed WebControls, javascript events now cascade
+
+version 5.6.0 - 04.18.10
+	- only supports php5.3 (beta)
+	- major update now uses namespaces
+		- all controllers and tests must be in the application namespace
+		- all models must be in the same namespace
+	- changed HTTPAppServlet::getInstance() now only allows 1 instance to exist
+	- changed WebControlBase::parent can now only be set once
+	- removed __CONTROLLER_SUFFIX__, controllers no longer need a suffix
+	- removed __ACTIVERECORD_SUFFIX__, Active Records no longer need a suffix
+	- changed file naming scheme for controllers uses .php instead of .class.php
+	- changed Cache now escapes filesystem id's properly
+	- changed public ActiveRecordBase::add() to protected ActiveRecordBase::add()
+	- changed class_search() will search __SYSTEM_PATH__ folder first if class in SYSTEM namespace
+	- changed TestReporter now displayes stack traces on Exceptions
+	- changed HTTPAppServlet::getInstance() to AppServlet::getInstance()
+	- changed ActiveRecordBase::findAllByType() now throws InvalidOperationException when orphaned key exists in associative table
+	- removed support for handling magic quotes appropriately
+	- added class Relationship
+	- changed ActiveRecordBase::mappings is now a RelationshipCollection
+	- renamed ActiveRecordBase::mappings to ActiveRecordBase::relationships
+	- added Enumeration objects for DataSetType, RelationshipType, AppMessageType, ForwardMethodType, AppStateType, and RenderModeType
+	- removed all constant enumerations
+	- changed all InvalidArgumentException messages to be consistant
+	- removed all defines from class files, use consts instead
+	- changed ListItemCollection can now accept duplicate keys (overwrites)
+	- added Relationship::notNull to specify if the key is not null
+	- changed ActiveRecordBase now uses left join if key is null
+	- fixed bug when forwarding request method where not forwarding
+	- fixed bug when forwarding request method where args not propagating
+	- fixed bug in InputBase::minimumValue when value equals zero
+	- removed TestCaseBase::dataAdapter
+	- fixed bug in MailMessage when throwing exception on valid uppercase email addresses
+	- changed WebControlBase can now bind controls anytime
+	- fixed bug in ActiveRecordBase::getDataSetByType() when many to many relationship with self
+	- fixed bug in PageView where not handling events for children of MasterView controls
+	- changed WebControls now prefix all request properties added to the RequestParameterCollection  with a double underscore
+	- fixed bug in PageView::setMaster() where not setting parent of master
+	- added WebControlBase::setParent() to set parent of control
+	- changed TreeView now prefixes all request params with the TreeView id
+	- fixed bug in TreeView when no siblings on root node
+	- fixed bug in Authentication class when using the crypt method of hashing no salt was supplied
+	- changed ControllerBase::getCacheId() to include agent instead of accept headers
+	- changed Cache no longer throws exception if cache file does not write
+	- fixed bug in Authentication class when allow or deny attributes contain spaces
+	- changed Authentication class usernames are no longer case sensitive
+	- fixed bug in ApplicationMessages class when message contains line breaks
+	- moved all path information out of app-config.xml
+	- allow any define to be overridden in the /config folder
+	- moved /packages to /app/plugins
+	- optimized class_loader() to use path based inclusion for /system files
+	- removed class AssetController, all assets now live in /htdocs folder
+	- removed AppConfiguration::assetController
+	- added AppConfiguration::assets returns the URI to the assets folder
+	- added AppConfiguration::url returns the base url including protocol and port if applicable
+	- moved App::uri() to HTTPAppServler::getURI()
+	- moved App::log() to AppServler::log()
+	- removed class App
+	- changed can now access base servlet using HTTPAppServlet::getInstance() only if instance is HTTPAppServlet
+	- removed RenderMode::DHTML() from TextBox and ListBox to preserve the DOM (will move to external library)
+	- changed WebControl classes now cascade
+	- fixed bug where control class could not be set
+	- added ControllerTestCase::submit() to simulate a form submition
+	- changed RadioGroup to use HTMLControlIdString as the group name instead of the controlId
+	- fixed bug in TestReporter where showing the wrong time
+	- changed WebForm::getFormDomObject() to render buttons outside the fieldset element
+	- removed all relative paths from constants, use absolute only
+	- added salt to password encryption, salt is concatenated with the password to provide dynamic salt
+
+version 5.5.1 - 09.24.09
+	- changed mysql and mysqli connection methods now gives reason if could not connect
+	- removed call to deprecated function set_magic_quotes_runtime() for PHP5.3 compatability
+	- replaced all calls to split() with preg_split for PHP5.3 compatability
+	- replaced all calls to ereg() with preg_match for PHP5.3 compatability
+
+version 5.5.0 - 09.18.09
+	- changed Exception Handler, now clears output buffer before rendering Exception screen
+	- changed PageView::setMaster() now inserts MasterView between existing MasterView
+	- changed PageView::assign() now longer allows setting the same parameter multiple times
+	- changed PageView::assign() now only accepts scaler data types
+	- changed GridView current page no longer a link
+	- fixed bug in Session::destroy() where destroying the session caused an exception when writing the session at the end of the request cycle
+	- changed Session::start() now sets the session id instead of Session::read()
+	- fixed bug in ActiveRecordBase when table has no primary key
+	- changed WebControl::getParentString() to seperate controls with a _ instead of a / to support XHTML compliance
+	- changed SystemMessage will no longer render if there are no messages to display to support XHTML compliance
+	- optimized Authentication::authenticateUser() no longer seeks through entire dataset when DataAdapter is an SQLDataAdapter
+	- removed App::dataAdapter()
+	- renamed HTTPAppServlet::process() to HTTPAppServlet::run()
+	- renamed HTTPAppServlet::dispatch() to HTTPAppServlet::getRequestHandler()
+	- changed all protected __get() to public __get()
+	- changed all protected __set() to public __set()
+	- changed all protected __call() to public __call()
+
+version 5.4.2 - 08.18.09
+	- fixed bug in Button::onRequest() when using an image button if the source is set after onRequest
+	- changed TestCaseBase::setUp() no longer flushes cache
+	- changed index.php removed __WEB_APP_PATH__ and __CONFIG_FILENAME__, removed .conf include (no longer needed)
+	- changed const __NOTICE_MESSAGE__ to __WARNING_MESSAGE__
+	- added Cache::getIdArray() returns an array of cache id's
+	- cahnged Cache::clear() now returns void
+
+version 5.4.1 - 07.31.09
+	- fixed bug in MySqliDataAdapter where using mysql_real_escape_string() instead of mysqli_real_escape_string()
+	- fixed bug in MySqlDataAdapter::getQuery() where not passing the connection resource when calling mysql_real_escape_string()
+	- changed SystemMessage renders element with display:none if nothing to display
+	- changed DomObject now forces ul, ol, dl tags to close
+	- fixed bug in TestCaseBase::loadXMLFixture() where truncating the table every new record
+	- changed TestCaseBase::loadFixtures() now truncates all tables and disables foreign key checks while loading fixtures
+	- changed SQLDataAdapter::begin(), rollback(), and commit() now return void
+	- added abstract SQLDataAdapter::setForeignKeyChecks(bool) will set/unset foreign key checks on the database
+	- fixed bug in XMLParser::parse() documentation when returning type XMLEntityCollection instead of XMLEntity
+	- fixed bug in HTTPAppServlet::requestHandler documentation when returning type BaseController instead of ControllerBase
+	- fixed bug in ScaffoldingControllerBase where not allowing deletion of records with existing many to many relationships with other records
+	- changed LoginForm::username and LoginForm::password now returns the control instead of the value
+	- changed XMLEntity to render html entities instead of ascii codes
+
+version 5.4.0 - 07.23.09
+	- added InputBase::error() will render validation error message
+	- changed SystemMessage rendering (not 100% backwards compatable - may require changes to stylesheet)
+	- changed WebControlBase::add is now protected and must be extended by the child control
+	- changed HTTPAppServlet no longer disables php error checking (now hides only E_STRICT notices)
+	- changed Button now uses default post handler on[Control]Click instead of on[Control]Post
+	- fixed bug in HTTPAppServlet::_runFuncitonalTest() where not including the controller
+	- fixed bug in ScaffoldingController where not populating ListBox's properly
+	- changed WebControlBase no longer allows binding after init()
+	- moved app-config.xml to project root
+	- added clear_cache directive to append to URL string (debug mode only)
+
+version 5.3.2 - 07.16.09
+	- fixed bug in Scaffolding controller when multiple many to many relationships exist to the same object
+	- added new feature GDImage::crop() to crop images
+
+version 5.3.1 - 07.09.09
+	- fixed bug in TestCaseBase when loading SQL fixtures created on using linux line returns
+	- fixed bug in TextBox::validate() when returning false on empty strings when regular expression is present
+	- fixed bug in WebForm class when trying to set focus to a non InputBase type control
+	- fixed bug in GridView where not preserving state on action column events
+	- fixed bug in WebForm class when binding on non InputBase type controls
+	- changed SqlDataAdapter::execute() now returns void
+	- fixed bug in TestCaseBase where catching XMLException instead of SQLException
+	- changed ListControlBase now interprets empty option values as null
+	- changed ScaffoldingControllerBase now checks if associations with children exist before deleting
+	- changed ScaffoldingControllerBase no longer calls deleteAll
+	- added WebForm::errorMessage
+
+version 5.3.0 - 06.30.09
+	- overhauled the template system, master templates now include child content instead of templates including parent templates
+	- added class MasterView to represent a master template
+	- added PageView::setMaster() to set master PageView template
+	- fixed bug in ActiveRecordBase where using readonly DataSet::row[] to set properties in PHP5.2.9
+	- fixed bug in ScaffoldingControllerBase when many to self relationship exists
+	- fixed bug in FileUpload where storing raw image data in session
+	- fixed bug in InputBase when setting focus to a DHMLT rendered control
+	- fixed bug when explicitly setting theme property
+	- fixed bug in InputBase::validate() when returning true instead of continuing
+	- fixed bug in TestCaseBase when parsing invalid XML or SQL data
+	- fixed bug in WebForm::autoFocus() when control is not an isntance of InputBase
+	- removed all non initialized variables
+
+version 5.2.8 - 06.20.09
+	- added SystemMessage control to represent a SystemMessage
+	- added range validation in InputBase::minimumValue and InputBase::maximumValue
+	- changed onRequest methods no longer process request when control is disabled
+
+version 5.2.7 - 06.19.09
+	- changed assertRedirectedTo() to include optional forwardParams parameter
+	- changed XMLEntity to allow setting attributes using ArrayAccess interface
+	- fixed bug when caching headers for different browsers
+	- fixed bug in FormsAuthentication::redirectFromLoginPage when request parameters are present in the redirect URL
+	- fixed bug in FormsAuthentication::signout() where not forwarding after signout
+	- fixed bug in WebForm::onPostHandler() where not checking if control was posted
+	- fixed bug in GridView::render() where setting header style to <a> tag, not <th> tag
+	- fixed bug in RadioButtonList where attaching click handlers to <label> instead of <input> tag
+
+version 5.2.6 - 05.08.09
+	- fixed bug in App::forward() when arg is empty
+
+version 5.2.5 - 05.07.09
+	- added bool PageControllerBase::isPostBack
+	- fixed bug where Exception view not rendering stylesheets properly
+	- fixed bug in PageView::fetchTemplate() where assigned variables could overwrite counter
+	- fixed bug in TextBox when using maxLength with multiline TextBoxes
+	- fixed bug in TextBox::validate() fails when input length == max length
+	- added ControllerTestBase::assertNoResponse()
+
+version 5.2.4 - 04.22.09
+	- cleaned up source code, added comments for virtual properties to be parsed
+	- added AppMessageCollection::__toString()
+	- fixed bug in ControllerTestCase::assertAssigned() where referencing deprecated member View::params
+	- removed redundant member ControllerBase::dataAdapter
+	- changed ControllerBase::__construct, ControllerBase::__destruct can no longer be overloaded
+
+version 5.2.3 - 04.13.09
+	- changed ActiveRecordBase no longer uses 'JoinTable' alias for inner joins, now appends table name
+	- changed URL Rewriter to include .html when no id parameter passed
+	- changed URLWrapper now replaces underscores with dashes
+	- renamed ScaffoldControllerBase to ScaffoldingControllerBase (not backwards compatable)
+	- added Authentication IP restriction to use wild cards
+	- added public HTTPAppServlet::requestHandler to provide reference handle to controller
+	- fixed bug in DataSet::offsetExists() now returns true if value is null
+	- fixed bug in ScaffoldingControllerBase where using ::required property
+	- fixed bug in ActiveRecordBase::getDataSetByType() when inner joins contain same column names
+	- fixed bug in ApplicationConfiguration where session timeout was ignored
+	- fixed bug in ActiveRecordBase where checking for type int on get[Type]Record(mixed)
+	- fixed bug in ActiveRecordBase where referencing ActiveRecordBase::_da instead of ActiveRecordBase::_ds->dataAdapter
+	- fixed bug in ScaffoldingController when duplicate keys added for many to many relationship
+	- fixed bug in DataSet::sort() where sorting dates was reversed
+
+version 5.2.2 - 03.27.09
+	- changed DataFieldCollection::add() now prepends tablename if duplciate column
+	- fixed bug in DataSet when multiple columns have the same name
+	- changed ActiveRecordBase::dataSet() now returns query with real table name on joins
+	- added ListItemCollection::indexOf()
+	- added ListItemCollection::indexOfItem()
+	- fixed bug in DataSet::filter()
+	- changed output caching now resets every POST request using generated hash
+	- changed GridView now auto generates columns unless user columns are defined
+	- fixed bug in ActiveRecordBase::first() when innerjoin statement creates multiple primary keys
+	- removed DataFieldCollection::getPrimaryKeys()
+	- added ability to restrict protected pages to a list of ip addresses
+	- added XMLEntityCollection::contains() and XMLEntityCollection::indexOf() accepts XMLEntity name
+	- added Authentication::getIdentity()
+	- added basic security directives
+	- moved build.info to /app folder
+
+version 5.2.1 - 03.12.09
+	- removed TextBox::numeric property
+	- fixed bug in GridView::addActionColumn when actionName has a space
+	- fixed bug in WebControlBase where __set() not handling WebControlBase::enableViewState
+	- fixed bug in ListBox where call to undefined property form in ListBox
+	- fixed major security bug when using basic authentication, not checking password
+	- removed Message class, use MailMessage and SmtpClient classes instead
+	- fixed bug in TextBox rendering when DHTML mode used
+
+version 5.2.0 - 01.23.09
+	- overhauled the html control id rendering
+	- overhauled webcontrol event handling, all events now handled in the WebControl, instead of the PageController
+	- overhauled GridView::addActionColumn, now triggers controller event (not backwards compatable)
+	- fixed bug in TextAdapter where "NULL" was treated as a string
+	- fixed bug where loginForm was adding controls after WebControl::load()
+	- fixed bug in ScaffoldingController when processing assoc relationships when data input invalid
+	- fixed bug in Scaffolding where adding duplicate keys to ListItemCollection
+	- changed all virtual method prefixes from find to get in ActiveRecordBase
+
+version 5.1.5 - 12.23.08
+	- fixed bug in ActiveRecordBase where casting all $args values to string
+	- fixed bug in QueryBuilder where casting values to string
+	- added support in MySqlDataAdapter::getQuery() to preserve data type on insert,update,where clauses
+	- added support in MySqlDataAdapter::getQuery() to support nulls
+	- fixed bug in XMLEntity when referencing attributes using ArrayAccess was case sensitive
+
+version 5.1.4 - 12.19.08
+	- fixed bug in HTTPWebResponse() where $stream->eos() not failing
+	- fixed bug in TestCaseBase::loadXMLFixture() where not getting list of tables
+	- fixed bug in TestCaseBase::loadXMLFixture() where not checking for valid EVAL index
+	- added ArrayAccess interface to XMLEntity to access attributes
+	- added ActiveRecordBase::beforeInsert,afterInsert,beforeUpdate,afterUpdate
+	- fixed bug in TestCaseBase where not clearing the tables array after deleting tables
+	- added XMLEntity::findChildByName()
+	- renamed DataSet::seek() to DataSet::move()
+	- renamed DataSet::find() to DataSet::seek()
+
+version 5.1.3 - 12.16.08
+	- changed Exception Message in WebControlBase on line 498
+	- fixed bug in WebControlBase::getDomObject() where not merging WebControlAttributeCollection when getDomObject is called exclusively
+	- removed property public WebForm::onsubmit, use WebControl::attributes[] instead
+	- fixed bug in ScaffoldingControllerBase where not checking if interface implemented
+	- changed Authentication where static methods were abstracted
+	- added DataField::binary
+	- added support for binary data fields in ScaffoldingControllerBase
+	- fixed bug in FileBrowser when no file uploaded
+	- fixed bug in FileBrowser::getFileInfo() now returns an array instead of StringDictionary()
+	- added error catching in FileBrowser::getRawFileData()
+	- fixed bug in MySQLDataAdapter::insertDataRecord() when composite primary key used primary key was no tupdated
+	- fixed bug in MySQLDataAdapter::updateDataRecord() when primary key updated, WHERE clause refered to updated primary key field
+	- added HTML Content-Type to assets controller
+
+version 5.1.2 - 11.25.08
+	- optimized for() loops so they pre calc length
+	- replace == with === for performance and to enforce data type
+	- optimized for() loops so they pre calc length
+	- removed all unneeded unset() calls for performance
+	- replaced print() calls with echo statements for performance
+	- changed exception screen now shows source from last line executed outside of framework
+	- renamed /libs to /packages
+	- moved /simpletest into /libs folder
+	- moved /packages outside of framework
+
+version 5.1.1 - 10.29.08
+	- fixed exception screen to be HTML 4.01 compliant
+	- fixed TreeView rendering to be XHTML 1.1 Strict compliant
+	- changed DataSet::getCSVString() parameter order
+	- changed DataAdapter no longer updates DataSet on update events
+
+version 5.1.0 - 10.24.08
+	- added asset controller property to app-config.xml
+	- added ScaffoldControllerBase to facilitate Active Scaffolding
+	- fixed bug in Stream where fread() throws exception if end of stream
+	- fixed bug in WebControlBase::hasControl() results in fatal error
+	- fixed bug in ListControlBase::onLoad() not calling parent::onLoad()
+	- fixed bug in DataRow::AddNew() when duplicate field names
+	- fixed bug in ListBox when setting selected items where multiple=true
+	- fixed bug in .htaccess when null id is passed from apache
+	- fixed bug in WebForm:onDataBind() where setting the maxLength property incorrectly
+
+version 5.0.1 - 10.21.08
+	- fixed bug in FormsAuthentication when unsetting __AUTHCOOKIE session key causes IndexOutOfRangeException()
+	- fixed bug in lookup.js causes bug in IE on end of line
+
+version 5.0.0 - 10.01.08
+	- major revision
+	- see 5.0_README.txt
+
+version 4.7.0 - 08.12.08
+	- added app-settings to config App::config()->appsettings[$key] = $value;
+	- added Integrated Authentication layer
+	- added LoginForm automatically handles logins and can be bound to a datasource
+	- added comments to HtmlView Page::addComment(string)
+	- changed index.php now loads all env variables (remove user-defined index.php)
+	- changed loader now auto includes any *.php configuration files in the config folder
+	- added themes, stylesheets now automatically included
+	- added HtmlView::addLink() replaces HtmlView::stylesheets[]
+	- added HtmlView::addScript() replaces HtmlView::jscripts[]
+	- changed Cache object now requires Cache::exists() before calling Cache::get()
+
+version 4.6.2 - 07.21.08
+	- fixed bug in WebForm where not rendering hidden controls
+	- fixed bug in build.inc.xml where referencing local resource c:\Test
+
+version 4.6.1 - 07.15.08
+	- fixed bug in ScheduleView where not appending class
+	- fixed bug in URLInput when URL contains white space
+	- fixed bug in lookup.js where not including assets/utils.js if render mode is ajax
+	- changed SuggestBox is not XHTML Compliant
+	- fixed bug where not displaying debug errors in ff3 and ie
+
+version 4.6.0 - 06.23.08
+	- fixed bug in WebRequest where undefined index when malformed URL
+	- changed HttpWebRequest to ignore response when invalid status returned
+	- changed HttpWebRequest return contentType
+	- removed Spider class permenantly (not backwards compatable)
+	- added SiteCrawler and PageCrawler to the comm/webbots package
+	- deprecated HttpWebRequest::result use HttpWebRequest::httpStatus instead
+	- changed BaseActiveRecord::all() now accepts associative array for filtering
+	- changed BaseActiveRecord::records() now accepts associative array for filtering
+	- added suffex 's' to BaseActiveRecord::findAllRecordsByType(), BaseActiveRecord::getRecordsetByType(), BaseActiveRecord::removeRecordsByType(), BaseActiveRecord::deleteRecordsByType()
+	- fixed bug in WebControl::Button where dummy button not being created
+	- fixed bug in HttpAppServlet::getInstance() when using php5.2.x
+	- fixed bug in HttpWebRequest::send() when sending GET with no data
+	- fixed bug in RSSFeed where using DomObject::attributes instead of DomObject::setAttribute()
+	- added HtmlView:LaddAlternate() to HtmlView class
+
+version 4.5.4 - 05.23.08
+	- added Input::tooltip
+	- fixed bug in lookup.js where setting focus to hidden selectObj
+
+version 4.5.3 - 05.05.08
+	- fixed bug in Recordset::getXMLData() when data contains binary information
+	- fixed bug in SuggestBox where not escaping URL's in the onload
+	- fixed bug in lookup.js where not supporting ie
+	- fixed bug in BasePageController when sending xml do not include encoding declaration (ie work around)
+	- fixed bug in BasePageController where using row[] instead of assoc[] and get()
+	- fixed bug in XMLEntities where not converting to xml entities
+	- added assets/debug.js (included only when debug mode on)
+
+version 4.5.2 - 05.02.08
+	- fixed bug in Recordset::getXMLString() sometimes generated invalid xml on field names
+	- fixed bug in HtmlView where not escaping meta data
+	- changed WebControl::dataSource now accepts string based data sources (eval'd on use)
+	- changed async engine, no longer executes entire page on async request
+	- added WebControl::getRequestData() returns request data string
+	- added BasePageController::onAsync() event when async parameter is present
+	- added async-param to app-config.xml
+	- removed all shorthand ->{} references
+	- changed Collection::index() to return -1 if not found
+	- changed Dictionary::index() to return -1 if not found
+	- changed Collection::unique() to support case insensitive
+	- added cleanup code to the ADOConnection driver objects when calling execute()
+
+version 4.5.1 - 04.29.08
+	- fixed bug in Button class where syntax error in onsubmit
+	- fixed bug in Lookup control when multiple controls existed on the same page
+	- changed SuggestBox no longer auto selects items
+	- fixed bug in ajax.js now sends data with GET requests
+	- changed Treeview and Webform to use the new model
+	- changed WebControl::ajaxCallback to WebControl::ajaxEventHandler
+	- added WebControl::ajaxCallback to set the callback uri
+	- fixed bug in Button class where disabling buttons on async requests
+	- optimized SuggestBox when renderMode == __RENDER_MODE_AJAX__
+	- changed WebControl::onLoad() to WebControl::onLoad( array $httpRequest )
+
+version 4.5.0 - 04.28.08
+	- fixed bug in BaseActiveRecord where pkey was being overwritten by the _configure() method
+	- changed final BaseActiveRecord::save() is now protected
+	- changed final BaseActiveRecord::delete() is now protected
+	- changed final BaseActiveRecord::deleteAll() is now protected
+	- fixed bug in Collection::unique() where the index was preserved
+	- fixed bug in BasePageController where alpha pid's were not supported
+	- changed ajax model - no longer uses global http_request object
+		- added WebControl::ajaxCallback
+		- added WebControl::ajaxHttpRequest
+	- changed WebForm to use new ajax model properties
+	- changed SuggestBox to support async requests (no longer extends TextBox)
+	- added SubmitForm to ajax.js (removed global request object)
+
+version 4.4.5 - 04.25.08
+	- fixed bug in MySqlADOConnection::getQuery() object where escaping values
+	- changed ADOConnection::create() to support custom drivers
+	- fixed bug in HttpRequest where not converting keys with invalid chars
+	- fixed bug in WebForm where not escaping onAjaxStateChange
+
+version 4.4.4 - 04.10.08
+	- changed BaseActiveRecord::_call now requires suffix ById for built in find method
+	- added protected bool BasePageController::assocMapping to specify whether to map associative records
+	- changed BasePageController::onInit() now sets required, maxSize and size properties
+	- changed WebForm::_generateControls() now sets required, maxSize and size properties
+	- fixed bug in webform.js where submitForm did not support radio buttons and checkboxes
+
+version 4.4.3 - 04.07.08
+	- fixed bug where TreeView outputting an extra <li> tag when ::showRoot = false
+	- fixed bug in Lookup class where incorrectly rebuilding the items Dictionary
+	- added WebControl::Slider
+	- changed Cache::get() now returns null when App::config()->cacheEnabled == false
+	- changed loader.inc to include the HttpAppServlet class
+	- fixed bug in Bass::PageController where nested loops were overwriting variables
+
+version 4.4.2 - 03.28.08
+	- updated fckeditor library
+	- modified TreeView to support multiple instances per page
+	- fixed bug in SuggestBox where 'new Option' was triming the key
+	- fixed bug TreeView and WebForm where __RENDER_AJAX_MODE__ would disable control when javascript off
+	- changed __PASS_MESSAGE__ = 'p' to __SUCCESS_MESSAGE__ = 's' (not backwards compatable)
+	- changed Message::isHtml to Message::html (not backwards compatable)
+
+version 4.4.1 - 03.17.08
+	- added DataGrid::listName when using multilists
+	- added DataGrid::getRowHeader() for overloading
+	- added DataGrid::getRowBody() for overloading
+	- added DataGrid::getRowFooter() for overloading
+	- fixed bug in FCKEditor when escaping data
+
+version 4.4.0 - 03.07.08
+	- changed SuggestBox to support multiple controls with the same list values
+	- added test-source to config file
+	- fixed bug where errors triggered before HttpAppServlet::loadApplicationState() where ignored
+	- added support for cdata information in class XMLEntity
+	- fixed bug where nul characters were rendered
+	- fixed bug in DomObject where not setting the forceCloseTag
+	- added FCKEditor control using FCKEditor library
+	- removed RichText control permenantly
+	- added WebControl::replace( &WebControl, &WebControl )
+	- added WebControl::remove( &WebControl )
+	- changed TreeNode::colapseAll() to TreeNode::collapseAll()
+	- added TreeNode::findChild()
+	- added stateful AJAX mode to WebControl::TreeView
+	- changed Cache class is now static
+	- fixed bug where dataBind() could cause fatal exception if no dataSource supplied
+	- fixed bug where WebForm would not use controller defined in WebForm::action
+	- fixed bug in .htaccess where multiple rewrite rules were being implemented
+	- changed build script production.build no longer removes cache folder
+	- fixed bug in BaseControllerTestCase where not setting HttpAppServlet::thisModule
+	- fixed bug in BasePageController error on __get() when ::page has not been created yet
+	- fixed bug where error was triggered when autoloading class that does not exist
+
+version 4.3.3 - 02.11.08
+	- fixed minor bug in HttpWebRequest when closing connection if no connection exists
+
+version 4.3.2 - 02.07.08
+	- added optional suffix to ActiveRecords
+
+version 4.3.1 - 02.06.08
+	- fixed bug in HttpAppServlet where calling $this->log() instead of App::log()
+	- changed App::uri() will now propogate the session id of present in arg list
+	- fixed bug where WebForm not reading the autoFocus property on auto validation focus
+
+version 4.3.0 - 02.01.08
+	- fixed bug when switching from secure to non-secure (uses the same config file)
+	- moved all AppConfig defaults to appconfig.class.php
+	- removed ability to set uri, htdocs, protocol, and host from config file
+
+version 4.2.5 - 01.31.08
+	- fixed bug in App::flash()
+	- fixed bug in HttpWebRequest when URL is malformed
+
+version 4.2.4 - 01.28.08
+	- changed HttpWebRequest will now attempt to get data from query
+	- changed HttpWebRequest default httpRequest version to 1.0
+	- added default referrer to HttpWebRequest if none set
+
+version 4.2.3 - 01.25.08
+	- added right_align to string.inc
+	- added debug information to unit test report
+	- fixed bug in BaseActiveRecord when mapping to object that does not exist
+	- replaced __ORM_NOTICES__ with __ASSERT_ACTIVERECORD_NOTICES__
+	- added workaround for bug in BaseActiveRecord::__construct()
+	- fixed bug where HttpAppServlet::_getAllFunctionalTestModules() did not work on IIS
+	- added work around for bug in PHP 5.2.x where overloaded arrays don't return by reference
+
+version 4.2.2 - 01.23.08
+	- changed BaseActiveRecord no longer maps associative records on tables with more than 2 keys
+	- fixed bug in ActiveScaffolding
+	- removed all references in foreach loops
+	- fixed bug in DomObject where not setting attribute with Dictionary::set()
+
+version 4.2.1 - 01.22.08
+	- major change BaseActiveRecord::_call() method
+		- replaced get with find
+		- replaced Object with Record
+		- replaced Objects with Records
+	- fixed bug in BaseActiveRecord::findAllRecordsByType() where tables with multiple parents would join using the same alias
+	- major change added support for many to many relationships via scaffolding
+	- fixed bug in BaseTestCase where not using XmlEntity::getAttribute()
+
+version 4.2.0 - 01.18.08
+	- added validation.js to libs
+	- removed stdlib.js
+	- removed WebControl.StockTicker
+	- added readonly CreditCardExpInput::month and readonly CreditCardExpInput::year
+
+version 4.1.8 - 01.14.08
+	- fixed bug in HttpWebRequest::send() when status is HTTP/1.1 100 Continue, not setting next status
+	- fixed bug in WebForm::onLoad() where not setting null for callback on ajaxRequestHandler
+	- fixed bug in ajax.js where not setting the onreadystatechange property correctly
+	- added parseXML function to ajax.js
+
+version 4.1.7 - 01.10.08
+	- fixed bug in HttpAppServlet::_forwardURI() where not calling destructor on controller
+	- fixed bug in XmlEntity::setAttribute() and XmlEntity::appendAttribute() where not setting case appropriately
+	- fixed bug in XmlParser::parse() where not setting case appropriately
+	- fixed bug in HttpAppServlet::sendHttpStatus() where not setting HttpAppServlet::requestHandler
+	- fixed bug in DomObject where multiple attributes with the same key were being set
+	- changed XmlEntity::attributes is now encapsulated
+	- fixed bug in XmlParser::parse() where using attributes->set() instead of setAttribute()
+
+version 4.1.6 - 01.02.08
+	- fixed bug in HttpAppServlet::sendHttpStatus() where not calling requestProcessor on the controller instance
+	- added warnings if BaseActiveRecord::pkey or ::table not defined
+	- fixed bug in BaseActiveRecord::getAllRecordsByType() where joining the same table on fishhook relationships
+	- fixed bug in BaseActiveRecord::getAllRecordsByType() when mapped object doesn't exist
+
+version 4.1.5 - 12.07.07
+	- fixed bug in BaseActiveRecord::recordsByType() where not selecting from the appropriate table
+	- fixed bug in WebForm:;save() when not detecting insert/update properly
+	- modified Active Scaffolding engine to support actions
+
+version 4.1.4 - 12.04.07
+	- fixed bug in BaseActiveRecord::all() when tables have fish hook relationship
+	- changed __ASSERT_DB_ERRORS__ now sets assert level, default E_USER_ERROR
+	- changed __ASSERT_MAIL_ERRORS__ now sets assert level, default E_USER_ERROR
+
+version 4.1.3 - 12.04.07
+	- fixed bug in BasePageController work around for foreach() bug
+	- added __ASSERT_MAIL_ERRORS__
+	- fixed bug in HttpWebRequest::setData()
+	- fixed bug in HttpWebRequest::send()
+	- added App::controller() to return handle to current controller
+
+version 4.1.2 - 11.30.07
+	- fixed bug button.js was not getting the proper form object passed
+	- added asyncronous form submition for WebForm
+
+version 4.1.1 - 11.28.07
+	- fixed bug where BaseActiveRecord::$db did not return ADOConnection object
+	- changed static protected BaseActiveRecord::$db to static protected BaseActiveRecord::db()
+
+version 4.1.0 - 11.23.07
+	- changed HttpAppServlet::dispatch() must return Controller
+		no longer sets $this->requestHandler
+
+version 4.0.0 - 11.21.07
+	- major revision
+	- added controller mapping defaults
+		manager will forward to manager/index if manager does not exist
+	- changed ListControl::items are no longer statefull
+	- major revision to configuration parser, only write to runtime configuration properties
+	- moved all configuration constants to loader
+	- removed AppHelper object
+		no longer have access to BaseController::app, HttpAppServlet::app or $app
+		use static App object instead
+	- removed AppHelper::getRawPageURL(), now use App::url()
+	- removed AppHelper::getRawPageURI(), now use App::uri()
+	- removed AppHelper::getEncodedPageURL() and AppHelper::getEncodedPageURI()
+	- removed BaseActiveRecord::onNew()
+	- added BaseActiveRecord::beforeAdd()
+	- added BaseActiveRecord::afterAdd()
+	- removed Collection::item property
+	- removed Dictionary::item property
+	- changed convention, static methods now start with lowercase
+	- added BaseActiveRecord::add() user instead of new BaseActiveRecord()
+	- changed BaseActiveRecord::Find( $var1, $var2 ) to BaseActiveRecord::find( $hash )
+		now supports multiple keys
+	- changed BaseActiveRecord::FindAll() to BaseActiveRecord::all()
+	- changed BaseActiveRecord::FindAllRecords() to BaseActiveRecord::records()
+	- changed BaseActiveRecord::FindFirst() to BaseActiveRecord::first()
+	- changed BaseActiveRecord::FindLast() to BaseActiveRecord::last()
+	- added __ASSERT_DB_ERRORS__ will assert db errors
+	- added __ASSERT_FORM_VALIDATION__ will assert form validation message
+	- changed WebControl::addChildControl() use WebControl::add()
+	- changed WebControl::getChildControl() use WebControl::get()
+	- changed WebControl::removeChildControl() use WebControl::remove()
+	- added BasePageController::__get( controlId ) will now find and return any control
+	- added WebControl::findControl()
+	- fixed bug in RadioButton and RadioGroup where tabindex not properly calculated
+	- fixed bug in Recordset::getCSVString() where adding extra slashes
+	- fixed bug in Message object where adding extra lines in message
+	- added HttpRequest::removeAll()
+	- added Collection::unique()
+	- changed BaseControllerTestCase::get() and BaseControllerTestCase::post()
+	- fixed bug in XmlEntity
+	- integrated fully automated framework testing module
+	- removed *all* backwards compatability
+
+version 3.14.2 - 11.07.07
+	- fixed major bug in MySqlADOConnection where tryUpdate and tryDelete could not handle composite primary keys
+	- fixed bug in Recordset::clear() where not resetting the null row properties
+
+version 3.14.1 - 11.05.07
+	- added BaseActiveRecord::Create()
+	- fixed major bug in BaseActiveRecord when table when setting primary key on new record
+
+version 3.14.0 - 10.24.07
+	- changed BaseActiveRecord::__construct( array = array() ) no accepts an optional hash array of columns
+	- removed BaseActiveRecord::onCreate(), not needed
+	- removed BaseActiveRecord::onDestory(), not needed
+	- added BaseActiveRecord::onNew() called when new object is created
+	- removed deprecated class ActiveRecord (not backwards compatable)
+	- fixed bug in BaseActiveRecord where referencing ActiveRecord
+	- fixed bug in BaseActiveRecord::FindAllByType() where not passing arg array
+
+version 3.13.4 - 10.16.07
+	- fixed bug Record::setData() now allows count($row) to be smaller than $field->count
+	- fixed bug in Recordset where referencing Record properties using the __get
+	- fixed bug in TextADOConnection $source is no longer required
+	- changed default for appHelper::addMessage() to __NOTICE_MESSAGE__
+	- changed DataReport behaviour
+	- fixed bug in SuggestBox where not escaping javascript output
+
+version 3.13.3 - 10.10.07
+	- fixed bug in BaseActiveRecord::_configure() when mapping many to many relationships
+	- fixed bug in BaseActiveRecord::removeObject() where not deleting the record
+	- fixed bug in XMLItem where using ![CDATA[ instead of htmlentities()
+	- fixed bug in FileBrowser filesize is 0
+
+version 3.13.2 - 09.25.07
+	- fixed bug in AppHelper::getRawPageURI() where destination parameter not formatted
+	- changed build script to delete build.info after successfull build
+	- fixed bug in BaseActiveRecord where BaseActiveRecord::row[] was not updating the record
+	- fixed bug in FileBrowser::getRawFileData() where not calculating filesize for fread()
+	- fixed bug in FileBrowser::requestProcessor() where incorrectly setting value attribute
+	- fixed bug in RSSFeed where not accessing attributes properly
+	- added delete confirmation to ActiveScaffolding
+	- fixed bug in RSSItem where using cdata instead of htmlentities() to escape description
+
+version 3.13.1 - 09.19.07
+	- changed BaseActiveRecord::FindAllRecords() now uses left join instead of inner join
+	- changed PageController scaffolding now uses listbox if only 1 varchar field present
+	- changed FileBrowser::value now contains raw binary data
+	- changed WebForm now outputs buttons in their own div outside the fieldset
+
+version 3.13.0 - 09.19.07
+	- added PageController::scaffold()
+	- added WebForm::legend
+	- changed DataGrid::_generateColumns() now formats columns by field type
+	- fixed bug in MySqlADOConnection::fetchRecordset() where Field::notNull was not being set
+	- changed protected BaseActiveRecord::mappings to readonly BaseActiveRecord::mappings
+
+version 3.12.10 - 09.18.07
+	- fixed bug where build.info was not formatted with timezone
+	- removed int __BUILD_TIMESTAMP__ from build.info
+	- added string __BUILD_DATETIME__ to build.info
+
+version 3.12.9 - 09.14.07
+	- fixed bug in StockTicker where overlapping occoured
+	- added production.clean and production.noclean property to build.inc.xml
+	- added public readonly AppHelper::debug
+	- changed HttpAppServlet::loadAppConfig() cache id is now HttpAppServlet::app::thisApp
+
+version 3.12.8 - 08.30.07
+	- added StockTicker control
+	- added WebControl::callback property to handle async requests
+	- deprecated BaseActiveRecord::rs, use BaseActiveRecord::dataSource instead
+	- added auto versioning to common build script
+	- added protected readonly HttpAppServlet::debug
+	- fixed bug in StockTicker class
+	- added StockTicker::intervalTime and StockTicker::intervalDistance to StockTicker class
+	- fixed bug in BasePageController::requestProcessor() where not passing $request by reference
+
+version 3.12.7 - 08.15.07
+	- fixed bug in AppHelper::log() where not setting local time stamp
+	- added support for HTTP1.0 in HttpWebRequest
+	- fixed bug in Message class where not setting OS specific line terminator
+	- fixed bug where tabindex not set properly when multiple forms exist
+	- optimized DataReport no longer shows details summary
+
+version 3.12.6 - 08.14.07
+	- fixed bug in debug.inc where alloc() not unsetting memory var
+	- fixed bug in View object where not rendering page header footer when setData() called
+	- fixed bug in HttpAppServlet::loadAppConfig() now includes domain name in cache id
+	- fixed bug in HttpAppServlet::getRawPageURI() where adding blank module if none passed
+	- fixed bug in FileBrowser where not setting size for fopen()
+	- fixed bug in FileBrowser where not validating if $_FILES contains errors
+	- fixed bug in HttpAppServlet::debug where not converting htmlentities arg to string
+	- added XMLEntity::getChildrenByName()
+
+version 3.12.5 - 08.10.07
+	- fixed bug in Message class where not formatting headers properly
+	- fixed bug in GDImage::copy() where referencing class Image
+	- fixed bug in HttpWebRequest where not handling Continue headers
+	- fixed bug in AppHelper::getRawPageURI() where not defaulting module to current module
+
+version 3.12.4 - 07.30.07
+	- added CreditCardInput class
+	- added CreditCardExpInput class
+	- fixed bug in AppHelper::urlWrapper() where adding PHPSESSID in args
+	- removed __DEFAULT_MEMORY_LIMIT__ constant
+	- fixed bug in HttpWebRequest when sending GET data
+
+version 3.12.3 - 07.25.07
+	- fixed bug in DataGrid where column data not being escaped with htmlentities
+	- optimized DataGrid no longer uses eval for simple column values
+	- fixed bug in BaseActiveRecord::getAllRecordsByType() where not joining __BELONGS_TO___ relationships
+	- fixed bug in BaseActiveRecord::getAllRecordsByType() where $mapping was overwritten
+
+version 3.12.2 - 07.24.07
+	- renamed class Image to GDImage
+	- fixed bug in AppHelper::getRawPageURL() where not unsetting 'id'
+	- fixed bug in BaseActiveRecord::getAllREcordsByType() where not joining properly
+	- fixed bug in AppHelper::getRawPageURL() now returns url with script name
+	- fixed bug in Recordset where __set() not working
+
+version 3.12.1 - 07.20.07
+	- added table prefix to Record class
+	- fixed bug in MySqlADOConnection where not setting Field::table
+	- added Recordset::record returns instance of Record object
+	- changed Recordset::column now returns Record::column instead of row data
+	- fixed bug in Recordset where accessing a field by overloading property would not refresh object
+
+version 3.12.0 - 07.18.07
+	- fixed bug in XMLView where not setting appropriate headers
+	- fixed bug in View class where using date() with time() parameter
+	- changed HttpAppServlet to set error handling in constructor
+	- fixed bug in Session class where returning array() by reference E_NOTICE
+	- changed private HttpAppServlet::loadApplicationState() to protected HttpAppServlet::loadApplicationState()
+	- changed private HttpAppServlet::saveApplicationState() to protected HttpAppServlet::saveApplicationState()
+	- changed private HttpAppServlet::requestProcessor() to protected HttpAppServlet::requestProcessor()
+	- changed HttpAppServlet::process() now only handles state and request processing
+	- changed Session class now has Session::read() method implicitly called
+	- changed Session class now has Session::close() method, Session::write() is implicitly called
+	- changed HttpAppServlet::debug() now dumps raw session data
+	- fixed bug in HttpAppServlet::debug() when creating validation URL's
+	- fixed bug in BaseActiveRecord where not checking if db link established
+	- changed AppHelper::URLWapper now uses AppHelper::getRawPageURL()
+	- changed AppHelper::getRawPageURL now formats URL based on configuration
+
+version 3.11.6 - 07.13.07
+	- changed HttpRequest object
+	- added Field::guid to specify guid data type
+	- fixed bug in MSSqlADOConnection driver where not assigning composite primary keys
+	- fixed bug in BaseActiveRecord::deleteAllObjectsByType() where "not mapped" error triggered
+	- fixed bug loader.inc where in IIS $_SERVER['HTTPS'] = 'off' instead of blank
+	- added AppHelper::getRawPageURL()
+	- added AppHelper::getAppURL()
+	- removed all references to $_SERVER path|uri data except from loader.inc
+	- changed AppConfig::protocol no longer returns '://' (not backwards compatable)
+	- fixed bug in BaseActiveRecord::getObjectByType() where throwing mapping error if object not found
+
+version 3.11.5 - 07.11.07
+	- fixed bug in HttpAppServlet::debug() where casting arg to string
+	- fixed bug in HtmlView::sendHeaders() where not sending the proper content-type for IE7
+	- added response and request headers to debug information
+
+version 3.11.4 - 07.06.07
+	- optimized PageController::requestProcessor() when checking referrer
+	- fixed bug in PriceInput where color attribute was red on positive values
+	- fixed bug in HttpAppServlet::_catchException where the backtrace was not serialized properly
+	- added AppHelper::getEncodedPageURL() returns escaped URI
+
+version 3.11.3 - 06.22.07
+	- fixed bug in TextADOConnection where not checking source is valid dir
+	- fixed bug in Record::setData() where calling debug function on failure
+	- fixed bug in View where default contentType is invalid
+	- fixed bug in BaseActiveRecord::removeAllObjectsByType() can not call Recordset::delete() on composite keys
+	- added support for insert, update and delete statements to the QueryBuilder
+	- changed MySqliADOConnection to extend MySqlADOConnection
+	- changed QueryBuilder::select() now sets wildcards *
+	- moved debug mode selector to HttpAppServlet::loadAppConfig()
+	- added support for MSSQL driver
+	- fixed bug in BaseActiveRecord::FindAllRecordsByType() where calling QueryBuilder->innerJoin() before QueryBuilder->select()
+	- fixed bug in BaseActiveRecord when overloading the getADOConnection method self:: does not reference the child object
+	- fixed bug in WebControl::onLoad where foreach() did not work (PHP bug)
+
+version 3.11.2 - 06.19.07
+	- fixed bug in MysqliADOConnection::fetchRecordset() where not converting from QueryBuilder
+	- fixed bug in PercentInput where rendering non valid XHTML1.1 Strict
+	- fixed css issue in datepicker.css
+
+version 3.11.1 - 06.19.07
+	- fixed bug in BaseActiveRecord::GetADOConnection() where assigning by reference
+	- fixed bug in BaseActiveRecord::getAllRecordsByType()
+	- fixed bug in QueryBuilder::innerJoin where auto setting the alias
+	- fixed bug in QueryBuilder::leftJoin() and QueryBuilder::rightJoin()
+	- fixed bug in MySQLADOConnection::getQuery() where setting join table alias incorrectly
+
+version 3.11.0 - 06.19.07
+	- added SQL abstraction to ADOConnection object (beta)
+
+version 3.10.1 - 06.15.07
+	- fixed bug in loader.inc when detecting __ROOT__ on a windows server
+	- fixed bug workaround for php bug regarding overloaded array properties http://bugs.php.net/bug.php?id=39449
+
+version 3.10.0 - 06.13.07
+	- fixed bug in WebForm::getDomOjbect() where rendering fail message in wrong order
+	- deprecated Recordset::record, use Recordset::row instead
+	- added support for MSSQL connections (alpha)
+	- added support for ODBC connections (alpha)
+	- changed DataReport rendering
+	- changed ADOConnection::Create() args[server] now defaults to localhost
+	- changed to Recordset::record to return Record object (not backwards compatable)
+	- changed to Recordset::records to return array of Record object (not backwards compatable)
+	- changed to Record::row now stores row data indexed by number
+	- added to Record::assoc now stores row data indexed by column name
+
+version 3.9.6 - 06.03.07
+	- added support for sql fixtures
+	- fixed bug in BaseControllerTestCase where overloading final method setUp()
+	- fixed bug in BaseTestCase::loadSQLFicture() where empty query
+	- fixed bug in BaseTestCase::loadFixures() if space at end of fixture
+	- changed HttpAppServlet::_runAllTestCases() to group all test cases
+	- fixed bug in BaseControllerTestCase() where not reseting the session
+	- fixed bug in DataReport where multiple calls to ->fetch() had different results
+	- fixed bug in DataReport where not xml compliant
+	- changed XMLEntity->__get() catch all to return by name or id
+
+version 3.9.5 - 05.31.07
+	- added debug function alloc() display amount of memory allocated
+	- fixed bug in ScheduleView where using setFieldProperty() instead of getFieldObject()
+	- deprecated NewADOConnection() replaced with ADOConnection::Create()
+	- fixed bug in HttpAppServlet where not including baseunittestcase and basecontrollertestcase
+	- fixed bug in debug.inc where stp() was calling undefined HttpAppServlet::elapsed()
+	- added BaseTestCase::prepare() and BaseTestCase::cleanup()
+	- added default messages to BaseControllerTestCase assert methods
+	- added WebControl PercentInput
+	- fixed bug in WebForm where validating control after render
+	- changed PriceInput to support __RENDER_MODE_DHTML__
+
+version 3.9.4 - 05.24.07
+	- added protected ActiveRecord::FindFirst() and protected ActiveRecord::FindLast()
+	- fixed bug in HttpAppServlet::process() where not setting ::debug var early
+	- added assertion methods to class ControllerTestCase
+	- added ActiveRecord::Count()
+	- changed ControllerTestCase::_construct() now accepts 1 parameter
+	- changed ControllerTestCase::_setUp() now resets the app state
+	- renamed ActiveRecord to BaseActiveRecord
+	- fixed bug in HttpAppServlet::debug() where using AppHelper::link()
+	- changed fixtures now load befor every test
+
+version 3.9.3 - 05.16.07
+	- added XmlView > View, CSVView > View, and HtmlView > View objects
+	- renamed Recordset::getXML() to Recordset::getXMLString()
+
+version 3.9.2 - 05.15.07
+	- fixed bug in dtd to support backwards compatability
+	- changed RadioButton no longer prepends id with parent id
+	- fixed bug in HttpAppServlet::_getAllUnitTestModules() where using str_replace instead of preg_replace
+	- fixed bug in HttpAppServlet::_getAllFunctionalTestModules() where using str_replace instead of preg_replace
+	- optimized in BaseTestCase when emptying tables
+
+version 3.9.1 - 05.09.07
+	- fixed bug in HttpAppServlet:dispatch() where not passing module to BaseController
+	- fixed bug where classes serialized in the session would be auto loaded
+	- changed include to use __SYSTEM_PATH__ instead of 'System.'
+	- fixed bug in MySqlADOConnection where duplicate errors were being set
+	- added BaseTestCase
+	- added support for multiple fixtures
+	- added eval() support in fixtures
+
+version 3.9.0 - 05.04.07
+	- changed ADOConnection now calls connect method on object creation
+	- integrated PHP SimpleTest
+	- added integrated unit and functional testing
+	- fixed bug in XMLEntity where attributes were Unexpected PHP error [object is not a valid Dictionary] on line 137
+	- changed folder structure - _log, _tmp, and _cache folders now outside of system folder
+	- changed HttpAppServlet now auto includes debug tools
+	- renamed Module to BaseController and PageModule to PageController
+	- changed xml config file schema
+	- fixed bug in CheckBox where visible flag was ignored
+	- renamed HttpSocket to HttpWebRequest
+	- changed Recordset::filter(), added operators "is null" and "not null"
+	- renamed class API to AppHelper
+	- changed default folder structure for /app/controllers and /app/views
+	- added __CONTROLLER_SUFFIX__ controller class suffix, default 'Controller'
+	- renamed AppHelper::setForwardModule() to AppHelper::setForwardRequest()
+
+version 3.8.3 - 04.26.07
+	- fixed bug in ActiveRecord::FindAllRecordsByType() where grouping caused performance issue
+	- changed __autoloader() now requires constant __AUTOLOAD_ON__
+	- fixed bug where Access level to WebControl::onLoad() was protected instead of public
+	- fixed bug in ActiveRecord::FindAllRecords() where mapped object does not exist
+	- changed ServletDebugger to dump ADOConnection driver
+
+version 3.8.2 - 04.18.07
+	- removed API::setConfig(), use API::config instead
+	- removed API::setVars(), use API::vars instead
+	- fixed bug in ServletDebugger where not escaping
+	- fixed bug in FileBrowser where FileBrowser::maxSize (Kb) was compared in bytes
+	- fixed bug in ActiveRecord where ActiveRecord::FindAllRecords() not escaping table names
+	- fixed bug in FileBrowser::validate() where validation would fail if maxSize was set
+
+version 3.8.1 - 04.05.07
+	- fixed bug in HttpAppServlet::_forwardURI() when module has no template
+	- fixed bug in HttpAppServlet::_requestProcessor() Call to a member function exists() on a non-object on line 290
+	- fixed bug in HttpAppServlet::dispatch() where servlet not checking if module was included
+
+version 3.8.0 - 04.03.07
+	- fixed bug when module does not exist but class of same name exists
+	- changed module class file naming convention
+
+version 3.7.2 - 03.26.07
+	- modified cache object to encode binary data
+	- fixed bug with Calendar where using nodeValue instead of innerHtml
+	- fixed bug in Session::destory where not destroying the session
+	- fixed bug in Button class when using image does not trigger submit event
+	- fixed bug in Page class where not handling HTTP_ACCEPT header */* type
+	- fixed bug in FileBrowser where FileBrowser::validation() not checking isset()
+	- renamed API::link() to API::getPageURL()
+
+version 3.7.1 - 03.22.07
+	- fixed bug in class loader where could not search uppercase folders
+
+version 3.7.0 - 03.20.07
+	- added MySQLiADOConnection object (alpha)
+	- fixed bug in ListBox where "end tag for "select" which is not finished."
+
+version 3.6.10 - 03.20.07
+	- changed ServletDebugger to display e_notice errors as warnings
+	- fixed bug in XMLParser where returning invalid XMLEntityCollection object
+	- changed XMLEntity::getChild() now accepts name of entity instead of index
+
+version 3.6.9 - 03.16.07
+	- fixed bug in Recordset::filter() when search parameter is null
+
+version 3.6.8 - 03.14.07
+	- changed DataGrid now outputs &nbsp; on empty cell
+	- fixed bug in Session class where not clearing the session before writing
+	- fixed bug in HttpAppServlet::dispatch() where dispatch could include already included classes
+
+version 3.6.7 - 03.09.07
+	- optomized HttpAppServlet::dispatch() no longer checks if module class exists
+	- changed HttpAppServlet::dispatch() now ads module to defined classes
+	- changed meta tag order of stylesheets and jscripts Page object
+	- fixed bug in ActiveRecord::FindByType() when no primary key
+	- fixed bug in MySqlADOConnection when no primary key
+
+version 3.6.6 - 03.08.07
+	- deprecated TextBox::max is now TextBox::maxSize
+	- added TreeView Control
+	- changed XMLEntity::appendChild() is now XMLEntity::addChild()
+	- renamed HttpAppServlet::sendHttpError() to HttpAppServlet::sendHttpStatus()
+	- fixed bug in DateSelector and TimeSelector where readonly flag not working
+
+version 3.6.5 - 03.07.07
+	- fixed bug in datepicker.js where not generating valid xhtml if month ended on saturday
+	- fixed bug in RadioListControl where control was rendering html without escaping html entities
+	- fixed bug in ListBox where control was rendering html without escaping html entities
+
+version 3.6.4 - 02.29.07
+	- changed all methods to return only one data type
+	- fixed bug in ServletDebugger where not rendering html entities
+
+version 3.6.3 - 02.27.07
+	- fixed bug in ActiveRecord::FindAllByType() where accessing GetAllRecordsByType instead of FindAllRecordsByType
+	- fixed bug in DomObject when forcing close tag
+	- fixed bug in loader.inc issue when dynamically including mis-named files
+	- fixed bug in WebControl where WebControl::buildQueryString() was declared final
+	- added Session::clear()
+
+version 3.6.2 - 02.23.07
+	- fixed bug in ActiveRecord::__call() where improper formatted method calls would be processed
+	- fixed bug in XMLEntity where XMLEntity::appendChild() was undefined
+	- fixed bug in RadioButton where element id was duplicated
+	- fixed bug in TextBox where autocomplete attribute not compliant xhtml
+	- fixed bug in Page where not checking if header HTTP_ACCEPT was set
+	- fixed bug in ServletDebugger where not rendering valid XHTML1.1
+
+version 3.6.1 - 02.22.07
+	- fixed bug in __autoload() and using() where classes could be re-declared
+	- fixed bug in private ActiveRecord::__wakeup() where __wakeup() should be public
+	- fixed bug in public ActiveRecord::__wakeup() where Recordset::setConn() does not exist
+	- removed DataGrid::boundColumn
+	- changed DomObject to extend XMLEntity
+	- removed ColorPickerWidget
+
+version 3.6.0 - 02.20.07
+	- changed WebForm::dataBind() to set max length for text fields
+	- removed Recordset::getFieldProperty()
+	- removed Recordset::setFieldProperty()
+	- added __autoload() function to automatically load class files
+	- removed all deprecated class files (no longer needed)
+	- changed HttpAppServlet::sendHttpError() now supports error Modules
+
+version 3.5.7 - 02.20.07
+	- fixed bug in ActiveRecord::FindAllRecordsByType() when joining on many to many relationships
+
+version 3.5.6 - 02.15.07
+	- added default validation message to Input class
+	- fixed bug in ScheduleView where type mis-match on attribute fields
+	- fixed bug in TreeNode and TreeView objects
+
+version 3.5.5 - 02.14.07
+	- fixed bug in XMLEntity::appendChild where parameter list expecting object type Entity
+	- added Recordset::getXML() to return xml string representing recordset
+	- renamed Recordset::getString() to Recordset::getCSVString()
+	- renamed Recordset::importString() to Recordset::importCSVString()
+	- added DataGrid::addActionColumn() (beta)
+	- fixed bug in XMLEntity::getXML() where 0 value columns were returning false
+	- changed ActiveRecord::FindAllRecordsByType to perform inner joins for all belongs to relationships
+	- added ActiveRecord::rs returns Recordset
+
+version 3.5.4 - 02.09.07
+	- added public PURL::port to explicitly set port if not present in URL
+	- changed PURL::send() can no longer pass data as an array
+	- fixed bug in PURL where port not being set correctly
+	- replaced System.Comm.PURL with System.Comm.HttpSocket (not backwards compatable)
+
+version 3.5.3 - 02.02.07
+	- fixed bug in Lookup class causing Illegal offset type, request data is now casted to a string
+	- fixed bug in ServletDebugger where "Notice: Trying to get property of non-object" on line 211
+	- renamed WebForm::autoGenerateControls to WebForm::autoGenerateFields
+	- fixed bug in TextADOConnection::try*() where source path not correct
+	- fixed bug in TextADOConnection::try*() where method not implimented properly
+	- fixed bug in Recordset::copy() where records was reference external Recordset
+
+version 3.5.2 - 02.01.07
+	- changed HttpAppServlet::process() to set default php.ini directives
+	- changed default message type parameter in API::addMessage() to __FAIL_MESSAGE__
+	- changed FileBrowser to auto-detect FileBrowser::maxSize using php directive "max_upload_size"
+	- added line count to debug output
+
+version 3.5.1 - 01.30.07
+	- fixed bug in ListControl and Input classed where validation failed on disabled controls
+	- fixed bug in ListBox class where ListBox::readonly attribute had no affect
+
+version 3.5.0 - 01.30.07
+	- added abstract and final declarations to classes and methods (may not be 100% backwards compatable)
+
+version 3.4.0 - 01.26.07
+	- changed protected ServletDebugger::elapsed() to public ServletDebugger::elapsed()
+	- optimized Collection and Dictionary objects for performance
+	- optimized Record and Field objects for performance
+	- optimized ADOConnection objects for performance
+	- optimized Recordset object for performance
+	- changed Collection and Dictionary no longer implicitly set datatype
+	- added Timer::pause() and Timer::resume() methods
+
+version 3.3.7 - 01.25.07
+	- fixed bug in ServletDebugger when no db exists
+	- fixed bug in WebControl::fetch() where args not being passed as an array()
+
+version 3.3.6 - 01.23.07
+	- changed Dictionary and Collection to allow type-mismatch with warning
+	- fixed bug in MySqlADOConnection when creating record objects now use Record::setRow()
+	- fixed bug in ADOConnection when driver=dir
+	- changed public Record::setColumn() to private Record::_setColumn()
+	- optimized MySqlADOonnection now uses mysql_fetch_row instead() of mysql_result()
+	- changed DataGrid to throw warning of dataBind() not explicitly called
+	- fixed bug in MySqlADOConnection undefined var when table has no primary key
+	- added MySqlADOConnection::getQueryCount() and MySqlADOConnection::getQueryTime()
+	- added db query count to servlet debugger
+
+version 3.3.5 - 01.20.07
+	- changed ServletDebugger::debug() to count notices and warnings
+
+version 3.3.4 - 01.19.07
+	- added function ordinal() to string.inc
+	- changed ActiveRecord::properties now returns array field names with and without prefix
+	- fixed bug in dateselector.js and timeselector.js where not checking for checked property
+
+version 3.3.3 - 01.12.07
+	- fixed bug in Recordset::find()
+	- fixed bug in WebControl where collection created with no type
+	- fixed bug in MySqlADOConnection where Record::source not being set
+	- moved System.XML.Entity to System.XML.XMLEntity
+	- fixed bug in Button when readonly is true, renders as disabled
+	- fixed bug in Button when readonly, do not set submitted flag
+
+version 3.3.2 - 01.11.07
+	- added code for security to all Input controls when control is readonly, do not process request
+
+version 3.3.1 - 01.09.07
+	- changed checkbox to support readonly attribute
+	- fixed bug in TextBox where visibility state being overridden
+	- fixed bug in SuggestBox image displaying when !visibility
+	- changed DomObject to support Collections and type checking
+	- added type hinting to API class methods
+
+version 3.3.0 - 01.05.07
+	- major change to Recordset and ADOConection
+	- added Record object, Recordset now has collection of Record objects
+	- fixed bug in HttpAppServlet::_requestProcessor when getting the module from the request
+	- Recordset::records no longer supported, use Recordset::rows instead (not backwards compatable)
+	- removed Recordset::removeAll()
+	- changed Collection and Dictionary objects are now strongly typed
+	- added type hinting for object parameters
+	- changed behavior of Dictionary::add() method
+	- fixed bug in DataReport where outputing &nbsp (without ;)
+
+version 3.2.3 - 01.03.07
+	- fixed bug in Message class when calling Message::_sterilize in the Message::setBody() method
+	- changed ActiveRecord::properties no longer deprecated
+	- change protected Recordset::record to public Recordset::record to work around php bug
+	- added ActiveRecord::deleteAllObjectsByType()
+	- added HttpRequest::get[], HttpRequest::post[] and HttpRequest::cookie[]
+	- deprecated HttpRequest::getParameter(), HttpRequest::setParameter(), HttpRequest::existsParameter(), HttpRequest::unsetParameter(), HttpRequest::getForm() and HttpRequest::getQueryString()
+	- changed HttpAppServlet to comply with HttpRequest object changes
+	- changed private ActiveRecord::_setConn() to protected ActiveRecord::setConn()
+
+version 3.2.2 - 12.22.06
+	- fixed bug in loader.inc where __PROTOCOL__ not being defined properly
+	- moved System.Collection to System.Collections.Collection
+	- moved System.Dictionary to System.Collections.Dictionary
+	- moved System.Cache to System.IO.Cache
+	- moved System.FileSystem to System.IO.FileSystem
+	- moved System.File to System.IO.File
+	- moved System.Folder to System.IO.Folder
+	- moved System.Stream to System.IO.Stream
+	- moved System.FileStream to System.IO.Stream.FileStream
+	- moved System.SocketStream to System.IO.Stream.SocketStream
+	- moved System.Message to System.Comm.Message
+	- moved System.ColumnCompare to System.ADODB.ColumnCompare
+	- moved System.Utils.Spider to System.Comm.Spider
+	- moved System.Utils.PURL to System.Comm.PURL
+	- moved System.RSS.RSSFeed to System.XML.RSSFeed
+	- moved System.RSS.RSSItem to System.XML.RSSItem
+	- moved System.ORM.ActiveRecord to System.ActiveData.ActiveRecord
+
+version 3.2.1 - 12.21.06
+	- fixed bug in ServletDebugger where call stack did not render properly
+	- added notice for usage of the ActiveRecord::__call() method for overloading
+	- fixed bug only variables should be assigned by reference in httpappservlet.class.php on line 3
+	- fixed bug undefined index:  file in servletdebugger.class.php on line 305
+
+version 3.2.0 - 12.20.06
+	- major update to ActiveRecord (beta) - not 100% backwards compatable
+		- changed ActiveRecord::Find() now gets the class name from the call stack (beta)
+		- added ActiveRecord::FindByType()
+		- changed ActiveRecord::FindAll() now gets the class name from the call stack (beta)
+		- added ActiveRecord::FindAllByType()
+		- changed ActiveRecord::GetAllRecords() now gets the class name from the call stack (beta)
+		- renamed ActiveRecord::GetAllRecords() to ActiveRecord::FindAllRecords()
+		- added ActiveRecord::FindAllRecordsByType()
+		- deprocated ActiveRecord::query()
+		- renamed protected ActiveRecord::query() to private ActiveRecord::_query()
+
+version 3.1.5 - 12.19.06
+	- optimized code, removed php4 work arounds
+	- cosmetic changes to callstack dump
+
+version 3.1.4 - 12.18.06
+	- changed ServletDebugger to dump the call stack on errors
+	- added auto complete functionality to SuggestBox and Lookup control
+	- fixed bug in lookup.js script array index is checked before it is used in an array reference
+	- fixed bug in SuggestBox control where only one instance could be created
+
+version 3.1.3 - 12.17.06
+	- changed DataReport::onGroupFooter()
+	- change lookup.js textbox enter behavior, enter updates data or submits
+	- fixed bug in Lookup where value set to 1st item if null
+	- changed Lookup now extends SuggestBox
+	- changed SuggestBox::getDomObject() where event attributes were being overwriten
+	- fixed bug where TreeNode::getDomObject() did not have same definition as WebControl::getDomObject()
+	- fixed bug in treeview.class.php only variables should be passed by reference on line 217
+	- fixed bug in treenode.class.php only variables should be passed by reference on line 457
+	- changed Dictionary no longer extends Collection - seperated behavior
+	- fixed bug in HttpAppServlet where error stack not being preserved between page requests
+	- fixed bug in ServletDebugger where trace_stack not working
+	- fixed bug Fatal error: Call to undefined method HttpAppServlet::log() in httpappservlet.class.php on line 409
+	- changed Lookup and SuggestBox onclick behavior
+
+version 3.1.2 - 12.14.06
+	- fixed bug in Lookup and SuggestBox when rendering, z-index issue
+	- changed Lookup and SuggestBox icon onclick behavior
+	- added Dictionary::index() returns index of value
+	- changed Lookup control now updates display based on value
+	- fixed bug in Lookup where not including TextBox
+	- renamed ComboBox to ListBox (more accurate)
+	- changed Lookup to extend ListControl
+	- added Webcontrol.Input.TextBox.SuggestBox (beta)
+	- changed behavior of arrow keys in Lookup and SuggestBox control to select 1st item in list
+	- changed behavior updateData function in lookup.js and suggestbox.js to set focus
+
+version 3.1.1 - 12.13.06
+	- fixed bug in Lookup where list not updating if no text entered
+	- fixed major bug in ActiveRecord when mapping many to many relationships incorrectly, now both keys must be primary
+	- fixed bug in DatePicker when rendered and simpleMode = false
+	- fixed bug in DateReport where not grouping on empty fields
+	- changed DateReport to use internal protected methods instead of global functions
+
+version 3.1.0 - 12.12.06
+	- major change request interpreter
+	- module request parameter is now lowercase
+	- fixed bug in DataGrid when rendering footer, column number mis-match
+	- fixed bug "Call to undefined method DomObject::event() in scheduleview.class.php on line 1447"
+	- fixed bug in DataGrid when outputtung row classes
+	- fixed bug in WebControl::formatURL() where not including script name "index.php"
+	- added TextBox::autoComplete field to enable/disabled browser autoComplete
+	- added Webcontrol.Input.TextBox.Lookup (beta)
+	- added multi-select functionality to DataGrid
+	- fixed bug in datepicker.js where anchor tag was rendering empty href="#"
+
+version 3.0.5 - 12.08.06
+	- fixed bug in DataReport where domObject not using WebControl::createDomObject()
+	- fixed bug in WebForm when rendering empty onsubmit attribute
+
+version 3.0.4 - 12.07.06
+	- fixed bug in DataReport where nodeValue used instead of innerHtml
+	- fixed bug when autoPostBack is true to be Xhtml 1.0 compliant
+	- updated RadioListControl to better handle visibility flag
+	- changed Input::matchPattern to Input::pattern
+
+version 3.0.3 - 12.06.06
+	- added support for js event handlers DataGrid and RadioListControl
+	- added support for WebForm::onPost() events
+	- fixed bug in ScheduleView where event was being appended to class attribute multiple times
+	- fixed bug in TextBox class when setting TextBox::disabled = true
+
+version 3.0.2 - 12.04.06
+	- fixed bug in ActiveRecord where deprecated ActiveRecord::_rs was not supported
+	- changed visibility from protected ActiveRecord::rs to private ActiveRecord::_rs
+	- changed visibility from protected ActiveRecord::db to private ActiveRecord::_db
+	- fixed bug in ActiveRecord::GetAllRecords where ActiveRecord::_Find being used instead of ActiveRecord::Find
+	- fixed bug in ActiveRecord::__get() when return old ActiveRecord::_db
+	- changed visibility from protected Module::app to private Module::_app
+	- fixed bug where deprecated event ActiveRecord::beforeCreate() was not supported
+	- fixed bug where deprecated event ActiveRecord::afterCreate() was not supported
+	- changed URLWrapper to return all lowercase (may not be backwards compatable)
+	- changed request mapper now supports lower case modules
+	- fixed bug in HttpRequest::__set() when setting a request param that does not already exist
+	- fixed bug in Session::__get() where Session::sessionId was not being returned
+	- fixed bug in RadioButton::onLoad() where not setting the value of child controls
+	- fixed bug in API where API::sendHttpError() not supported
+
+version 3.0.1 - 12.03.06
+	- fixed bug in ActiveRecord where old ActiveRecord::_getParentObjectByType was not supported
+	- fixed bug where CheckBoxListControl class did not exist
+	- fixed bug in TextBox::__set when setting maxLength
+	- fixed bug in DomObject where htmlentities() expects parameter 1 to be string on line 366
+	- fixed bug in API::link() no longer escapes URL's with htmlentities()
+	- fixed bug in Module where old Module::connectDB() was not supported
+	- fixed bug in ActiveRecord where old ActiveRecord::_db was not supported
+	- changed private ActiveRecord::_rs to protected ActiveRecord::rs
+	- changed public ActiveRecord::beforeCreate() to protected ActiveRecord::beforeInsert()
+	- changed public ActiveRecord::afterCreate() to protected ActiveRecord::afterInsert()
+	- fixed bug in TextBox::validate where validate() would return false if value was null
+
+version 3.0.0 - 11.30.06
+	- major change - removed support for php4, fully php5 compliant
+	- replaced all references of is_a() with instanceof
+	- set members methods visability
+	- set static and final declorations
+	- optimized some code segments
+	- removed backwards support for php4
+	- removed all E_STRICT notices
+
+version 2.11.5 - 11.30.06
+	- fixed bug in RadioButton::requestProcessor() where value being overwritten
+	- fixed bug in API class where sysMessages not defined
+
+version 2.11.4 - 11.29.06
+	- changed ComboBox t use innerHtml for value instead of nodeValue
+	- removed CheckBoxListControl use RadioListControl::multiple=true instead
+	- changed default value for PageModule::checkReferrer to false
+	- added HttpRequest::__set() to set request data
+
+version 2.11.3 - 11.28.06
+	- changed Input::validationErrorMsg to Input::error
+	- changed WebForm::validationErrorMsg to WebForm::error
+	- added ADOConnection::_lastQuery contains last query executed
+	- added ADOConnection::getLastQuery()
+
+version 2.11.2 - 11.27.06
+	- fixed bug in ActiveRecord::__call() when multiple mappings have similar name
+	- changed ActiveRecord::__call() E_USER_NOTICE to E_USER_WARNING
+	- renamed public ActiveRecord::getId() to private ActiveRecord::_getPrimaryKeyValue()
+	- fixed bug in ActiveRecord::_FindAll()
+
+version 2.11.1 - 11.24.06
+	- fixed bug in ColorPickerWidget where using nodeValue instead of innerHtml
+	- fixed bug in datepicker assets, z-index issue
+
+version 2.11.0 - 11.24.06
+	- added class API()
+	- changed HttpAppServlet seperated into multiple classes
+
+version 2.10.3 - 11.23.06
+	- fixed bug in ScheduleView when using nodeValue instead of innerHtml
+	- fixed bug in ScheduleView when calculating rowspan for multiday events
+	- fixed bug in ScheduleView when calculating rowspan and endtime set to 24:00
+	- fixed bug in ScheduleView on change timerange form
+	- fixed bug in ActiveRecord::__call() on _getObjectByType
+	- fixed bug in WebForm::_generateControls() when setting multiline
+
+version 2.10.2 - 11.22.06
+	- changed DataGrid::dataBind() to generate controls instead of render method
+	- changed PageModule now executes PageModule::onLoad() before PageModule::page::onLoad()
+	- changed DomObject to escape html entities
+	- added DomObject::innerhtml
+	- changed removed all references to htmlentities
+	- changed DataGrid, Calendar, ScheduleView, TreeNode to use innerHtml instead of nodeValue
+	- fixed bug in DateSelector::validate() and TimeSelector::validate() when null
+
+version 2.10.1 - 11.21.06
+	- fixed bug in HttpAppServlet::getMessages()
+	- fixed bug in ActiveRecord when getting records from an associative table
+	- fixed bug in ActiveRecord when getting objects from an undefined object
+	- added HttpRequest::__get() to return request data
+	- deprecated method WebForm::autoGenerateControls()
+		use property WebForm::autoGenerateControls instead
+	- fixed bug in WebForm::_generateControls()
+
+version 2.10.0 - 11.20.06
+	- fixed bug in AppConfig where not initializing $array
+	- fixed bug in HttpAppServlet::sendHttpError() when passing HttpRequest object
+	- removed property WebControl::cssClass
+	- fixed bug in DataReport where only variables should be passed by reference
+	- cahnged DataReport to support datetime fields
+	- changed Recordset::getMin() and Recordset::getMax() to support datetime fields
+	- renamed all .class files to .class.php
+	- changed loader.inc to suport .class.php files
+	- changed config dtd
+	- changed default module and templates path
+	- changed default module extension
+
+version 2.9.5 - 11.16.06
+	- fixed bug in ServletDebugger when outputting debug information
+	- fixed bug in ActiveRecord::__call() when allowing invalid object types to be added to an object
+	- fixed bug in DataGrid sorting issue when clicking a page
+	- fixed bug in ScheduleView where Daily/Weekly view only shows 12am-11pm
+
+version 2.9.4 - 11.15.06
+	- added private static ActiveRecord::Find()
+	- added private static ActiveRecord::FindAll()
+	- added private static ActiveRecord::GetAllRecords()
+	- fixed bug in HttpAppServlet sending HTTP error now outputs
+	- optimized for loops
+
+version 2.9.3 - 11.14.06
+	- changed Module::connectDB no longer returns false when connection fails
+	- changed 'loader.inc' now uses require() instead of require_once()
+	- fixed bug in ActiveRecord::__call() where objRef was not being validated
+	- added CAPTCHA to WebForm
+	- changed default value for PageModule::checkReferrer to true
+	- fixed bug in Apache mod-rewrite
+	- fixed bug in RadioListControl where element id's were duplicated
+	- fixed bug in CheckBoxListControl where element id's were duplicated
+
+version 2.9.2 - 11.09.06
+	- fixed bug in Apache mod-rewrite causing error: session_start() [function.session-start]: The session id contains illegal characters
+	- fixed bug in HttpAppServlet::catchError()
+
+version 2.9.1 - 11.07.06
+	- fixed Input::validate() now checks against readonly flag
+	- fixed bug in DateSelector::validate() now only returns false||parent::validate()
+	- fixed bug in TimeSelector::validate() now only returns false||parent::validate()
+	- fixed bug in Button::validate() now only returns false||parent::validate()
+	- fixed bug in CheckBox::validate() now only returns false||parent::validate()
+	- fixed bug in FileBrowse::validate() now only returns false||parent::validate()
+	- fixed bug in ListControl::validate() now checks against readonly flag
+	- added HttpAppServlet::getMessage() returns message array by type
+	- removed all E_USER_ERRORS from base code
+
+version 2.9.0 - 11.01.06
+	- added WebForm::onunload
+	- changed ActiveRecord now uses __call() to hide former public methods
+
+version 2.8.3 - 10.25.06
+	- fixed bug in FileBrowser where FileBrowser::size was not supported
+	- fixed bug in CheckBoxListControl where tabindex is incorrectly incremented
+	- fixed bug in RadioListControl where tabindex is incorrectly incremented
+	- moved ColorPicker and DatePicker to System.UI.WebControl.Input.TextBox
+	- added common controls to library
+	- fixed bug in WebControl::formatURL() where parameter is now optional
+	- fixed bug in Recordset::filter() when value is invalid date type
+	- fixed bug in DataReport Notice: Undefined index: in datareport.class on line 187
+	- fixed bug in WebForm when setting action = $_SERVER['REQUEST_URI'] is now $_SERVER['SCRIPT_NAME']
+	- fixed bug in WebControl::_buildQueryString() no longer prepends ?
+	- fixed bug in TimeSelector when selecting minute
+	- fixed bug in dateselector.js and timeselector.js where null.checked was not compatable with IE
+
+version 2.8.2 - 10.20.06
+	- fixed bug in Recordset when importing string did not set lock_type
+	- changed ScheduleView class to support request handling and multiple views
+
+version 2.8.1 - 10.19.06
+	- fixed bug in RadioListControl where control name was controlId.'[]'
+	- fixed bug in Recordset::getAvg() when no results in recordset causes division by zero
+	- fixed bug in DataGrid when no records and sorting in reverse displays showing 1 to 0 of 0
+	- added overlib library to framework WebControl.View.Page object
+	- fixed bug in Recordset::_set()
+	- added UI.WebControl.ScheduleView class
+
+version 2.8.0 - 10.11.06
+	- added auto tabindex to WebControl::Input objects
+	- fixed bug in CheckBoxListControl, RadioListControl, ComboBox not using self::createDomObject
+	- fixed bug in ListControl::requestProcessor where not getting onChange() events
+
+version 2.7.6 - 10.05.06
+	- fixed bug in RadioListControl
+
+version 2.7.5 - 09.29.06
+	- added CheckBoxListControl
+	- added RadioListControl
+
+version 2.7.4 - 09.28.06
+	- fixed bug in RadioButton where not getting value set by parent object
+	- fixed bug in combobox.js when multi-select listbox has no selected index
+	- fixed bug in ListControl::validate() when multi-select has no option selected
+	- fixed bug in ListControl::requestProcessor() when multi-select has no option selected
+	- fixed bug in ListControl when multi-select value is not an array
+
+version 2.7.3 - 09.22.06
+	- added sysMessages
+	- added properties Recordset::eof, Recordset::bof, Recordset::count, Recordset::pageCount
+	- fixed bug in ListControl when multiple = true and no values selected
+	- fixed bug in ActiveRecord when removing by association
+
+version 2.7.2 - 09.19.06
+	- changed mod re-write to decode id in URL
+	- changed HttpAppServlet::URLWrapper() to encode id in query string
+	- fixed bug in XMLParser where $value not defined
+	- changed default character set to iso-8859-1
+	- changed default render mode to text/html
+	- added dev render mode as application/xhtml+xml
+
+version 2.7.1 - 09.18.06
+	- fixed bug in Utils.Spider
+	- fixed bug in Utils.PURL when reading response from socket
+	- fixed bug where HttpAppServlet::getPageURL() returns incorrect Module
+	- fixed bug where HttpAppServlet::prevModule does not return name of previous module
+	- fixed bug in ServletDebugger when session displays as it was the previous page request
+
+version 2.7.0 - 09.15.06
+	- added object XML.XMLParser
+	- added object XML.Entity
+	- added object Utils.PURL
+
+version 2.6.1 - 08.30.06
+	- fixed bug in loader.inc
+	- added suport for image buttons in Input::Button
+	- added support for __sleep in ActiveRecord
+	- added support for restoring connections in ADODB::Recordset
+
+version 2.6.0 - 08.23.06
+	- fixed bug in TreeNode when passing by reference
+	- added support for custom view state name in session via the PageModule::_docName variable
+	- added desitination support to HttpAppServlet::getPageURL($module,$params,$dest)
+	- deprecated no longer support auto stylesheet inclusions
+
+version 2.5.6 - 08.18.06
+	- added Stream::length()
+
+version 2.5.5 - 08.17.06
+	- fixed bug in Page when setting meta tags
+	- renamed private var Page::_metatags to protected var Page::metatags
+	- fixed bug in Recordset::getAvg() uses record count instead of Recordset::getCount( fieldName )
+	- fixed bug in DataReport when casting result of number_format() funciton to (real)
+	- fixed bug in HttpRequest when magic_quotes_gpc() is true - HttpRequest::_request data was not being sanitized
+	- updated /libs/google.inc
+
+version 2.5.4 - 08.07.06
+	- fixed bug in DataGrid object when row values contain html entities
+
+version 2.5.3 - 08.02.06
+	- fixed bug in datagrid.js
+	- fixed bug in loader when using on a windows box, paths use \ instead of /
+	- fixed bug when parsing xml files and 	get_magic_quotes_runtime() is true
+	- fixed bug in Recordset division by zero when pageSize = 0
+
+version 2.5.2 - 07.28.06
+	- fixed bug Cache::flush where method did not return true
+	- added Image::rotate() rotates images
+
+version 2.5.1 - 07.24.06
+	- fixed bug in FileBrowser::validate() when required is true
+	- fixed bug in Image class when scaling proportionately image might not fit in bounding box
+	- fixed bug in Input when setting invalid class, now appends attribute list
+	- fixed bug in WebForm::autoFocus() when setting focus on a form that has 0 controls
+	- fixed bug in Calendar when formatting URL with &amp;
+	- fixed bug in WebForm::autoFocus now checks if DOM element exists before focusing
+	- fixed bug in PageModule when passing app object to view layer to early
+	- fixed bug in ActiveRecord when using php4 ->key not supported
+	- fixed bug in Button when class not assigned to dummy button
+	- fixed bug in controls where readonly attribute was rendered as readonly="true"
+	- added Input::disabled applied to all applicable child controls
+	- fixed bug in DateSelector and TimeSelector when no default value specified
+
+version 2.5.0 - 07.21.06
+	- added Input::onRequest() - executed after Input::requestProcessor()
+	- added DHTML mode for all WebControls
+	- changed DomObject
+	- changed WebControl::_assets
+	- added View component
+	- changed Page component to extend View Component
+	- added PageModule::checkReferrer - checks form referrer if TRUE
+	- changed HttpAppServlet logic - no longer sets template or attaches stylesheets/jscripts
+	- changed PageModule logic - now handles configuration of the view component
+	- changed Module logic - now returns a View object for rendering
+	- changed ActiveRecord - now allows case insensitive object names
+	- changed ActiveRecord - now maps case insensitive field names
+
+version 2.4.2 - 07.17.06
+	- fixed bug in Text_ADOConnection where null fields were returned as strings
+
+version 2.4.1 - 07.07.06
+	- added Message::sendMultiple()
+	- fixed bug in Image class
+
+version 2.4.0 - 07.06.06
+	- major changes to FileSystem objects (not 100% backwards compatable)
+	- renamed methods FileSystem::copy, FileSystem::rename, FileSystem::move, FileSystem::delete
+	- removed methods FileSystem::getFile() and FileSystem::getFolder()
+	- removed method FileSystem::openFile()
+	- removed methods FileSystem::fileExists() and FileSystem::folderExists()
+	- changed Dir_ADOConnection no longer uses FileSystem object
+
+version 2.3.5 - 07.05.06
+	- fixed bug in ADOConnection::open Recordset did not contain valid connection object
+	- fixed bug in ComboBox to be Xhtml1.1 compliant when multiple is true
+	- fixed bug in Input where view state would not load if value was null
+
+version 2.3.4 - 06.30.06
+	- fixed ComboBox is now XHTML1.1 Strict compliant (htmlentities)
+	- fixed DataReport is now XHTML1.1 Strict compliant (htmlentities)
+	- added WebControl::dataSource setter/getter
+	- fixed DataGrid when page is beyond end of recordset
+	- fixed bug in DataGrid when empty recordset, incorrect record count displayed
+	- added HttpAppServlet::setForwardURI() will now forward to self by default
+
+version 2.3.3 - 06.27.06
+	- fixed validation bug in ColorPicker and DatePicker
+	- fixed bug in DateSelector when onchange event called in IE
+	- fixed bug in TimeSelector when onchange event called in IE
+	- fixed bug in CheckBox when onchange event called in IE
+	- fixed bug in RadioButton when onchange event called in IE
+	- fixed bug in WebForm when calling focus on child controls
+	- changed hash for cache files
+	- fixed bug in Cache::flush when deleting cache files with no extension
+	- changed default value for __MODULE_PREFIX__ to 'M' (not backwards compatable)
+	- updated DataReport
+
+version 2.3.2 - 06.16.06
+	- fixed bug in Text_ADOConnection return by reference
+	- fixed bug in DataGrid $field->alias does not exist
+	- fixed bug in TimeSelector when testing for changed post data
+	- fixed bug in RadioGroup preventing autoPost events
+
+version 2.3.1 - 06.15.06
+	- fixed bug in FileSystem return by reference
+	- fixed bug in Module where db not returning by reference
+	- fixed bug in ActiveRecord where not getting reference to db
+	- fixed bug in WebControl::onLoad() now handled by PageModule::requestProcessor
+	- fixed bug in DataReport when report contains html entities
+	- changed DataGrid now requires DataGrid::dataBind() to be called
+	- changed DataReport now requires DataReport::dataBind() to be called
+
+version 2.3.0 - 06.13.06
+	- added PDFSearch object
+	- renamed class_loader.inc to loader.inc
+	- added WebControl::getParentByType()
+	- changed method of adding stylesheets/jscripts to the page
+	- changed method of auto focus
+
+version 2.2.21 - 06.06.06
+	- fixed bug in WebForm when adding DomNode by reference
+	- added sorting to DataReport
+	- fixed DateSelector::validate() TimeSelector::validate() called on empty time parameter
+	- added Recordet::getAvg() returns average in column
+	- changed CheckBox to add hidden field to form element
+	- fixed bug in ActiveRecord _prefix not being cached
+	- changed ActiveRecord no longer requires instance of HttpAppServlet
+	- added PageModule::db is auto created when accessed (php 5 only)
+
+version 2.2.20 - 06.02.06
+	- fixed bug in ActiveRecord::_getByType() when relationship is HasMany
+	- changed DomObject::addChildControl() to accept node by reference
+	- fixed bug in WebControls when adding DomNode by reference
+	- changed DataReport to render table if no functions are defined
+	- changed DataReport will now render records if no grouping specified
+
+version 2.2.19 - 06.01.06
+	- changed ActiveRecord::_getByType(), ActiveRecord::_getAllByType(), and ActiveRecord::_getRecordsByType()
+	  to ignore BelongsTo relationships
+	- added ActiveRecord::_getOwnerByType() returns associated object with a BelongsTo relationships
+	- fixed bug in ActiveRecord::add() when multiple relationships exist
+	- added TextBox::size to TextBox object
+	- fixed bug in WebForm when binding, looping through child controls was copying instead of referencing
+	- added WebControl::createDomObject() returns dom object with WebControl properties - updated all WebControls
+	- changed WebForm::getFormDomObject() to render semantic markup
+
+version 2.2.18 - 05.30.06
+	- changed Button now uses text attribute instead of value
+	- fixed bug in ActiveRecord::deleteAll() did not call deleteAll() on associated objects
+	- changed rendering in Calendar to be XHTML 1.1 Strict compliant
+	- fixed bug in ActiveRecord::_getAllByType() where empty ActiveRecord objects were returned
+	- changed ActiveRecord all references to getId() to the appropriate mapped column name
+
+version 2.2.17 - 05.26.06
+	- added validator links to debug mode
+	- changed datagrid.css and treeview.css to validate
+	- changed DataGrid no longer uses forms or WebForm objects
+	- fixed bug in WebForm no longer auto sets focus to Button objects
+
+version 2.2.16 - 05.23.06
+	- changed TreeNode to be compliant with non CSS and non JavaScript browsers
+	- changed treeview.css to be pixel perfect
+	- changed Button to render <button> tags unless browser is msie render <input>
+
+version 2.2.15 - 05.19.06
+	- changed PageModule::onPost() event now called if $_POST data is present
+	- added PageModule::onGet() event to PageModule, triggered if $_GET requests
+	- changed ActiveRecord::delete() no longer performs a cascading delete
+	- added ActiveRecord::deleteAll() will perform a cascading delete
+	- fixed bug in ActiveRecord::getByType() on line 626
+	- fixed bug in ActiveRecord::getByType() $obj was not defined
+	- added TreeView and TreeNode GUI objects
+	- renamed Widget to DomObject and WebControl::getWidget() to WebControl::getDomObject()
+
+version 2.2.14 - 05.12.06
+	- added __ORM_NOTICES__ will enable and disable notices triggered by ActiveRecord events
+	- fixed bug in TimeSelector and DateSelector where null values were returning false instead of null
+
+version 2.2.13 - 05.10.06
+	- added PageModule supports multiple forms per page
+	- fixed bug in WebForm when auto focusing
+	- fixed bug in DatePicker when invalid did not set class on input element
+	- changed DataGrid to detect eval() injection
+	- added jscript and stylesheet vars to the HttpAppServlet
+	- changed Button control to use button tag
+	- fix bug in HttpAppServlet when friendly urls on, app messages were overwritten
+	- changed HttpAppServlet will now store errors until displayed (in debug mode only)
+	- renamed Input::validationErrorMessage to Input::validationErrorMsg
+
+version 2.2.12 - 05.05.06
+	- added ActiveRecord::_getRecordsByType() to return recordset based on mapping type
+	- fixed bug in ActiveRecord removed assign by reference on line 159
+	- fixed bug in Mysql_ADOConnection removed assign by reference on line 592
+	- added ActiveRecord::_prefix will prepend prefix values when setting / getting
+	- fixed bug in HttpAppServlet on line 224 when forwarding URI, state was not saved
+	- fixed bug in ActiveRecord removed assign by reference on line 765
+
+version 2.2.11 - 05.01.06
+	- fixed bug where DomDocument is not supported by PHP4
+	- fixed bug in File::delete() causes error
+	- fixed bug in Mysql_ADOConnection::connect() when returns true on error
+	- changed File::open() no longer suppresses error messages
+
+version 2.2.10 - 04.26.06
+	- change contentType validation to include xml
+	- added dtd validation for xml configuration document
+
+version 2.2.9 - 04.21.06
+	- changed DataGrid to be XHTML1.1 compliant
+	- fixed bug preventing session data from being saved in the destructor
+	- fixed bug in viewstate loader when session data is corrupt
+	- changed HttpAppServlet now checks post data, then request data, then config file looking for module
+	- changed webform to set onload event instead of inserting <script> for input focus
+	- added onload events to all controls, page component will extract these
+	- removed Widget::addElement()
+	- removed PageWidget
+	- renamed Widget::addChild() to Widget::appendChild()
+	- renamed TableWidget::addColumnElement() to Widget::addColumnNode()
+	- removed Stream::open()
+	- changed HttpAppServlet::throwException() to catch E_STRICT notices
+	- fixed bug in DatePicker now compliant with XHTML1.1 when content-Type = "application/xhtml+xml"
+
+version 2.2.8 - 04.18.06 *may require source code changes
+	- add contentType validation - make sure client accepts contentType
+	- fixed bug in TextBox where 0 would fail for numeric values
+	- fixed bug in HttpAppServlet when forwarding by request, the current module was overridden by URI
+	- changed request order (POST overrides GET)
+
+version 2.2.7 - 04.17.06
+	- changed default module and default template path
+	- added header sterilization to Message object
+
+version 2.2.6 - 04.13.06
+	- fixed bug in DatePicker::validate when date is before Dec 31, 1969
+	- fixed bug in HttpAppServlet::sendHttpError when clearing empty output buffer
+	- fixed ColorPicker to be XHTML 1.0 Strict
+	- fixed DatePicker to be XHTML 1.0 Strict
+	- change all htmlspecialchars to htmlentities
+	- removed htmlentities from DataGrid
+
+version 2.2.5 - 04.10.06
+	- fixed bug in NewADOConnection now forces new link if arguments are the same
+	- fixed bug in DataGrid when DataGrid::showRecordNavigation is false
+	- changed Recordset::limit from 1000 to 0
+	- renamed DataGrid::displayNumRows to DataGrid::displayRows (*may require source code changes)
+
+version 2.2.4 - 04.07.06
+	- fixed bug in SocketStream __SOCKET_TIMEOUT__ not defined
+	- changed AppConfig::moduleParam default parameter to module
+	- changed Socket::read() to read entire stream is bytes set to 0
+
+version 2.2.3 - 04.06.06
+	- fixed bug in HttpAppServlet::URLWrapper() $params not defined
+	- fixed ListControl not setting id attrbiute
+	- added filter by date string option to Recordset::filter()
+	- fixed output buffering so all buffers are cleaned before rendering
+	- changed ServletDebugger::debug() so it is XHTML Strict 1.0 compliant
+
+version 2.2.2 - 04.05.06
+	- fixed bug in HttpAppServlet when dynamically adding invalid resources
+	- fixed bug in TextBox::validate() when numeric is set
+	- added docType to Page component
+	- renamed ClassDebugger to ServletDebugger
+	- added Page::sendPageHeader() and Page::sendPageFooter() called implicitely inside Page object
+	- added Widget::remAttribute() method
+	- changed HttpAppServlet::formatUrl() and WebControl::formatUrl() to be XHTML Strict 1.0 compliant
+	- changed HttpAppServlet::sendHttpError() to be XHTML Strict 1.0 compliant
+	- changed WebForm to be XHTML Strict 1.0 compliant
+	- changed ComboBox to be XHTML Strict 1.0 compliant
+	- changed DataGrid to be XHTML Strict 1.0 compliant
+	- added FileBrowser::maxSize and FileBrowser::addType() to the FileBrowser object for validation
+	- fixed FileBrowser::requestProcessor() to set submitted flag and value
+
+version 2.2.1 - 04.04.06
+	- fixed bug in TimeSelector::requestProcessor()
+	- renamed TimeSelector::displayNumRows to TimeSelector::displayColumns
+	- renamed FileBrowser::getFileData() to FileBrowser::getFileRawData()
+
+version 2.2.0 - 04.03.06
+	- added session handling object to replace $_SESSION
+	- added session scope object variables
+
+version 2.1.2 - 03.31.06
+	- renamed TextBox::maskPassword to TextBox::mask
+	- fixed bug in TextBox when validating maxLength
+
+version 2.1.1 - 03.30.06
+	- fixed bug in CheckBoxListControl when no checkboxes are selected
+	- fixed DatePicker presentation issue
+	- fixed bug in WebControl->Input->ListControl::validate() when validation an array
+
+version 2.1.0 - 03.29.06
+	- major changes to ActiveRecord object
+	- changed mapping in ActiveRecord
+	- changed ActiveRecord now supports non-numeric primary keys (only supported in MySql)
+	- changed ListControl now supports multiple items
+	- renamed HttpAppServer to HttpAppServlet
+	- added new WebControl->Input->RadioButton
+	- added new WebControl->Input->RadioGroup
+	- removed WebControl->Input->ListControl->RadioGroup
+
+version 2.0.8 - 03.28.06
+	- added controller will check if permissions are set for writable directories
+	- fixed bug in HttpAppServlet::URLWrapper() when formatting params
+	- fixed bug in TimeSelector::requestProcessor() when now formats time from input data using H:i:s
+	- fixed bug in WebForm::getFormWidget() no longer auto sets focus on Buttons
+
+version 2.0.7 - 03.15.06
+	- fixed bug in ActiveRecord where $this->map['var'] should be $this->$map['var']
+	- changed Dictionary::item() and Collection::item() no longer return references
+
+version 2.0.6 - 03.13.06
+	- changed mod_rewrite and HttpAppServlet::URLWrapper()
+
+version 2.0.5 - 03.10.06
+	- changed Recordset::importString now has fieldname flag default true
+	- changed Dictionaty::add() will append item if already exists
+	- added RichText WebControl - supports multiple instances
+	- fixed WebControl::focus() when control request name is different from control id
+
+version 2.0.4 - 03.08.06
+	- fixed bug in HttpAppServlet::URLWrapper where $sessid is not defined
+	- changed PageModule no longer writes params to session object
+	- changed default contentType for attachments in Message class to application/octet-stream
+	- added HttpAppServlet::formatURL() returns formatted url
+	- added HttpAppServlet::getPageURL() returns formatted url by page
+
+version 2.0.3 - 03.06.06
+	- added custom cacheId to PageModel class
+	- fixed bug in HttpAppServlet::dispatch() issue when resolving paths
+	- added bitwise error reporting levels
+	- changed MYSQL_ADOConnection class now supports non-numeric primary keys
+	- changed replaced foreach statements with for loops in WebControl for php4 compatability
+
+version 2.0.2 - 03.04.06
+	- added assets and htdocs uri to AppConfig class
+	- added components can now load assets via the page component
+
+version 2.0.1 - 03.03.06
+	- fixed bug in ActiveRecord class when adding associations to unsaved objects
+	- changed WebForm to change request encoding based on child components
+	- changed WebControl::formatURL() to prepend $_SERVER['PHP_SELF'] to URL's
+
+version 2.0.0 - 03.02.06
+	- major changes: replaced action/view architecture with module/component architecture (not backwards compatable)
+	- changed app server uses implicit mapping instead of xml based mapping
+	- added Page Component to replace Template class
+	- added Page Module to replace Action class
+	- added Page Controller impliments page life cycle
+	- removed all traces of appserver from components
+	- added Cache object
+
+version 1.2.1 - 02.27.06
+	- fixed Message object to prevent email header injections
+
+version 1.2.0 - 02.22.06
+	- major changes: changed controls to use request processor
+	- added WebControl::saveViewState() will return object with state of all child objects
+	- added WebControl::loadViewState() will update all child objects
+	- fixed all WebControl::validate() methods
+	- changed request object no longer references $_REQUEST array
+	- changed events will have have request object passed as a parameter
+	- changed event model for Actions
+	- changed connection object is now created in servlet instance
+
+version 1.1.2 - 02.11.06
+	- fixed transaction bug in mysql driver
+	- fixed bug where closing recordset would destory connection object
+	- changed ActiveRecord now automatically maps n:n relationships
+	- fixed bug in Message class
+	- fixed headers in Message class
+	- changed ActiveRecord::_db is now a static variable
+
+version 1.1.1 - 02.03.06
+	- fixed Input::_destruct() bug causing the value of the control to be overridden by post data
+	- fixed bug in ActiveRecord::_getByType() invalid call to method ActiveRecord::_findByPrimaryKey()
+	- fixed HttpServlet::_saveApplicationState() now serializes objects/arrays
+	- fixed auto path resolution
+	- fixed caching bug ActiveRecord did not cache primary key
+	- fixed bug in ActiveRecord preventing cascading deletes
+	- fixed bug in ActiveRecord::_getByType() and ActiveRecord::_getAllByType()
+	- changed WebControls to use new ViewState model
+	- changed dispatcher to forward actions with no action handler
+
+version 1.1.0 - 01.27.06
+	- major additions: ActiveRecord and persistantant objects
+	- added caching support to framework
+	- added ActiveRecord class
+	- changed DataReport class now passes array instead of recordset
+	- changed Action class no longer uses eval()
+	- added method Input::changed() will now return true when control changes
+	- fixed WebForm::_getQueryString() now returns proper string
+	- added framework now auto detects public web path and root path
+	- changed all controls to be preserved by default
+	- fixed Button to work with state preservation
+	- fixed CheckBox to work with state preservation
+	- fixed URL formatting in Calendar and TreeNode
+	- added ability to send attachments in Message class
+	- fixed bug in TFbrowser causing duplicate folders
+	- fixed TreeNode URL bug
+	- added control value can be changed anywhere, destructor now update session with new value
+	- changed all control attributes are preserved between page requests
+	- changed TListBox class is now abstract base class for all list based controls
+	- added framework supports cookieless sessions and authentication
+	- fixed Message class (removed invalid header data)
+	- fixed Input::setValue() only sets if nothing submitted
+	- changed DataGrid no longer uses <form> tags when not editable
+	- changed directory structure
+	- added HttpServlet now extends class ClassDebugger
+	- added ViewState model for WebControls
+	- removed AppServlet
+	- removed deprecated support for most deprecated methods and properties
+
+version 1.0.5 - 01.16.06
+	- fixed time selector bug to work when minutes = 0
+	- changed Action::form_onLoad() only executes one time per form
+	- added Recordset can import CSV string
+	- added popup date picker control to UI Widgets
+	- added handle to Action object in servlet
+
+version 1.0.4 - 12.15.05
+	- added config file caching so the xml does not have to be parsed every page request
+	- added URL wrapper function to convert framework friendly URL's
+
+version 1.0.2 - 12.15.05
+	- removed eval() from Template class
+
+version 1.0.1 - 11.30.05
+	- first stable release
+	- fixed sort bug in recordset when sorting by floating point value
+
+version 0.9.1-beta
+	- first beta release

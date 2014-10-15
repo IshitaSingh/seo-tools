@@ -1,0 +1,14 @@
+<?php
+	/**
+	 * Rum script
+	 * Do not modify this script!
+	 */
+
+	namespace System\Deploy;
+
+	// include framework loader
+	include 'system/base/rum.php';
+
+	// create instance of the application and run!!!
+	\System\Base\ApplicationBase::getInstance(new Deploy())->run();
+?>

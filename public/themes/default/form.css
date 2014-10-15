@@ -1,0 +1,82 @@
+<!--/*--><![CDATA[/*><!--*/
+
+fieldset {
+	padding: 20px;
+	padding-top: 259px;;
+	padding-bottom: 10px;
+	border: 1px solid #FFFFFF;
+}
+fieldset h3{
+    font-size: 41px;
+    text-align: center;
+    margin: 0px 0px 22px;
+    font-weight: inherit;
+    
+}
+fieldset h4{
+    
+    text-align: center;
+    margin: 0px 0px 22px;
+    font-weight: inherit;
+    
+}
+
+fieldset div {
+	clear: left;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+fieldset label {
+	float: left;
+	width: 160px;
+	color: #666666;
+	font-size: 12px;
+	font-weight: bold;
+	height: 20px;
+}
+
+fieldset .textbox {
+	background-image: url("images/textbox.gif") repeate;
+	width: 180px;
+	height: 18px;
+	color: #7F9DB9;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 2px;
+	font-weight: bold;
+	font-size: 14px;
+        
+        }
+ 
+
+fieldset .urlinput {
+	background-image: url("images/urlinput.gif");
+	width: 716px;
+	height: 18px;
+	color: #7F9DB9;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 2px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+fieldset .radiogroup label {
+	float: none;
+	width: auto;
+}
+
+.button {
+	background-image: url("images/button.gif");
+	background-color: inherit;
+	width: 107px;
+	height: 20px;
+	color: #7F9DB9;
+	padding: 2px;
+	font-weight: bold;
+	color: #7F9DB9;
+	font-size: 14px;
+}
+
+/*]]>*/-->

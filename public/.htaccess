@@ -1,0 +1,31 @@
+order deny,allow
+allow from all
+
+# Turn Rewrite Engine On
+RewriteEngine On
+
+# This file contains default page routing for typical applications
+# Modify this script as needed
+
+# REST Web service routing
+
+# /rest/u/{user}/t/{token}/{collection}/
+RewriteRule ^(json|xml|rest)/u/(.+?)/t/(.+?)/(.+)/$ index.php?path=rest/$4&format=$1&uid=$2&token=$3 [L,QSA]
+# /rest/u/{user}/t/{token}/{collection}/{identifier}
+RewriteRule ^(json|xml|rest)/u/(.+?)/t/(.+?)/(.+)/(.+)$ index.php?path=rest/$4&format=$1&uid=$2&token=$3&id=$5 [L,QSA]
+# /rest/{collection}/
+RewriteRule ^(json|xml|rest)/(.+)/$ index.php?path=rest/$2&format=$1&path=rest/$2 [L,QSA]
+
+# Page routing with language
+
+# /{lang}/{page}/
+RewriteRule ^([a-z][a-z])/(.*)?/$ index.php?lang=$1&path=$2 [L,QSA]
+# /{lang}/{page}/{identifier}
+RewriteRule ^([a-z][a-z])/(.*)?/(.*)?$ index.php?lang=$1&path=$2&id=$3 [L,QSA]
+
+# Page routing
+
+# /{page}/
+RewriteRule ^(.*)?/$ index.php?path=$1 [L,QSA]
+# /{page}/{identifier}
+RewriteRule ^(.*)?/(.*)?$ index.php?path=$1&id=$2 [L,QSA]

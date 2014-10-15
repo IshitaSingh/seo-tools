@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Form validation</h1>
+
+<p>In this example, we are going to add some basic validation.</p>
+
+<pre>
+	namespace MyApp;
+
+	class MyForm extends ApplicationController
+	{
+		public function onPageInit($sender, $args)
+		{
+			$this->page->add(UI::Form('my_form'));
+			$this->page->my_form->add(UI::TextBox('title'));
+			$this->page->my_form->add(UI::TextBox('body'));
+			$this->page->my_form->add(UI::Button('create_post'));
+
+			$this->page->my_form->title->addValidator(UI::RequiredValidator('You must enter a title'));
+			$this->page->my_form->body->addValidator(UI::RequiredValidator('You must enter a body'));
+		}
+
+		public function onCreate_PostClick($sender, $args)
+		{
+			if($this->page->my_form->validate())
+			{
+				// handle form submission here...
+			}
+		}
+	}
+</pre>
+
+</body>
+</html>

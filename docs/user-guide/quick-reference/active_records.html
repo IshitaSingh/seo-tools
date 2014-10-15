@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+	    <h3 id="siteSub">From WikiWerx</h3>
+
+	    <div id="contentSub"></div>
+	    	    	    <!-- start content -->
+	    <table id='toc' class='toc'><tr><td><div id='toctitle'><h2>Contents</h2></div>
+<ul>
+<li class='toclevel-1'><a href="#ActiveRecord_Quick_Reference"><span class="tocnumber">1</span> <span class="toctext">ActiveRecord Quick Reference</span></a>
+<ul>
+<li class='toclevel-2'><a href="#Features"><span class="tocnumber">1.1</span> <span class="toctext">Features</span></a></li>
+
+<li class='toclevel-2'><a href="#Limitations"><span class="tocnumber">1.2</span> <span class="toctext">Limitations</span></a></li>
+<li class='toclevel-2'><a href="#Database_Convention"><span class="tocnumber">1.3</span> <span class="toctext">Database Convention</span></a></li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Static_Methods"><span class="tocnumber">2</span> <span class="toctext">Static Methods</span></a>
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::add.28.29"><span class="tocnumber">2.1</span> <span class="toctext">BaseActiveRecord::add()</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord::find.28.29"><span class="tocnumber">2.2</span> <span class="toctext">BaseActiveRecord::find()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::findById.28.29"><span class="tocnumber">2.3</span> <span class="toctext">BaseActiveRecord::findById()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::first.28.29"><span class="tocnumber">2.4</span> <span class="toctext">BaseActiveRecord::first()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::last.28.29"><span class="tocnumber">2.5</span> <span class="toctext">BaseActiveRecord::last()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::findAll.28.29"><span class="tocnumber">2.6</span> <span class="toctext">BaseActiveRecord::findAll()</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord::dataSet.28.29"><span class="tocnumber">2.7</span> <span class="toctext">BaseActiveRecord::dataSet()</span></a></li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Public_Methods"><span class="tocnumber">3</span> <span class="toctext">Public Methods</span></a>
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::save.28.29"><span class="tocnumber">3.1</span> <span class="toctext">BaseActiveRecord::save()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::delete.28.29"><span class="tocnumber">3.2</span> <span class="toctext">BaseActiveRecord::delete()</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord::deleteAll.28.29"><span class="tocnumber">3.3</span> <span class="toctext">BaseActiveRecord::deleteAll()</span></a></li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Static_Properties"><span class="tocnumber">4</span> <span class="toctext">Static Properties</span></a>
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::db"><span class="tocnumber">4.1</span> <span class="toctext">BaseActiveRecord::db</span></a></li>
+</ul>
+</li>
+
+<li class='toclevel-1'><a href="#Public_Properties"><span class="tocnumber">5</span> <span class="toctext">Public Properties</span></a>
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::row"><span class="tocnumber">5.1</span> <span class="toctext">BaseActiveRecord::row</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::dataAdapter"><span class="tocnumber">5.2</span> <span class="toctext">BaseActiveRecord::dataAdapter</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::table"><span class="tocnumber">5.3</span> <span class="toctext">BaseActiveRecord::table</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord::pkey"><span class="tocnumber">5.4</span> <span class="toctext">BaseActiveRecord::pkey</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::prefix"><span class="tocnumber">5.5</span> <span class="toctext">BaseActiveRecord::prefix</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::mappings"><span class="tocnumber">5.6</span> <span class="toctext">BaseActiveRecord::mappings</span></a></li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Virtural_Methods"><span class="tocnumber">6</span> <span class="toctext">Virtural Methods</span></a>
+
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::getAllRecordsByType.28.29"><span class="tocnumber">6.1</span> <span class="toctext">BaseActiveRecord::getAllRecordsByType()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::getRecordsetByType.28.29"><span class="tocnumber">6.2</span> <span class="toctext">BaseActiveRecord::getRecordsetByType()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::getParentRecordByType.28.29"><span class="tocnumber">6.3</span> <span class="toctext">BaseActiveRecord::getParentRecordByType()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::addRecord.28.29"><span class="tocnumber">6.4</span> <span class="toctext">BaseActiveRecord::addRecord()</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord::removeAllRecordsByType.28.29"><span class="tocnumber">6.5</span> <span class="toctext">BaseActiveRecord::removeAllRecordsByType()</span></a></li>
+<li class='toclevel-2'><a href="#BaseActiveRecord::deleteAllRecordsByType.28.29"><span class="tocnumber">6.6</span> <span class="toctext">BaseActiveRecord::deleteAllRecordsByType()</span></a></li>
+</ul>
+</li>
+<li class='toclevel-1'><a href="#Virtural_Properties"><span class="tocnumber">7</span> <span class="toctext">Virtural Properties</span></a>
+<ul>
+<li class='toclevel-2'><a href="#BaseActiveRecord::.24property"><span class="tocnumber">7.1</span> <span class="toctext">BaseActiveRecord::$property</span></a></li>
+
+<li class='toclevel-2'><a href="#BaseActiveRecord.5B.24property.5D"><span class="tocnumber">7.2</span> <span class="toctext">BaseActiveRecord[$property]</span></a></li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<p><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=1" title="ActiveRecord Quick Reference">edit</a>]</div><a name="ActiveRecord_Quick_Reference"></a><h2>ActiveRecord Quick Reference</h2>
+<ul><li>ActiveRecords are objects that represent a table or record in a table by abstracting the SQL and providing an object oriented interface
+
+</li><li>ActiveRecords will automatically map relationships for each table providing the database complies with the convention
+</li></ul>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=2" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Features"></a><h3>Features</h3>
+<ul><li> ActiveRecords support composite primary keys
+</li><li> ActiveRecords support auto-increment primary keys
+</li><li> ActiveRecords support string based primary keys
+</li><li> ActiveRecords support lowercase and uppercase table/field names
+</li><li> ActiveRecords support table field prefixes
+
+</li><li> ActiveRecords support one to many relationships
+</li><li> ActiveRecords support many to one relationships
+</li><li> ActiveRecords support many to many relationships
+</li><li> ActiveRecords support one to self relationships (fishhook)
+</li><li> ActiveRecords support multiple relationships on the same table (recursive)
+</li><li> You may manually define the mapping for any table
+</li></ul>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=3" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Limitations"></a><h3>Limitations</h3>
+
+<ul><li> Associative tables must use the same field names as the foreign table even if mapping is manually defined
+</li><li> The following methods do not work when multiple relationships to the same object exist:
+<ul><li> BaseActiveRecord::removeObjectsByType()
+</li></ul>
+</li></ul>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=4" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Database_Convention"></a><h3>Database Convention</h3>
+<p>The ActiveRecords will attempt to map themselves automatically based on a database convention
+</p>
+<ul><li> all foreign keys must match the associated primary key
+
+</li><li> all field names may have an optional prefix of the table followed by an underscore
+</li></ul>
+<p>e.g.
+</p>
+<pre>
+`users` ( `users_id`, `categories_id`, `users_name`, `users_age` )
+
+`categories` ( `categories_id`, `categories_name` )
+
+`groups` ( `groups_id`, `groups_name` )
+
+`users_groups`( `users_id`, `groups_id` )
+</pre>
+<ul><li>each category has many users (one to many)
+</li><li>each user may be associated with one or more groups (many to many)
+</li></ul>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=5" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Static_Methods"></a><h2>Static Methods</h2>
+<p>Apply to all records of this type
+All methods are protected and must be overridden as public to be used outside the object
+
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=6" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::add.28.29"></a><h3>BaseActiveRecord::add()</h3>
+<p>create a new ActiveRecord of this type
+optional associative array of initial values
+</p><p>static protected BaseActiveRecord   add  ([ $args = array()])
+</p><p>example:
+</p>
+<pre>
+$john = Users::add( array( 'name' =&gt; 'john' ));
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=7" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::find.28.29"></a><h3>BaseActiveRecord::find()</h3>
+
+<p>find an existing ActiveRecord of this type
+requires associative array of values to search for
+returns null if no record found
+</p><p>static protected BaseActiveRecord   find  ([ $args = array()])
+</p><p>example:
+</p>
+<pre>
+$jane = Users::find( array( 'name' =&gt; 'jane' ));
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=8" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::findById.28.29"></a><h3>BaseActiveRecord::findById()</h3>
+<p>find an existing ActiveRecord of this type
+requires id of record to search for
+returns null if no record found
+</p><p>static protected BaseActiveRecord   find  ([ $args = array()])
+</p><p>example:
+
+</p>
+<pre>
+$myUser = Users::findById( 7 );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=9" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::first.28.29"></a><h3>BaseActiveRecord::first()</h3>
+<p>find the first ActiveRecord of this type
+returns null if no record found
+</p><p>static protected BaseActiveRecord   first  ()
+</p><p>example:
+</p>
+<pre>
+$firstUser = Users::first();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=10" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::last.28.29"></a><h3>BaseActiveRecord::last()</h3>
+
+<p>find the last ActiveRecord of this type
+returns null if no record found
+</p><p>static protected BaseActiveRecord   last  ()
+</p><p>example:
+</p>
+<pre>
+$lastUser = Users::last();
+</pre>
+<p><br />
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=11" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::findAll.28.29"></a><h3>BaseActiveRecord::findAll()</h3>
+<p>return array of ActiveRecords of this type
+</p><p>static protected ActiveRecordCollection   findAll  ()
+</p><p>example:
+
+</p>
+<pre>
+foreach( Users::findAll() as $user ) {
+  // each $user is an ActiveRecord object
+}
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=12" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::dataSet.28.29"></a><h3>BaseActiveRecord::dataSet()</h3>
+<p>return Recordset containing all records of this type
+</p><p>static protected DataSet   DataSet()
+</p><p>example:
+</p>
+<pre>
+foreach( Users::dataSet()-&gt;rows as $user ) {
+  // each $user is a DataSet row (array)
+}
+</pre>
+
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=13" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Public_Methods"></a><h2>Public Methods</h2>
+<p>Apply to a single instance of an ActiveRecord
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=14" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::save.28.29"></a><h3>BaseActiveRecord::save()</h3>
+<p>save ActiveRecord (will write data to database adapter)
+</p><p>public bool   save  ()
+</p><p>example:
+</p>
+<pre>
+
+$john = Users::add();
+$john-&gt;save();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=15" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::delete.28.29"></a><h3>BaseActiveRecord::delete()</h3>
+<p>delete ActiveRecord (will write data to database adapter)
+</p><p>public bool   delete  ()
+</p><p>example:
+</p>
+<pre>
+$john = Users::find( array( 'name' =&gt; 'john' ));
+$john-&gt;delete();
+
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=16" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::deleteAll.28.29"></a><h3>BaseActiveRecord::deleteAll()</h3>
+<p>cascading delete
+delete ActiveRecord and all associated records (will write data to database adapter)
+</p><p>public bool   deleteAll  ()
+</p><p>example:
+</p>
+<pre>
+$john = Users::find( array( 'name' =&gt; 'john' ));
+$john-&gt;deleteAll();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=17" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Static_Properties"></a><h2>Static Properties</h2>
+
+<p>Apply to all records of this type
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=18" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::db"></a><h3>BaseActiveRecord::db</h3>
+<p>instance of the ADOConnection object
+null on error
+</p><p>static ADOConnection  $db
+</p><p>example:
+</p>
+<pre>
+Users::add();
+echo Users::$db-&gt;lastQuery;
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=19" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Public_Properties"></a><h2>Public Properties</h2>
+
+<p>Apply to a single instance of an ActiveRecord
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=20" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::row"></a><h3>BaseActiveRecord::row</h3>
+<p>array of ActiveRecord properties
+</p><p>array  $row
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+$john-&gt;row['name'] = 'John';
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=21" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::dataAdapter"></a><h3>BaseActiveRecord::dataAdapter</h3>
+
+<p>instance of the SqlDataAdapter  object
+throws exception on error
+</p><p>protected SqlDataAdapter  $dataAdapter
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+echo $john-&gt;dataAdapter-&gt;lastQuery;
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=22" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::table"></a><h3>BaseActiveRecord::table</h3>
+<p>readonly name of the abstracted database table
+</p><p>readonly string  $table
+</p><p>example:
+
+</p>
+<pre>
+$john = Users::add();
+echo $john-&gt;table;
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=23" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::pkey"></a><h3>BaseActiveRecord::pkey</h3>
+<p>readonly name of the primary key for the abstracted table
+</p><p>readonly string  $pkey
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+echo $john-&gt;pkey;
+
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=24" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::prefix"></a><h3>BaseActiveRecord::prefix</h3>
+<p>readonly name of the table prefix for the abstracted table
+</p><p>readonly string  $prefix
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+echo $john-&gt;prefix;
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=25" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::mappings"></a><h3>BaseActiveRecord::mappings</h3>
+
+<p>readonly array of the ActiveRecord mappings
+</p><p>readonly array  $mappings
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+print_r( $john-&gt;mappings );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=26" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Virtural_Methods"></a><h2>Virtural Methods</h2>
+<p>Apply to a single instance of an ActiveRecord
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=27" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::getAllRecordsByType.28.29"></a><h3>BaseActiveRecord::getAllRecordsByType()</h3>
+
+<p>return array of all associated ActiveRecords by type
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+foreach( $john-&gt;getAllGroupRecords() as $group ) {
+  // $group is an ActiveRecord object associated to the User object
+}
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=28" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::getRecordsetByType.28.29"></a><h3>BaseActiveRecord::getRecordsetByType()</h3>
+<p>return Recordset with all associated objects by type
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+foreach( $john-&gt;getGroupRecordset()-&gt;rows as $group ) {
+  // each $group is a Recordset row (array)
+}
+
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=29" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::getParentRecordByType.28.29"></a><h3>BaseActiveRecord::getParentRecordByType()</h3>
+<p>return the associated parent ActiveRecord by type
+null if none found
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+$category = $john-&gt;getParentCategoryRecord();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=30" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::addRecord.28.29"></a><h3>BaseActiveRecord::addRecord()</h3>
+
+<p>associate an existing ActiveRecord
+requires instance of an ActiveRecord
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+$john-&gt;addCategoryRecord( Categories::first() );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=31" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::removeAllRecordsByType.28.29"></a><h3>BaseActiveRecord::removeAllRecordsByType()</h3>
+<p>remove all associated ActiveRecords by type
+</p><p>example:
+</p>
+<pre>
+$john = Users::first();
+$john-&gt;removeAllCategoryRecords();
+
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=32" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::deleteAllRecordsByType.28.29"></a><h3>BaseActiveRecord::deleteAllRecordsByType()</h3>
+<p>delete all associated ActiveRecords by type (will write to database adapter)
+</p><p>example:
+</p>
+<pre>
+$john = Users::first();
+$john-&gt;deleteAllCategoryRecords();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=33" title="ActiveRecord Quick Reference">edit</a>]</div><a name="Virtural_Properties"></a><h2>Virtural Properties</h2>
+
+<p>Apply to a single instance of an ActiveRecord
+</p>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=34" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord::.24property"></a><h3>BaseActiveRecord::$property</h3>
+<p>access to ActiveRecord property
+an error will be thrown if the property is not defined
+</p><p>public mixed  {$property}
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+$john-&gt;name = 'John';
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=ActiveRecord_Quick_Reference&amp;action=edit&amp;section=35" title="ActiveRecord Quick Reference">edit</a>]</div><a name="BaseActiveRecord.5B.24property.5D"></a><h3>BaseActiveRecord[$property]</h3>
+
+<p>array access to ActiveRecord property
+an error will be thrown if the property is not defined
+</p><p>public [] {$property}
+</p><p>example:
+</p>
+<pre>
+$john = Users::add();
+$john['name'] = 'John';
+</pre>
+<p><a href="/wiki/Darnell%27s_PHP_Framework" title="Darnell's PHP Framework">Darnell's PHP Framework</a>
+</p><div class="printfooter">
+Retrieved from "<a href="http://intranet.commerx.com/wiki/ActiveRecord_Quick_Reference">http://intranet.commerx.com/wiki/ActiveRecord_Quick_Reference</a>"</div>
+	    	    <!-- end content -->
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Quick Reference / App Helper</h1>
+<h2>Index</h2>
+
+<ul>
+<li><a href="#App::log.28.29"><span class="tocnumber">1.1</span> <span class="toctext">App::log()</span></a></li>
+<li><a href="#App::config.28.29"><span class="tocnumber">1.2</span> <span class="toctext">App::config()</span></a></li>
+<li><a href="#App::session.28.29"><span class="tocnumber">1.3</span> <span class="toctext">App::session()</span></a></li>
+<li><a href="#App::forward.28.29"><span class="tocnumber">1.4</span> <span class="toctext">App::forward()</span></a></li>
+<li><a href="#App::flash.28.29"><span class="tocnumber">1.5</span> <span class="toctext">App::flash()</span></a></li>
+<li><a href="#App::messages.28.29"><span class="tocnumber">1.6</span> <span class="toctext">App::messages()</span></a></li>
+<li><a href="#App::uri.28.29"><span class="tocnumber">1.7</span> <span class="toctext">App::uri()</span></a></li>
+<li><a href="#App::url.28.29"><span class="tocnumber">1.8</span> <span class="toctext">App::url()</span></a></li>
+<li><a href="#App::urlWrapper.28.29"><span class="tocnumber">1.9</span> <span class="toctext">App::urlWrapper()</span></a></li>
+</ul>
+
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=2" title="API Quick Reference">edit</a>]</div><a name="App::log.28.29"></a><h3>App::log()</h3>
+<p>Automatically writes a string to a log file stamped with the current time located in __LOG_PATH__
+</p><p>static bool   log (string $errmsg, [string $logfile = 'log.txt'])
+</p><p>example:
+</p>
+<pre>
+App::log( 'user logged in' );
+
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=3" title="API Quick Reference">edit</a>]</div><a name="App::config.28.29"></a><h3>App::config()</h3>
+<p>Returns a handle to the AppConfig object
+</p><p>static AppConfig   config()
+</p><p>example:
+</p>
+<pre>
+App::config()-&gt;uri;
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=4" title="API Quick Reference">edit</a>]</div><a name="App::session.28.29"></a><h3>App::session()</h3>
+
+<p>Returns a handle to the Session object
+</p><p>static Session   session()
+</p><p>example:
+</p>
+<pre>
+App::session()-&gt;destroy();
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=5" title="API Quick Reference">edit</a>]</div><a name="App::forward.28.29"></a><h3>App::forward()</h3>
+<p>Sets the next URI once the current controller is finished executing
+</p><p>static void   forward ([string $nextController = <i>], [ $args = array()], [int $method = __FORWARD_METHOD_URI__])</i>
+
+</p><p>example:
+</p>
+<pre>
+App::forward( 'login' );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=6" title="API Quick Reference">edit</a>]</div><a name="App::flash.28.29"></a><h3>App::flash()</h3>
+<p>Adds a message to message stack
+</p><p>static void   flash (string $msg, [ $type = __STATUS_MESSAGE__])
+</p><p>example:
+</p>
+<pre>
+App::flash( 's:your record was saved!' );
+</pre>
+
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=7" title="API Quick Reference">edit</a>]</div><a name="App::messages.28.29"></a><h3>App::messages()</h3>
+<p>Returns array of messages by type
+</p><p>static array   messages  ([string $type = <i>])</i>
+</p><p>example:
+</p>
+<pre>
+foreach( App::messages() as $msg )&nbsp;:
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=8" title="API Quick Reference">edit</a>]</div><a name="App::uri.28.29"></a><h3>App::uri()</h3>
+
+<p>Returns a URI based on the requested module and parameters
+</p><p>static string   uri  ([ $module = <i>], [ $args = array()], [string $destination = </i>], string $controller)
+</p><p>example:
+</p>
+<pre>
+App::uri( 'home' );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=9" title="API Quick Reference">edit</a>]</div><a name="App::url.28.29"></a><h3>App::url()</h3>
+<p>Returns a URL based on the requested module and parameters
+</p><p>static string   url  ([string $module = <i>], [ $args = array()], [string $destination = </i>])
+
+</p><p>example:
+</p>
+<pre>
+App::url( 'home' );
+</pre>
+<div class="editsection" style="float:right;margin-left:5px;">[<a href="/w/index.php?title=API_Quick_Reference&amp;action=edit&amp;section=10" title="API Quick Reference">edit</a>]</div><a name="App::urlWrapper.28.29"></a><h3>App::urlWrapper()</h3>
+<p>Parses a URL and returns a friendly URL
+</p><p>static string   urlWrapper  (string $queryString)
+</p><p>example:
+</p>
+<pre>
+App::urlWrapper( 'http://mysite.com/?module=index&amp;id=4' );
+
+</pre>
+<p><a href="/wiki/Darnell%27s_PHP_Framework" title="Darnell's PHP Framework">Darnell's PHP Framework</a>
+</p><div class="printfooter">
+Retrieved from "<a href="http://intranet.commerx.com/wiki/API_Quick_Reference">http://intranet.commerx.com/wiki/API_Quick_Reference</a>"</div>
+	    	    <!-- end content -->
+	    <div class="visualClear"></div>
+
+</body>
+</html>

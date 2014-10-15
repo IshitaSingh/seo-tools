@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="application">
+  <xs:complexType>
+    <xs:all>
+      <xs:element ref="app-settings" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="pages" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="viewstate" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="request" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="session" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="cache" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="authentication" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="authorization" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="data-source" minOccurs="0" maxOccurs="1"/>
+      <xs:element ref="errors" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+    <xs:attribute name="state" type="stateType" use="required"/>
+    <xs:attribute name="lang" type="xs:string" use="optional" />
+    <xs:attribute name="charset" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="app-settings">
+  <xs:complexType>
+    <xs:choice>
+      <xs:element name="add" minOccurs="0" maxOccurs="100">
+        <xs:complexType>
+          <xs:attribute name="key" type="xs:string" use="required" />
+          <xs:attribute name="value" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="pages">
+  <xs:complexType>
+    <xs:attribute name="default-theme" type="xs:string" use="optional" />
+    <xs:attribute name="theme" type="xs:string" use="optional" /> <!-- backwards compatability -->
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="viewstate">
+  <xs:complexType>
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" />
+    <xs:attribute name="method" type="viewstateMethodType" use="optional" />
+    <xs:attribute name="expires" type="xs:integer" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="request">
+  <xs:complexType>
+    <xs:attribute name="default" type="xs:string" use="optional" />
+    <xs:attribute name="param" type="xs:string" use="optional" />
+    <xs:attribute name="friendly-uris" type="xs:boolean" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="session">
+  <xs:complexType>
+    <xs:attribute name="cookieless" type="xs:boolean" use="optional" />
+    <xs:attribute name="timeout" type="xs:integer" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="cache">
+  <xs:complexType>
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" />
+    <xs:attribute name="expires" type="xs:integer" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="authentication">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="basic" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="realm" type="xs:string" use="optional" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="forms" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="loginpage" type="xs:string" use="optional" />
+          <xs:attribute name="cookiename" type="xs:string" use="optional" />
+          <xs:attribute name="secret" type="xs:string" use="optional" />
+          <xs:attribute name="expires" type="xs:int" use="optional" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="credentials" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="user" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:attribute name="username" type="xs:string" use="required" />
+                <xs:attribute name="password" type="xs:string" use="required" />
+                <xs:attribute name="active" type="xs:boolean" use="optional" />
+                <xs:attribute name="salt" type="xs:string" use="optional" />
+                <xs:attribute name="password-format" type="authenticationPasswordFormatType" use="optional" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="table" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:attribute name="dsn" type="xs:string" use="optional" />
+                <xs:attribute name="source" type="xs:string" use="required" />
+                <xs:attribute name="username-field" type="xs:string" use="required" />
+                <xs:attribute name="password-field" type="xs:string" use="required" />
+                <xs:attribute name="emailaddress-field" type="xs:string" use="optional" />
+                <xs:attribute name="active-field" type="xs:string" use="optional" />
+                <xs:attribute name="failedattemptcount-field" type="xs:string" use="optional" />
+                <xs:attribute name="attemptwindowexpires-field" type="xs:string" use="optional" />
+                <xs:attribute name="salt-field" type="xs:string" use="optional" />
+                <xs:attribute name="salt" type="xs:string" use="optional" />
+                <xs:attribute name="password-format" type="authenticationPasswordFormatType" use="optional" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="ldap" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:attribute name="host" type="xs:string" use="required" />
+                <xs:attribute name="domain" type="xs:string" use="optional" />
+                <xs:attribute name="use-start-tls" type="xs:boolean" use="optional" />
+                <xs:attribute name="account-canonical-form" type="xs:integer" use="optional" />
+                <xs:attribute name="base-dn" type="xs:string" use="optional" />
+                <xs:attribute name="ldap-user" type="xs:string" use="optional" />
+                <xs:attribute name="ldap-password" type="xs:string" use="optional" />
+                <xs:attribute name="attributes" type="xs:string" use="optional" />
+                <xs:attribute name="timelimit" type="xs:integer" use="optional" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="custom" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="parameters">
+                    <xs:complexType>
+                      <xs:choice>
+                        <xs:element name="add" minOccurs="0" maxOccurs="100">
+                          <xs:complexType>
+                            <xs:attribute name="key" type="xs:string" use="required" />
+                            <xs:attribute name="value" type="xs:string" use="required" />
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:choice>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:all>
+                <xs:attribute name="name" type="xs:string" use="required" />
+                <xs:attribute name="class" type="xs:string" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="memberships" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="membership" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:attribute name="username" type="xs:string" use="required" />
+                <xs:attribute name="role" type="xs:string" use="required" />
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="table" minOccurs="0" maxOccurs="100">
+              <xs:complexType>
+                <xs:attribute name="dsn" type="xs:string" use="optional" />
+                <xs:attribute name="source" type="xs:string" use="optional" />
+                <xs:attribute name="username-field" type="xs:string" use="optional" />
+                <xs:attribute name="role-field" type="xs:string" use="required" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="method" type="authenticationMethodType" use="optional" />
+    <xs:attribute name="deny" type="xs:string" use="optional" />
+    <xs:attribute name="allow" type="xs:string" use="optional" />
+    <xs:attribute name="restrict" type="xs:string" use="optional" />
+    <xs:attribute name="maxinvalidattempts" type="xs:integer" use="optional" />
+    <xs:attribute name="attemptwindow" type="xs:integer" use="optional" />
+    <xs:attribute name="requiressl" type="xs:boolean" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="authorization">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="page" minOccurs="0" maxOccurs="100">
+        <xs:complexType>
+          <xs:attribute name="path" type="xs:string" use="required" />
+          <xs:attribute name="allow" type="xs:string" use="optional" />
+          <xs:attribute name="deny" type="xs:string" use="optional" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="allow" type="xs:string" use="optional" />
+    <xs:attribute name="deny" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="data-source">
+  <xs:complexType>
+    <xs:attribute name="dsn" type="xs:string" use="required" />
+    <xs:attribute name="username" type="xs:string" use="optional" />
+    <xs:attribute name="password" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="errors">
+  <xs:complexType>
+    <xs:choice>
+      <xs:element name="when" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:attribute name="error" type="xs:integer" use="required" />
+          <xs:attribute name="page" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="otherwise" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="error" type="xs:integer" use="required" />
+          <xs:attribute name="page" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+
+<xs:simpleType name="stateType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="on"/>
+    <xs:enumeration value="debug"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="viewstateMethodType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="none"/>
+    <xs:enumeration value="session"/>
+    <xs:enumeration value="cookies"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="authenticationMethodType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="none"/>
+    <xs:enumeration value="basic"/>
+    <xs:enumeration value="forms"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="authenticationPasswordFormatType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="none"/>
+    <xs:enumeration value="md5"/>
+    <xs:enumeration value="sha1"/>
+    <xs:enumeration value="crypt"/>
+  </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="emailType">
+  <xs:restriction base="xs:string">
+    <xs:pattern value="[A-Za-z0-9_]+([-+.'][A-Za-z0-9_]+)*@[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*"/>
+  </xs:restriction>
+</xs:simpleType>
+
+</xs:schema>

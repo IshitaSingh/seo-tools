@@ -1,0 +1,18 @@
+# Turn Rewrite Engine On
+RewriteEngine On
+
+# Condition /(session)/module/id?vars
+RewriteCond %{REQUEST_URI} /(\((.*)\)/)(.*)/(.+)$
+RewriteRule (\((.*)\)/)?(.*)/(.*)?$ index.php?PHPSESSID=$2&module=$3&id=$4 [L,QSA]
+
+# Condition /(session)/module/?vars
+RewriteCond %{REQUEST_URI} /(\((.*)\)/)(.*)/$
+RewriteRule (\((.*)\)/)?(.*)/(.*)?$ index.php?PHPSESSID=$2&module=$3 [L,QSA]
+
+# Condition /module/id?vars
+RewriteCond %{REQUEST_URI} /(.*)/(.+)$
+RewriteRule (\((.*)\)/)?(.*)/(.*)?$ index.php?module=$3&id=$4 [L,QSA]
+
+# Condition /module/?vars
+RewriteCond %{REQUEST_URI} /(.*)/$
+RewriteRule (\((.*)\)/)?(.*)/(.*)?$ index.php?module=$3 [L,QSA]

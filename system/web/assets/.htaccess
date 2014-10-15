@@ -1,0 +1,4 @@
+# Turn Rewrite Engine On
+RewriteEngine Off
+
+# Do not list directory

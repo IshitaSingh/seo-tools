@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+ application specification
+ @state (default=on): the state of the application
+   If @state=on, the application is in production working
+   If @state=debug, the application is in development state
+ @lang (default=en): the default language of the application
+ @charset (default=utf-8): the default charset of the application
+-->
+<application                   state = "debug">
+
+  <!--
+   app-settings specification
+   @add
+     @key: optional name of the key to add
+     @value: optional value of the key to add
+  -->
+  <app-settings />
+
+ <!--
+   data-source specification
+   @dsn: specifies a dsn connection string
+	  DSN connection string format:
+		adapter={adapter};
+		uid={uid};
+		pwd={pwd};
+		server={server};
+		database={db};
+  -->
+  <data-source                   dsn = "adapter=mysqli;
+                                        uid=darnell;
+                                        pwd=R146D;
+                                        server=balroq:3308;
+                                        database=seoanalyzer;" />
+
+</application>

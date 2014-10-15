@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+ application specification
+ @state (default=on): the state of the application
+   If @state=on, the application is in production working
+   If @state=debug, the application is in development state
+ @lang (default=en): the default language of the application
+ @charset (default=utf-8): the default charset of the application
+-->
+<application                   state = "on"
+                                lang = "en">
+
+  <!--
+   app-settings specification
+   @add
+     @key: optional name of the key to add
+     @value: optional value of the key to add
+  -->
+  <app-settings>
+    <add                         key = "version"
+                               value = "2.0" />
+    <add                         key = "reply_email"
+                               value = "no-reply@commerx.com" />
+    <add                         key = "smtp_server"
+                               value = "mail.commerx.com" />
+    <add                         key = "smtp_user"
+                               value = "hive@commerx.com" />
+    <add                         key = "smtp_password"
+                               value = "di2^d1nHn1D#" />
+  </app-settings>
+
+  <!--
+   pages specification
+   @default-theme: (default=default): specifies the default theme
+  -->
+  <pages               default-theme = "default" />
+
+ <!--
+   viewstate specification
+   @enabled (default=false): specifies whether to enable viewstate
+     If @enabled=true,  viewstate is enabled
+     If @enabled=false, viewstate is disabled
+   @method (default=session): specifies the viewstate method
+     If @method=session,  View state is stored in the session
+     If @method=cookies,  View state is stored in browser cookies
+   @expires (default=0): the time until cache expires in seconds
+     If @expires=0, expires when sessin ends
+  -->
+  <viewstate                 enabled = "false" />
+
+ <!--
+   request specification
+   @default (default=Index): the default controller to load
+   @param (default=page): the page request parameter
+   @friendly-uris (default=true): specifies whether to rewrite requests
+     If @friendly-uris=true,  URL looks like: /home/content/5
+     If @friendly-uris=false, URL looks like: /index.php?page=home/content&id=5
+  -->
+  <request                   default = "Index"
+                       friendly-uris = "true" />
+
+ <!--
+   session specification
+   @cookieless (default=false): specifies whether to append request with the session id
+     If @cookieless=true,  URL looks like: /(iuhcmvomqcmuq3j3n3t61h5t4tdpik4h)/default/content/
+     If @cookieless=false, URL looks like: /default/content/
+   @timeout (default=0): the session timeout in seconds
+  -->
+  <session                cookieless = "false"
+                             timeout = "0" />
+
+ <!--
+   cache specification
+   @enabled (default=false): specifies whether to enable caching
+     If @enabled=true,  will read/write to cache file
+     If @enabled=false, will read cache file if exists (always reads cache file if present)
+   @expires (default=0): the time until cache expires in seconds
+     If @expires=0, never expires
+  -->
+  <cache                     enabled = "false"
+                             expires = "0" />
+
+ <!--
+   authentication specification
+   @method (default=none): specifies whether to append request with the session id
+     If @method=none,   No authentication
+     If @method=forms,  Authentication using forms
+     If @method=basic,  Authentication using Basic HTTP
+   @deny (default=all): Deny access to the specified pages
+   @allow (default=none): Allow access to the specified pages
+   @restrict (default=none): Restrict by IP range
+   @maxinvalidattempts (default=0): Max invalid attempts before account lockout
+   @attemptwindow (default=300): Attempt window in seconds
+   @requiressl (default=false): Require SSL connection for authentication
+   @basic
+     @realm (default=MyRealm): the name of the Http Realm
+   @forms
+     @loginpage (default=login): the login page controller
+     @cookiename (default=__AUTHCOOKIE): the name of the authentication cookie
+     @secret: specifies the secret when setting auth cookies
+     @expires: specifies the inactive time before session expires in seconds
+   @credentials
+     @user
+       @username: the username to challenge
+       @password: the password to challenge
+       @active: specifies whether the user is active
+       @salt the password salt (salt is appended to the password then concatenated with the password)
+         Example: String to hash = password + salt
+       @password-format (default=none): the password format
+         If @password-format=none,    password is stored as plain text
+         If @password-format=md5,     password encrypted with md5()
+         If @password-format=sha1,    password encrypted with sha1()
+         If @password-format=encrypt, password encrypted with crypt()
+     @table
+       @dsn (optional): specifies the dsn connection string
+       @source: specifies the data-source
+       @username-field: specifies the username field
+       @password-field: specifies the password field
+	   @emailaddress-field: specifies the optional email address field
+	   @active-field: specifies the optional active field
+	   @failedattemptcount-field: specifies the optional failed attempt count field
+	   @attemptwindowexpires-field: specifies the optional attempt window expires field
+       @salt-field: specifies the optional salt field
+       @salt the password salt (salt is appended to the password then concatenated with the password)
+         Example: String to hash = password + salt
+       @password-format (default=none): the password format
+         If @password-format=none,    password is stored as plain text
+         If @password-format=md5,     password encrypted with md5()
+         If @password-format=sha1,    password encrypted with sha1()
+         If @password-format=encrypt, password encrypted with crypt()
+   @memberships
+     @membership
+       @username: the name of the user
+       @role: the name of the role
+     @table
+       @dsn (optional): specifies the dsn connection string
+       @source: specifies the data-source
+       @username-field: specifies the user field
+	   @role-field: specifies the role field
+  -->
+  <authentication             method = "none" />
+
+  <!--
+   authorization specification
+   @allow (default=none): Allow access to the specified roles
+   @deny (default=all): Deny access to the specified roles
+   @pages
+     @path: the page path
+     @allow (default=none): Allow access to the specified roles
+     @deny (default=all): Deny access to the specified roles
+  -->
+  <authorization />
+
+ <!--
+   data-source specification
+   @dsn: specifies a dsn connection string
+	  DSN connection string format:
+		adapter={adapter};
+		uid={uid};
+		pwd={pwd};
+		server={server};
+		database={db};
+  -->
+  <!--
+  <data-source                   dsn = "adapter=mysql;
+                                        uid=user;
+                                        pwd=passwd;
+                                        server=localhost;
+                                        database=database_dev;" />-->
+
+  <!--
+   errors specification
+   @when
+     @error: the http error to catch
+       Example: If @error=404, will redirect to @page on 404 error
+     @page: the page that will handle the error
+  -->
+  <errors>
+    <when                      error = "400"
+                                page = "Errors/BadRequest" />
+    <when                      error = "401"
+                                page = "Errors/Unauthorized" />
+    <when                      error = "404"
+                                page = "Errors/PageNotFound" />
+    <when                      error = "500"
+                                page = "Errors/InternalError" />
+    <when                      error = "503"
+                                page = "Errors/ServiceUnavailable" />
+  </errors>
+
+</application>

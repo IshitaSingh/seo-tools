@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+ dev specification - used by command line tools
+ @namespace: the namespace of the application, required for the make command
+ @repo: the path to the repository, required for the get command
+-->
+<dev
+  namespace  = "SEOWerx"
+  repository = "http://php-rum.com/downloads/release/6_6/package-list.xml" />

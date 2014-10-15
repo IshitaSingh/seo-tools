@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<langs>
+  <lang lang="en" charset="utf-8">
+	<string id="must_be_a_valid_date_or_time" value="must be a valid date or time" />
+	<string id="must_be_a_valid_email_address" value="must be a valid email address" />
+	<string id="must_be_a_valid_integer" value="must be a valid integer" />
+	<string id="must_be_a_valid_url" value="must be a valid url" />
+	<string id="must_be_between_x_to_y_characters" value="must be between %x to %y characters" />
+	<string id="must_be_equal_to" value="must be equal to %n" />
+	<string id="must_be_greater_than" value="must be greater than %n" />
+	<string id="must_be_greater_than_or_equal_to" value="must be greater than or equal to %n" />
+	<string id="must_be_less_than" value="must be less than %n" />
+	<string id="must_be_less_than_or_equal_to" value="must be less than or equal to %n" />
+	<string id="must_be_not_equal_to" value="must be not equal to %n" />
+	<string id="must_be_numeric" value="must be numeric" />
+    <string id="must_be_true_or_false" value="must be true or false" />
+	<string id="must_be_within_the_range_of_x_and_y" value="must be within the range of %x and %y" />
+	<string id="must_be_unique" value="must be unique" />
+	<string id="must_match_the_pattern" value="must match the pattern %n" />
+	<string id="is_not_a_valid_file_type" value="is not a valid file type" />
+	<string id="is_not_a_valid_option" value="is not a valid option" />
+	<string id="is_invalid" value="is invalid" />
+	<string id="is_required" value="is required" />
+
+	<!-- custom validation messages -->
+	<string id="must_be_part_of_domain" value="must be part of the website domain" />
+	<string id="validation_failed" value="There were some errors with your submission, Please correct the highlighted fields..." />
+
+	<!-- login form -->
+	<string id="login_form" value="Login form" />
+	<string id="password_reset_form" value="Password reset form" />
+	<string id="login" value="login" />
+	<string id="reset_password" value="reset password" />
+	<string id="forgot_password" value="forgot password" />
+	<string id="username" value="Username" />
+	<string id="password" value="Password" />
+	<string id="remember_me" value="Remember me" />
+	<string id="email_address" value="E-mail address" />
+	<string id="confirm_password" value="Confirm password" />
+
+	<!-- messages -->
+	<string id="registration_success_msg" value="You have successfully registered for you free SEO Analysis and Report. Please check your email for a link." />
+
+  </lang>
+</langs>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Views</h1>
+<p>The view represents the user interface which consists of the HTML and all of the things the user can see and respond to on the screen, such as buttons, text fields, tables, etc...  The view can send messages directly from the user to the model via the controller.</p>
+
+<p>In this example the view is telling the browser to display a list of <em>entries</em> that have been sent from the controller.</p>
+
+<code><span style="color: #000000">
+&lt;h1&gt;My&nbsp;Blog&lt;/h1&gt;
+<br />
+<br /><span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">foreach(</span><span style="color: #0000BB">$entries&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$entry</span><span style="color: #007700">)&nbsp;:&nbsp;</span><span style="color: #0000BB">?&gt;
+<br /></span>
+<br />&lt;h3&gt;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$entry</span><span style="color: #007700">[</span><span style="color: #DD0000">"title"</span><span style="color: #007700">])&nbsp;</span><span style="color: #0000BB">?&gt;</span>&lt;/h3&gt;
+<br />&lt;p&gt;<span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">htmlentities</span><span style="color: #007700">(</span><span style="color: #0000BB">$entry</span><span style="color: #007700">[</span><span style="color: #DD0000">"body"</span><span style="color: #007700">])&nbsp;</span><span style="color: #0000BB">?&gt;</span>&lt;/p&gt;
+<br />
+<br /><span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">endforeach;&nbsp;</span><span style="color: #0000BB">?&gt;
+<br /></span>
+<br /><span style="color: #0000BB">&lt;?php&nbsp;</span><span style="color: #007700">echo&nbsp;\</span><span style="color: #0000BB">Rum</span><span style="color: #007700">::</span><span style="color: #0000BB">link</span><span style="color: #007700">(</span><span style="color: #DD0000">'Add&nbsp;a&nbsp;new&nbsp;entry'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'new_entry'</span><span style="color: #007700">)&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code>
+
+<p>Views are located in /app/views</p>
+
+</body>
+</html>

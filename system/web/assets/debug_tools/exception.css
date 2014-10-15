@@ -1,0 +1,98 @@
+<!--/*--><![CDATA[/*><!--*/
+
+
+html, body {
+	background-color: #A3A3A3;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 12px;
+	line-height: 20px;
+	font-family: verdana, arial, "lucida console", sans-serif;
+}
+
+#page {
+	padding-top: 12px;
+	padding-bottom: 30px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: #ffffff;
+}
+
+#details {
+	background-position: left;
+	background-repeat: no-repeat;
+	margin-top: 10px;
+}
+
+#details.fail {
+	padding-left: 130px;
+	background-image:url(core?asset=debug_tools/red-x.gif&type=image/gif);
+	min-height: 128px;
+}
+
+#version {
+	border-top: 1px solid #EEEEEE;
+}
+
+h1 {
+	font-size: 30px;
+	line-height: 30px;
+	color: #5792CE;
+	font-weight: bold;
+	margin-bottom: 12px;
+	font-family: arial, "lucida console", sans-serif;
+}
+
+h2 {
+	font-size: 22px;
+	line-height: 22px;
+	font-style: italic;
+	color: #999999;
+	font-weight: bold;
+	margin-bottom: 12px;
+	font-family: arial, "lucida console", sans-serif;
+}
+
+p {
+	color: #666666;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+p a {
+	color: #0000AA;
+	text-decoration: underline;
+}
+
+html pre {
+	background-color: #F7F7F7;
+	padding: 6px;
+	border: 1px solid #CCCCCC;
+	color: #666666;
+	white-space: pre-wrap;
+	-moz-border-radius:1em;
+	-khtml-border-radius:1em;
+}
+
+table {
+	margin: 0px;
+	padding: 0px;
+}
+
+hr {
+	height: 0px !important;
+	border: 1px solid #999999 !important;
+}
+
+.results {
+	padding: 6px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	border: 1px solid #CCCCCC;
+	-moz-border-radius:1em;
+	-khtml-border-radius:1em;
+}
+
+/*]]>*/-->

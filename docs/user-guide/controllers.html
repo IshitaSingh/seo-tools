@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Controllers</h1>
+<p>The controller handles incoming requests from the HTTP server and is responsible for manipulating the model and dispatching the appropriate the view.</p>
+
+<p>In this example the controller is assigning a variable to the view <em>/app/views/blog.tpl</em> during page load that contains all blog entries from the model <em>Entries</em></p>
+
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">namespace&nbsp;</span><span style="color: #0000BB">MyBlog</span><span style="color: #007700">\</span><span style="color: #0000BB">Controllers</span><span style="color: #007700">;
+<br />
+<br />&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;</span><span style="color: #0000BB">Blog&nbsp;</span><span style="color: #007700">extends&nbsp;\</span><span style="color: #0000BB">MyBlog</span><span style="color: #007700">\</span><span style="color: #0000BB">ApplicationController
+<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #0000BB">onPageLoad</span><span style="color: #007700">(</span><span style="color: #0000BB">$sender</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$args</span><span style="color: #007700">)
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">page</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">assign</span><span style="color: #007700">(</span><span style="color: #DD0000">'entries'</span><span style="color: #007700">,&nbsp;\</span><span style="color: #0000BB">MyBlog</span><span style="color: #007700">\</span><span style="color: #0000BB">Models</span><span style="color: #007700">\</span><span style="color: #0000BB">Entries</span><span style="color: #007700">::</span><span style="color: #0000BB">all</span><span style="color: #007700">());
+<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<br />&nbsp;&nbsp;&nbsp;&nbsp;}
+<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code>
+
+<p>Controller instances are located in /app/controllers</p>
+
+</body>
+</html>

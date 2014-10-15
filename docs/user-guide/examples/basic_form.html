@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="utf-8" />
+<title>PHPRum User Guide</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+
+<h1>Basic form</h1>
+
+<p>In this example, we are going to create a simple form.  We need to create 2
+files, a controller file and a view file.  Lets create the following files.</p>
+
+<pre>/app/controllers/myform.php</pre>
+<pre>
+	namespace MyApp;
+
+	class MyForm extends ApplicationController
+	{
+		public function onPageInit(\$sender, \$args)
+		{
+			$this->page->add(UI::Form('my_form'));
+			$this->page->my_form->add(UI::TextBox('title'));
+			$this->page->my_form->add(UI::TextBox('body'));
+			$this->page->my_form->add(UI::Button('create_post'));
+		}
+
+		public function onCreate_PostClick($sender, $args)
+		{
+			// handle form submission here...
+		}
+	}
+</pre>
+
+<pre>/app/views/myform.tpl</pre>
+<pre>
+$this->my_form->render() ?>
+</pre>
+
+</body>
+</html>
