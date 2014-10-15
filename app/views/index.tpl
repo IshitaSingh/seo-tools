@@ -17,14 +17,13 @@ $(document).ready(function() {
      <div class="header_content">
         
     <a  id="logo" href="#" rel="home"> seo werx</a>
-           <nav>
-            <a href="#" id="menu-icon"></a>
-            <ul>
-                <li><a href="#" class="current">login</a></li>
-                <li><a href="#">Signup</a></li>
-                
-            </ul>
-        </nav>
+           <div class="nav1">
+             <input name="page_form_url" id="page_form_url" title="" value="" type="url">	
+             <span id="page_form_url_error" style="display:none; "></span>     
+             <div style="visibility:hidden">
+                 <button onclick="return Rum.submit(Rum.id('page_form'));" name="page_form_submit" id="page_form_submit" type="submit" onchange="" onblur="" onkeyup="">submit</button>
+             </div>
+        
             </div>
 </div>
     
